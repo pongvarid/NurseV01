@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
+});
+Route::get('/logout','Account\LoginController@logout');
+
+Route::get('/teacher/profile', function () {
+    return view('teacher.profile');
 });

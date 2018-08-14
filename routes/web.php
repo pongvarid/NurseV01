@@ -19,13 +19,19 @@ Route::get('/logout','Account\LoginController@logout');
 Route::get('/teacher/profile', function () {
     return view('teacher.profile');
 });
+/* Updated upstream*/
 
 Route::get('/student/profile', function () {
     return view('student.profile');
 });
 
 Route::get('/test2', function () {
-    return view('teacher.test2');
+    return view('teacher.test');
 });
 
 Route::get('/test','Account\LoginController@studentLogin');
+
+Route::get('/admin', function () {
+    return view('adminn.index');
+});
+/* Stashed changes*/

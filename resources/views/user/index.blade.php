@@ -97,6 +97,7 @@
     
     loginGo() {
       if (this.teacher_user == "1") { 
+        alert('สวัสดีค่ะ อาจารย์');
         axios
       .post("<?=env('link');?>/api/check/teacher/login",this.login)
       .then(function(response) { 
@@ -111,7 +112,7 @@
       });
 
       } else {
-        alert('Hello Student');
+        alert('สวัสดีค่ะ นิสิต');
         axios
       .post("<?=env('link');?>/api/check/student/login",this.login)
       .then(function(response) { 

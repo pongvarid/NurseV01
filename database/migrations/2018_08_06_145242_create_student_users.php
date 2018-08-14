@@ -15,11 +15,7 @@ class CreateStudentUsers extends Migration
     {
         Schema::create('student', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username'); 
-            $table->string('name');
-            $table->string('faculty');
-            $table->string('major'); 
-            $table->string('data'); 
+            $table->string('username');   
             $table->integer('permission')->nullable()->default(1); 
             $table->timestamps();
         });

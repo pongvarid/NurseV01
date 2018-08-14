@@ -6,6 +6,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     $id = $_SESSION['user'];
 }
 /*-------------------SET SESSION-----------------------*/
+include(resource_path().'/alert/alert.php');
 ?>
 
 @extends('core.vuetify') 
@@ -19,29 +20,11 @@ background-size: cover;
     
  </style>   
 @section('vue')
-<v-layout row >
-        <v-flex xs12 id="home">
-         
-            <v-layout row>
-                    <v-flex xs12 md12 sm12  class="bgh "> 
-                            <div class="pd-die pd-48 "> 
-                                    <h2 class="w3-jumbo wh" >สวัสดี</h2>
-                                    <h3 class="wh">อาจารย์ @{{teacher.name}}</h3>
-                                    <span class="w3-large wh"> @{{teacher.remark}}</span>
-                                    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">@{{}}</a></p>
-                       
-                            </div>
-                 
-                        </v-flex>
-            </v-layout>
-         
-         
-               <!-------   <span class="w3-jumbo w3-hide-small">สวัสดี</span><br>
-                  <span class="w3-jumbo w3-hide-large">Hi</span><br> ------>
-           </v-flex>   
-        </v-flex xs12 >
-        
-    </v-layout>
+ 
+<?php
+ include(resource_path().'/views/teacher/test.blade.php');
+alert();
+?>
 @endsection
  
 @section('vue_script')
@@ -49,11 +32,16 @@ background-size: cover;
   new Vue({
   el: "#app",
   data: {
+      <?=script_alert()?>
    teacher:{}
   },
   methods: { 
+      hello(){
+        this.alert_text = "test";
+        this.alert_bar=true;
+      },
       load(){
-        let result =  axios.get('/api/teacher/<?php echo $id; ?>')
+        let result =  axios.get('<?=env('link');?>/api/teacher/<?php echo $id; ?>')
       .then((r) => {
           this.teacher = r.data;
       }).catch((e) => { 

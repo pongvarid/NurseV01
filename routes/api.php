@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/check/student/{username}','Account\LoginController@checkStudent');
 Route::get('/check/teacher/{username}','Account\LoginController@checkTeacher');
-Route::post('/check/teacher/login','Account\LoginController@teacherLogin');
+Route::post('/check/teacher/login','Account\LoginController@teacherLogin'); 
+Route::post('/check/student/login','Account\LoginController@studentLogin');
 
-Route::resource('/teacher','Teacher\TeacherController');
+Route::get('/student/data/{session_id}','Account\LoginController@getStudentData');
+
+Route::resource('/teacher','Teacher\TeacherController'); 

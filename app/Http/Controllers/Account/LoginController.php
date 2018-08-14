@@ -10,16 +10,19 @@ use App\Soap\UniversityOfPhayao;
 
 class LoginController extends Controller
 {
+    /****ตรวจสอบชื่อผู้ใช้ (นักเรียน) ใน ดาต้าเบส  *****/
     public function checkStudent($username){
        $student =  Student::where('username',$username)->first();
         return $this->checkNull($student);
     }
 
+    /****ตรวจสอบชื่อผู้ใช้ (อาจารย์) ใน ดาต้าเบส  *****/
     public function checkTeacher($username){
         $teacher = Teacher::where('username',$username)->first();
         return $this->checkNull($teacher);
     }
 
+    /****เช็คค่าว่างของข้อมูล*****/
     public function checkNull($param){
         if($param != null){
             return 1;
@@ -28,13 +31,17 @@ class LoginController extends Controller
         }
     }
 
-    public function teacherLogin(Request $request){ 
+    /****เข้าสู่ระบบอาจารย์*****/
+    public function teacherLogin(Request $request){
+        //ค้นหาชื่อผู้ใช้รหัสผ่านอาจารย์ในดาต้าเบส 
         $teacher = Teacher::where('username',$request->username)->where('password',$request->password)->first();
         $i_user =  $this->checkNull($teacher);
         if($i_user != 0){
-          session_start();
+            //เปิด session
+          session_start(); 
             $_SESSION["user"] =  $teacher->id; 
-            $_SESSION["user_type"] = "teacher";
+            $_SESSION["admin"] = $teacher->permission; //admin เป็น 1 
+            $_SESSION["user_type"] = "teacher"; //ประเภท user
             return 1;
         }else{
             return 0;
@@ -42,20 +49,28 @@ class LoginController extends Controller
 
     }
 
+    
+    /****เข้าสู่ระบบนิสิต*****/
     public function studentLogin(Request $request){ 
-        
+        //เรียกใช้ soap service ม.พะเยา
         $up = new UniversityOfPhayao(); 
+
+        //โยน username password เข้าไปเพื่อให้รีเทริ์นกลับเป็น session_id
         $session_id = $up->getSID($request->username,$request->password);
+
+        //ตรวจสอบว่ามีนิสิติอยู่มั้ยถ้าไม่มี session_id จะเป็น null 
         if(isset($session_id)){
+            // ค้นหานิสิตใน database ว่ามีมั้ยถ้าไม่มีบันทึกรหัสลง database
            if($this->checkStudent($request->username) == 0){
                $student = new Student();
                $student->username = $request->username;
                $student->save;
            }
+           //เปิด session
            session_start();
            $_SESSION["user"] =  $session_id;
            $_SESSION["student"] = $request->username;
-           $_SESSION["user_type"] = "student"; 
+           $_SESSION["user_type"] = "student"; //ประเภท user
            return 1;
         }else{
             return 0;
@@ -64,21 +79,28 @@ class LoginController extends Controller
 
     }
 
+    /****เรียกใช้ข้อมูลนิสิตเป็น json*****/
     public function getStudentData($session_id){
+         //เรียกใช้ soap service ม.พะเยา
         $up = new UniversityOfPhayao(); 
+        //แปลง stdclass to json
         $jsonStudent = json_encode((array)  $up->getStudentInfo($session_id), JSON_UNESCAPED_UNICODE);
         return $jsonStudent ;
     }
 
-
+  /****ออกจากระบบ*****/
     public function logout(){
         session_start();
+        //หากเป็นนักเรียนให้ ส่ง service ไป logoff บนมอน้อย
         if($_SESSION["user_type"] == "student"){
+            //เรียกใช้ soap service ม.พะเยา
             $up = new UniversityOfPhayao(); 
             $up->getLogOff($_SESSION["user"]);
         }
+        //เคลียค่า session และปิด session
         session_unset();
         session_destroy(); 
+        //กลับไปหน้า login
         return redirect('/');
         
     }

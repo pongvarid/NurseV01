@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Course;
-
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,6 +25,7 @@ class CourseController extends Controller
     public function create()
     {
         //
+        return view("course.create");
     }
 
     /**
@@ -35,7 +36,18 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course();
+        $course->code = $request->get('code');
+        $course->name = $request->get('name');
+        $course->year = $request->get('year');
+        $course->teacher = $request->get('teacher');
+        $course->state = $request->get('state');
+        $save = $course->save();
+        if($save){
+            return 1;
+        }else{
+            return 0;
+        }  
     }
 
     /**

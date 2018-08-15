@@ -35,3 +35,7 @@ Route::get('/admin', function () {
     return view('adminn.index');
 });
 /* Stashed changes*/
+
+Route::get('/course/create', function () {
+    return view('course.create');
+});

@@ -30,7 +30,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-toolbar-side-icon></v-toolbar-side-icon>
                 <v-toolbar-title>รายวิชาที่เปิดสอน</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn dark icon>
+                <v-btn dark icon @click="create_course()">
                         <v-icon>fas fa-plus-circle </v-icon>
                        
                       </v-btn>
@@ -57,6 +57,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
    teacher:{}
   },
   methods: { 
+    create_course(){
+        window.location = "<?=env('link');?>/course/create";
+    },
       hello(){
         this.alert_text = "test";
         this.alert_bar=true;

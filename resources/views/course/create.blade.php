@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-</head>
-<body>
+<?php 
+/*-------------------SET SESSION-----------------------*/
+session_start();
+$user = isset($_SESSION['user']); 
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
+    $id = $_SESSION['user'];
+}
+ 
+?> 
+@extends('core.vuetify') 
+@section('vue')
   <div id="app">
     <v-app>
       <v-content>
@@ -35,9 +38,10 @@
       </v-content>
   </v-app>
   </div>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+  @endsection
+ 
+@section('vue_script')
   <script>
     
     new Vue({ el: '#app',
@@ -45,7 +49,7 @@
       valid: true,
       course:{
         state:1,
-        teacher:'admin',
+        teacher:<?php echo $id;?> //อาจารย์
       }
       //code:this.code,
     }),
@@ -55,7 +59,7 @@
         axios.post("<?=env('link');?>/api/course",this.course)
       .then(function(response) { 
         if(response.data == '1'){
-            window.location = "<?=env('link');?>/course/";
+            window.location = "<?=env('link');?>/teacher/profile";
         }else{
       
         } 
@@ -71,5 +75,5 @@
     
     })
   </script>
-</body>
-</html>
+
+@endsection

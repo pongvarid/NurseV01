@@ -58,7 +58,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Course::where('teacher',$id)->get();
+        return $course->toJson();
     }
 
     /**

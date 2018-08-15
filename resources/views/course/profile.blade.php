@@ -1,0 +1,3 @@
+
+
+{{request()->route('id')}}

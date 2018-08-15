@@ -26,3 +26,4 @@ Route::get('/student/data/{session_id}','Account\LoginController@getStudentData'
 Route::resource('/teacher','Teacher\TeacherController');
 Route::resource('/admin','Admin\AdminController'); 
 Route::resource('/course','Course\CourseController'); 
+ 

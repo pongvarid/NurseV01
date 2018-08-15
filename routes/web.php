@@ -39,3 +39,8 @@ Route::get('/admin', function () {
 Route::get('/course/create', function () {
     return view('course.create');
 });
+
+Route::get('/course/profile/{id}', function () {
+    return view('course.profile');
+});
+ 

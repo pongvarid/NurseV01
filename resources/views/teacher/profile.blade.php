@@ -19,7 +19,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-list two-line subheader>
-             <h2>dsds</h2>
+            <pre>
+                @{{teacher}}
+            </pre>
             </v-list>
         </v-card>
     </v-flex>
@@ -36,11 +38,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                       </v-btn>
                       
             </v-toolbar>
-            <v-list two-line subheader>
-                <v-subheader inset>Folders</v-subheader> 
-                <v-divider inset></v-divider>
-                <v-subheader inset>Files</v-subheader>
-                 
+            <v-list two-line subheader v-for="data in course">
+                <v-subheader >
+                   <a :href="'/course/profile/'+data.id">@{{data.name}}</a>
+               </v-subheader> 
+                <v-divider ></v-divider> 
+
             </v-list>
         </v-card>
     </v-flex>
@@ -54,7 +57,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   el: "#app",
   data: {
  
-   teacher:{}
+   teacher:{},
+   course:{}
   },
   methods: { 
     create_course(){
@@ -64,13 +68,27 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         this.alert_text = "test";
         this.alert_bar=true;
       },
-      load(){
+
+      getTeacherInfo(){
         let result =  axios.get('<?=env('link');?>/api/teacher/<?php echo $id; ?>')
       .then((r) => {
           this.teacher = r.data;
       }).catch((e) => { 
           alert('error');
       });
+      },
+      getCourse(){
+        let result =  axios.get('<?=env('link');?>/api/course/<?php echo $id; ?>')
+      .then((r) => {
+          this.course = r.data;
+      }).catch((e) => { 
+          alert('error');
+      });
+      },
+
+      load(){
+       this.getTeacherInfo();
+       this.getCourse();
       }
   },
   mounted(){

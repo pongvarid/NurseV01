@@ -37,11 +37,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $course = new Course();
-        $course->code = $request->get('code');
-        $course->name = $request->get('name');
-        $course->year = $request->get('year');
-        $course->teacher = $request->get('teacher');
-        $course->state = $request->get('state');
+        $course->fill($request->all());
         $save = $course->save();
         if($save){
             return 1;

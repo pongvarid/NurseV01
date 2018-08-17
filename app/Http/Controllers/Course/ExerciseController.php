@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Course;
-
+use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +14,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        //
+        // return view('exercise.chooseExercise');
     }
 
     /**
@@ -24,7 +24,7 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

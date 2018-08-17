@@ -12,7 +12,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   <div id="app">
     <v-app>
       <v-content>
-        <v-container fill-height>
+        <v-container>
             <v-flex text-xs-center>
               <v-card class="elevation-12">
                 <v-toolbar dark color="primary">
@@ -29,7 +29,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="primary" :disabled="!valid" @click="submit">submit</v-btn>
-                  <v-btn @click="clear">clear</v-btn>
                 </form>
                 </v-card-actions>
           </v-card>
@@ -53,7 +52,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       }
       //code:this.code,
     }),
-
     methods: {
       submit () {
         axios.post("<?=env('link');?>/api/course",this.course)
@@ -68,9 +66,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
      
       });
       },
-      clear () {
-        this.$refs.form.reset()
-      }
+      
     }
     
     })

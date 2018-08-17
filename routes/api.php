@@ -27,4 +27,8 @@ Route::resource('/teacher','Teacher\TeacherController');
 Route::resource('/admin','Admin\AdminController'); 
 Route::resource('/course','Course\CourseController'); 
 
+<<<<<<< HEAD
  
+=======
+Route::resource('/logs','Logs\LogsController'); 
+>>>>>>> master

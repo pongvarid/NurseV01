@@ -39,3 +39,7 @@ Route::get('/admin', function () {
 Route::get('/course/create', function () {
     return view('course.create');
 });
+
+Route::get('/crud', function () {
+    return view('crud.crud');
+});

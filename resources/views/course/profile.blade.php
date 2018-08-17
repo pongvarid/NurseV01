@@ -60,7 +60,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
  
   },
   methods: { 
-    
+    submit_eam(){
+        window.location = "<?=env('link');?>/course/exercise/{{request()->route('id')}}";
+    },
   },
   mounted(){
       this.load();

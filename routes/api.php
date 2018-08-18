@@ -24,11 +24,14 @@ Route::post('/check/student/login','Account\LoginController@studentLogin');
 Route::get('/student/data/{session_id}','Account\LoginController@getStudentData');
 
 Route::resource('/teacher','Teacher\TeacherController');
-Route::resource('/admin','Admin\AdminController'); 
 Route::resource('/course','Course\CourseController'); 
-
-<<<<<<< HEAD
- 
-=======
 Route::resource('/logs','Logs\LogsController'); 
->>>>>>> master
+
+/* admin */
+Route::resource('/admint','Admin\TeacherController'); 
+Route::resource('/admins','Admin\StudentController');  
+Route::resource('/adminc','Admin\CourseController');   
+Route::resource('/admind','Admin\DocumentController');   
+Route::resource('/admine','Admin\ExerciseController');   
+Route::resource('/admined','Admin\ExercisedController');   
+Route::resource('/adminel','Admin\LogsController');   

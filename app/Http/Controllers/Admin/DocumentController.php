@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Logs; 
-
-class LogsController extends Controller
+use App\Models\Document; 
+class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +35,10 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        $logs = new Logs(); 
-        $logs->fill($request->all());  
-        $logs->save(); 
+        //echo "test";
+        $document = new Document(); 
+        $document->fill($request->all());  
+        $document->save(); 
     }
 
     /**
@@ -49,8 +49,9 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        $logs = new Logs(); 
-        return $logs->get()->toJson();
+        //echo "test";
+        $document = new Document(); 
+        return $document->get()->toJson();
     }
 
     /**
@@ -61,8 +62,8 @@ class LogsController extends Controller
      */
     public function edit($id)
     {
-        $logs = Logs::find($id);
-        return $logs;
+        $document = Document::find($id);
+        return $document;
     }
 
     /**
@@ -74,9 +75,9 @@ class LogsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $logs =  Logs::find($id);  
-        $logs->fill($request->all());  
-        $logs->save(); 
+        $document =  Document::find($id);  
+        $document->fill($request->all());  
+        $document->save(); 
     }
 
     /**
@@ -87,7 +88,7 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        $logs = Logs::find($id);
-        return $logs->destroy($id);
+        $document = Document::find($id);
+        return $document->destroy($id);
     }
 }

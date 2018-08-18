@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Logs; 
+use App\Models\Exercised; 
 
-class LogsController extends Controller
+class ExercisedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +36,10 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        $logs = new Logs(); 
-        $logs->fill($request->all());  
-        $logs->save(); 
+        //echo "test";
+        $exercised = new Exercised(); 
+        $exercised->fill($request->all());  
+        $exercised->save(); 
     }
 
     /**
@@ -49,8 +50,9 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        $logs = new Logs(); 
-        return $logs->get()->toJson();
+        //echo "test";
+        $exercised = new Exercised(); 
+        return $exercised->get()->toJson();
     }
 
     /**
@@ -61,8 +63,8 @@ class LogsController extends Controller
      */
     public function edit($id)
     {
-        $logs = Logs::find($id);
-        return $logs;
+        $exercised = Exercised::find($id);
+        return $exercised;
     }
 
     /**
@@ -74,9 +76,9 @@ class LogsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $logs =  Logs::find($id);  
-        $logs->fill($request->all());  
-        $logs->save(); 
+        $exercised =  Exercised::find($id);  
+        $exercised->fill($request->all());  
+        $exercised->save(); 
     }
 
     /**
@@ -87,7 +89,7 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        $logs = Logs::find($id);
-        return $logs->destroy($id);
+        $exercised = Exercised::find($id);
+        return $exercisedd->destroy($id);
     }
 }

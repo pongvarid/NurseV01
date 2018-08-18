@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Logs; 
+use App\Models\Teacher; 
 
-class LogsController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +36,9 @@ class LogsController extends Controller
      */
     public function store(Request $request)
     {
-        $logs = new Logs(); 
-        $logs->fill($request->all());  
-        $logs->save(); 
+        $teacher = new Teacher();
+        $teacher->fill($request->all());
+        $teacher->save();
     }
 
     /**
@@ -49,8 +49,8 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        $logs = new Logs(); 
-        return $logs->get()->toJson();
+        $teacher = Teacher::get();
+        return $teacher;
     }
 
     /**
@@ -61,8 +61,8 @@ class LogsController extends Controller
      */
     public function edit($id)
     {
-        $logs = Logs::find($id);
-        return $logs;
+        $teacher = Teacher::find($id);
+        return $teacher;
     }
 
     /**
@@ -74,9 +74,9 @@ class LogsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $logs =  Logs::find($id);  
-        $logs->fill($request->all());  
-        $logs->save(); 
+        $teacher = Teacher::find($id); 
+        $teacher->fill($request->all());
+        $teacher->save();
     }
 
     /**
@@ -87,7 +87,7 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        $logs = Logs::find($id);
-        return $logs->destroy($id);
+        $teacher = Teacher::find($id);
+        return $teacher->destroy($id);
     }
 }

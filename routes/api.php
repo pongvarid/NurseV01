@@ -30,15 +30,6 @@ Route::resource('/exercise','Course\ExerciseController');
 Route::resource('/logs','Logs\LogsController'); 
 
 /* admin */
-<<<<<<< Updated upstream
-Route::resource('/admint','Admin\TeacherController'); 
-Route::resource('/admins','Admin\StudentController');  
-Route::resource('/adminc','Admin\CourseController');   
-Route::resource('/admind','Admin\DocumentController');   
-Route::resource('/admine','Admin\ExerciseController');   
-Route::resource('/admined','Admin\ExercisedController');   
-Route::resource('/adminel','Admin\LogsController');   
-=======
 Route::resource('/admin/teacher','Admin\TeacherController'); 
 Route::resource('/admin/student','Admin\StudentController');  
 Route::resource('/admin/course','Admin\CourseController');   
@@ -46,4 +37,4 @@ Route::resource('/admin/document','Admin\DocumentController');
 Route::resource('/admin/exercise','Admin\ExerciseController');   
 Route::resource('/admin/exercised','Admin\ExercisedController');   
 Route::resource('/admin/logs','Admin\LogsController');   
->>>>>>> Stashed changes
+

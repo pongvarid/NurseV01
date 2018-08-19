@@ -21,7 +21,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-list two-line subheader>
                 <v-divider ></v-divider> 
                 <v-subheader >
-                    <v-btn color="primary" depressed large @click="submit_eam()">แบบตอบถูกผิด</v-btn>
+                    <v-btn color="primary" depressed large @click="submit_ask()">แบบตอบถูกผิด</v-btn>
                 </v-subheader> 
                 <v-divider ></v-divider>
                 <v-subheader >
@@ -60,8 +60,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
  
   },
   methods: { 
-    submit_eam(){
-        window.location = "<?=env('link');?>/course/exercise/{{request()->route('id')}}";
+    submit_ask(){
+        window.location = "<?=env('link');?>/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
   },
   mounted(){

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
-    protected $table = "exercise"; 
 
+    protected $table = "exercise";
     protected $fillable = [
         "course",
         "type",
@@ -17,5 +17,6 @@ class Exercise extends Model
         "answer",
         "remark",
         "time",
+
     ];
 }

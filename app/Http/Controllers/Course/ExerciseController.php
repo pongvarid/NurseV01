@@ -35,14 +35,12 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        $exercise = new Exercise();
-        $exercise->fill($request->all());
+     
+         $exercise = new Exercise();
+       $exercise->fill($request->all());
         $save = $exercise->save();
-        if($save){
-            return 1;
-        }else{
-            return 0;
-        }
+         if($save) return 1;
+         else return 0;
          
     }
 

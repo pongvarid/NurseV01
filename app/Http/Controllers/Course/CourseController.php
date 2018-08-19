@@ -39,11 +39,8 @@ class CourseController extends Controller
         $course = new Course();
         $course->fill($request->all());
         $save = $course->save();
-        if($save){
-            return 1;
-        }else{
-            return 0;
-        }  
+        if($save) return 1;
+        else return 0;
     }
 
     /**

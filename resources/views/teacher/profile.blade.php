@@ -43,7 +43,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                    <a :href="'/course/profile/'+data.id">@{{data.name}}</a>
                </v-subheader> 
                 <v-divider ></v-divider> 
-
             </v-list>
         </v-card>
     </v-flex>

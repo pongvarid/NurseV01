@@ -48,7 +48,7 @@ Route::get('/crud', function () {
     return view('crud.crud');
 });
 
-Route::get('/course/exercise/{id}', function () {
-    return view('exercise.eam');
+Route::get('/course/exercise/ask_exercise/{id}', function () {
+    return view('exercise.ask_exercise.exercise');
 });
 

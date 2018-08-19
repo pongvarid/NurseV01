@@ -38,3 +38,7 @@ Route::resource('/admin/exercise','Admin\ExerciseController');
 Route::resource('/admin/exercised','Admin\ExercisedController');   
 Route::resource('/admin/logs','Admin\LogsController');   
 
+/* Document */
+Route::resource('/document','Document\DocumentController');   
+
+

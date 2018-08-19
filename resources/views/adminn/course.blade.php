@@ -4,7 +4,7 @@
   <v-app id="inspire">
     <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Student</v-toolbar-title>
+        <v-toolbar-title>Course</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
@@ -21,19 +21,19 @@
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.username" label="Username"></v-text-field>
+                    <v-text-field v-model="dataDB.code" label="Code"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.faculty" label="Faculty"></v-text-field>
+                    <v-text-field v-model="dataDB.year" label="Year"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.major" label="Major"></v-text-field>
+                    <v-text-field v-model="dataDB.teacher" label="Teacher"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.permission" label="Permission"></v-text-field>
+                    <v-text-field v-model="dataDB.state" label="state"></v-text-field>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -51,11 +51,11 @@
       <v-data-table :headers="headers" :items="tmp" hide-actions:pagination.sync="pagination" :total-items="totalTMP" :loading="loading"
         class="elevation-1" :search="search">
         <template slot="items" slot-scope="props">
-          <td>@{{ props.item.username }}</td>
+          <td>@{{ props.item.code }}</td>
           <td>@{{ props.item.name }}</td>
-          <td>@{{ props.item.faculty }}</td>
-          <td>@{{ props.item.major }}</td>
-          <td>@{{ props.item.permission }}</td>
+          <td>@{{ props.item.year }}</td>
+          <td>@{{ props.item.teacher }}</td>
+          <td>@{{ props.item.state }}</td>
           <td>@{{ props.item.created_at }}</td>
           <td>@{{ props.item.updated_at }}</td>
           <td class="justify-center layout px-0">
@@ -93,11 +93,11 @@
     search: '',
     dialog: false,
     headers: [
-      { text: 'User Name',value: 'username' },
+      { text: 'Code',value: 'code' },
       { text: 'Name', value: 'name' },
-      { text: 'Faculty', value: 'faculty' },
-      { text: 'Major', value: 'major' },
-      { text: 'Permission', value: 'permission' },
+      { text: 'Year', value: 'year' },
+      { text: 'Teacher', value: 'teacher' },      
+      { text: 'State', value: 'state' },
       { text: 'Created_at', value: 'created_at' },
       { text: 'Updated_at', value: 'updated_at' },
       { text: 'Actions', value: 'name', sortable: false }
@@ -173,7 +173,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admins/"+id)
+      .delete("<?=env('link');?>/api/admin/course/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -186,7 +186,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admins/"+this.dataDB.id,this.dataDB)
+      .put("<?=env('link');?>/api/admin/course/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -197,7 +197,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admins",this.dataDB)
+      .post("<?=env('link');?>/api/admin/course",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -208,7 +208,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admins/1')
+        let result =  axios.get('<?=env('link');?>/api/admin/course/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

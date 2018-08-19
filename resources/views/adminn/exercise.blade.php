@@ -4,7 +4,7 @@
   <v-app id="inspire">
     <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Teacher</v-toolbar-title>
+        <v-toolbar-title>Exercise</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
@@ -21,22 +21,28 @@
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.username" label="Username"></v-text-field>
+                    <v-text-field v-model="dataDB.course" label="Course"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.type" label="Type"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.password" label="Password"></v-text-field>
+                    <v-text-field v-model="dataDB.score" label="Score"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.ask" label="Ask"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.answer" label="Answer"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field v-model="dataDB.remark" label="Remark"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.count" label="Count"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.permission" label="Permission"></v-text-field>
+                    <v-text-field v-model="dataDB.time" label="Time"></v-text-field>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -54,12 +60,14 @@
       <v-data-table :headers="headers" :items="tmp" hide-actions:pagination.sync="pagination" :total-items="totalTMP" :loading="loading"
         class="elevation-1" :search="search">
         <template slot="items" slot-scope="props">
-          <td>@{{ props.item.username }}</td>
+          <td>@{{ props.item.course }}</td>
+          <td>@{{ props.item.type }}</td>
           <td>@{{ props.item.name }}</td>
-          <td>@{{ props.item.password }}</td>
+          <td>@{{ props.item.score }}</td>
+          <td>@{{ props.item.ask }}</td>
+          <td>@{{ props.item.answer }}</td>
           <td>@{{ props.item.remark }}</td>
-          <td>@{{ props.item.count }}</td>
-          <td>@{{ props.item.permission }}</td>
+          <td>@{{ props.item.time }}</td>
           <td>@{{ props.item.created_at }}</td>
           <td>@{{ props.item.updated_at }}</td>
           <td class="justify-center layout px-0">
@@ -97,12 +105,14 @@
     search: '',
     dialog: false,
     headers: [
-      { text: 'User Name',value: 'username' },
-      { text: 'Name', value: 'name' },
-      { text: 'Password', value: 'password' },
-      { text: 'Remark', value: 'remark' },      
-      { text: 'Count', value: 'count' },
-      { text: 'Permission', value: 'permission' },
+      { text: 'Course',value: 'course' },
+      { text: 'Type', value: 'type' },
+      { text: 'Name', value: 'nam' },
+      { text: 'Score', value: 'score' },
+      { text: 'Aks', value: 'aks' },
+      { text: 'Answer', value: 'answer' },
+      { text: 'Remark', value: 'remark' },
+      { text: 'Time', value: 'time' },
       { text: 'Created_at', value: 'created_at' },
       { text: 'Updated_at', value: 'updated_at' },
       { text: 'Actions', value: 'name', sortable: false }
@@ -178,7 +188,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admint/"+id)
+      .delete("<?=env('link');?>/api/admin/exercise/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -191,7 +201,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admint/"+this.dataDB.id,this.dataDB)
+      .put("<?=env('link');?>/api/admin/exercise/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -202,7 +212,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admint",this.dataDB)
+      .post("<?=env('link');?>/api/admin/exercise",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -213,7 +223,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admint/1')
+        let result =  axios.get('<?=env('link');?>/api/admin/exercise/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

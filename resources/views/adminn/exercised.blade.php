@@ -4,7 +4,7 @@
   <v-app id="inspire">
     <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Document</v-toolbar-title>
+        <v-toolbar-title>Exercised</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
@@ -21,16 +21,19 @@
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.link" label="Link"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
                     <v-text-field v-model="dataDB.course" label="Course"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.remark" label="Remark"></v-text-field>
+                    <v-text-field v-model="dataDB.type" label="Type"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.student" label="Student"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.score" label="Score"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="dataDB.answer" label="Answer"></v-text-field>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -48,10 +51,11 @@
       <v-data-table :headers="headers" :items="tmp" hide-actions:pagination.sync="pagination" :total-items="totalTMP" :loading="loading"
         class="elevation-1" :search="search">
         <template slot="items" slot-scope="props">
-          <td>@{{ props.item.name }}</td>
-          <td>@{{ props.item.link }}</td>
           <td>@{{ props.item.course }}</td>
-          <td>@{{ props.item.remark }}</td>
+          <td>@{{ props.item.type }}</td>
+          <td>@{{ props.item.student }}</td>
+          <td>@{{ props.item.score }}</td>
+          <td>@{{ props.item.answer }}</td>
           <td>@{{ props.item.created_at }}</td>
           <td>@{{ props.item.updated_at }}</td>
           <td class="justify-center layout px-0">
@@ -89,10 +93,11 @@
     search: '',
     dialog: false,
     headers: [
-      { text: 'Name', value: 'name' },
-      { text: 'Link', value: 'link' },
       { text: 'Course',value: 'course' },
-      { text: 'Remark', value: 'remark' },
+      { text: 'Type', value: 'type' },
+      { text: 'Student', value: 'student' },
+      { text: 'Score', value: 'score' },
+      { text: 'Answer', value: 'answer' },
       { text: 'Created_at', value: 'created_at' },
       { text: 'Updated_at', value: 'updated_at' },
       { text: 'Actions', value: 'name', sortable: false }
@@ -168,7 +173,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admind/"+id)
+      .delete("<?=env('link');?>/api/admin/exercised/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -181,7 +186,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admind/"+this.dataDB.id,this.dataDB)
+      .put("<?=env('link');?>/api/admin/exercised/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -192,7 +197,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admind",this.dataDB)
+      .post("<?=env('link');?>/api/admin/exercised",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -203,7 +208,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admind/1')
+        let result =  axios.get('<?=env('link');?>/api/admin/exercised/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

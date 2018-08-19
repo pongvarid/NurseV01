@@ -15,7 +15,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
 
             <v-card color="">
-                <v-toolbar color="indigo" dark>
+                <v-toolbar color="blueONblue" dark>
                     <v-icon>fas fa-user-circle </v-icon>
                     <v-toolbar-title>อาจารย์</v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -34,8 +34,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                             <v-icon>fas fa-user-cog</v-icon>&nbsp;แก้ไขโปรไฟล์</v-btn>
                     </center>
                     <hr>
-                    <h5 v-if="teacher.permission == 0">สถานะ : อาจารย์</h5>
-                    <h5 v-if="teacher.permission == 1">สถานะ : อาจารย์/แอดมิน</h5>
+                    <h5 v-if="teacher.permission == 1">สถานะ : อาจารย์</h5>
+                    <h5 v-if="teacher.permission == 0">สถานะ : อาจารย์/แอดมิน</h5>
                     <h5>รายวิชาที่สร้างได้ : @{{teacher.count}}</h5>
                     <p>@{{teacher.remark}}</p>
                 </v-card-text>
@@ -46,7 +46,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-layout row wrap>
                 <v-flex d-flex>
                     <v-card>
-                        <v-toolbar color="indigo" dark>
+                        <v-toolbar color="box-purple" dark>
                             <v-icon>fas fa-align-justify </v-icon>
                             <v-toolbar-title>รายวิชา</v-toolbar-title>
                             <v-spacer></v-spacer>

@@ -61,7 +61,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   },
   methods: { 
     create_course(){
-        window.location = "<?=env('link');?>/course/create";
+        window.location = "/course/create";
     },
       hello(){
         this.alert_text = "test";
@@ -69,7 +69,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       },
 
       getTeacherInfo(){
-        let result =  axios.get('<?=env('link');?>/api/teacher/<?php echo $id; ?>')
+        let result =  axios.get('/api/teacher/<?php echo $id; ?>')
       .then((r) => {
           this.teacher = r.data;
       }).catch((e) => { 
@@ -77,7 +77,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       });
       },
       getCourse(){
-        let result =  axios.get('<?=env('link');?>/api/course/<?php echo $id; ?>')
+        let result =  axios.get('/api/course/<?php echo $id; ?>')
       .then((r) => {
           this.course = r.data;
       }).catch((e) => { 

@@ -15,23 +15,20 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-card>
             <v-toolbar color="light-blue" dark>
                 <v-toolbar-side-icon><v-icon>fas fa-user-circle</v-icon></v-toolbar-side-icon>
-                <v-toolbar-title>แบบฝึกหัด</v-toolbar-title>
+                <v-toolbar-title>สร้างแบบฝึกหัด</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-list two-line subheader>
                 <v-divider ></v-divider> 
-                <v-subheader >
-                    <v-btn color="primary" depressed large @click="submit_ask()">แบบตอบถูกผิด</v-btn>
+                <v-subheader>
+                    <v-btn color="primary" @click="submit_ask()">ตอบถูกผิด</v-btn>
+                    <v-btn color="primary" @click="submit_choice()">เลือกตอบ</v-btn>
+                    <v-btn color="primary" @click="submit_edm()">แนบไฟล์</v-btn>
                 </v-subheader> 
                 <v-divider ></v-divider>
-                <v-subheader >
-                    <v-btn color="primary" depressed large @click="submit_ecm()">แบบเลือกตอบ</v-btn>
-                    </v-subheader> 
-                <v-divider ></v-divider> 
-                <v-subheader >
-                    <v-btn color="primary" depressed large @click="submit_edm()">แบบคำสั่งแนบไฟล์</v-btn>
-                </v-subheader> 
-                <v-divider ></v-divider> 
+            <div v-for="exercise in exercises">
+                <v-subheader >@{{exercise.name}}</v-subheader>
+            </div>
             </v-list>
         </v-card>
     </v-flex>
@@ -42,10 +39,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-toolbar-side-icon></v-toolbar-side-icon>
                 <v-toolbar-title>รายวิชา {{request()->route('id')}}</v-toolbar-title>
                 <v-spacer></v-spacer>
-                      
             </v-toolbar>
-
-
         </v-card>
     </v-flex>
 </v-layout>
@@ -57,12 +51,23 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({
   el: "#app",
   data: {
- 
+    exercises:{}
   },
   methods: { 
     submit_ask(){
-        window.location = "<?=env('link');?>/course/exercise/ask_exercise/{{request()->route('id')}}";
+        window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
+    getExercise(){ ////////////////////////
+        let result =  axios.get("/api/exercise/{{request()->route('id')}}")
+      .then((r) => {
+          this.exercises = r.data;
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
+      },
+      load(){
+       this.getExercise();
+      }
   },
   mounted(){
       this.load();

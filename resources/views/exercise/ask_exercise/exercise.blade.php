@@ -69,11 +69,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         },
         save(){
             this.preData();
-            axios.post("<?=env('link');?>/api/exercise",this.exercise)
+            axios.post("/api/exercise",this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){
                     alert('บันทึกรายวิชาเรียบร้อย');
-                    window.location = "<?=env('link');?>/course/profile/{{request()->route('id')}}";
+                    window.location = "/course/profile/{{request()->route('id')}}";
                 }else{
                     alert('error');
                 } 

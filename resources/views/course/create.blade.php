@@ -53,11 +53,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     methods: {
       submit () {
-        axios.post("<?=env('link');?>/api/course",this.course)
+        axios.post("/api/course",this.course)
       .then(function(response) { 
         if(response.data == '1'){
             alert('บันทึกรายวิชาเรียบร้อย');
-            window.location = "<?=env('link');?>/teacher/profile";
+            window.location = "/teacher/profile";
         }else{
       
         } 

@@ -17,6 +17,5 @@ class Exercise extends Model
         "answer",
         "remark",
         "time",
-
     ];
 }

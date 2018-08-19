@@ -40,7 +40,7 @@ Route::get('/course/create', function () {
     return view('course.create');
 });
 
-<<<<<<< HEAD
+
 Route::get('/course/profile/{id}', function () {
     return view('course.profile');
 });
@@ -53,8 +53,4 @@ Route::get('/course/exercise/ask_exercise/{id}', function () {
     return view('exercise.ask_exercise.exercise');
 });
 
-=======
-Route::get('/crud', function () {
-    return view('crud.crud');
-});
->>>>>>> master
+

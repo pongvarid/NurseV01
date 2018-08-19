@@ -52,7 +52,8 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
-        //
+        $exercise = Exercise::where('course',$id)->get();
+        return $exercise->toJson();
     }
 
     /**

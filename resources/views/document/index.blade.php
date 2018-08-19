@@ -5,7 +5,7 @@
         <div>
             <v-layout row justify-center>
                 <v-btn color="primary" dark @click.stop="dialog = true">เพิ่มเอกสารประกอบการสอน</v-btn>
-                <v-dialog v-model="dialog" hide-overlay transition="dialog-bottom-transition" scrollable>
+                <v-dialog v-model="dialog" width="500" transition="dialog-bottom-transition" scrollable>
                     <v-card tile>
                         <v-toolbar card dark color="primary">
                             <v-btn icon dark @click.native="dialog = false">
@@ -21,8 +21,8 @@
                             <v-form v-model="valid">
                                 <v-text-field v-model="dataDB.name" :rules="nameRules" label="ชื่อเอกสาร" required></v-text-field>
                                 <v-text-field v-model="dataDB.remark" :rules="remarkRules" label="รายละเอียดเอกสาร" required></v-text-field>
-                                <v-text-field v-model="dataDB.link" :rules="linkRules" label="ที่อยู่ไฟล์เอกสาร" required></v-text-field>
-                                <v-list-tile-sub-title>https://drive.google.com</v-list-tile-sub-title>
+                                <v-text-field v-model="dataDB.link" :rules="linkRules" label="ที่อยู่ไฟล์เอกสาร" hint="ตัวอย่าง https://drive.google.com"
+                                    persistent-hint required></v-text-field>
                             </v-form>
                             <v-divider></v-divider>
 

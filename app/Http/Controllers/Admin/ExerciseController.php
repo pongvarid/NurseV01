@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Teacher; 
+use App\Models\Exercise; 
 
-class AdminController extends Controller
+class ExerciseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,10 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //echo "test";
+        $exercise = new Exercise(); 
+        $exercise->fill($request->all());  
+        $exercise->save(); 
     }
 
     /**
@@ -47,8 +50,9 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $teacher = Teacher::get();
-        return $teacher;
+        //echo "test";
+        $exercise = new Exercise(); 
+        return $exercise->get()->toJson();
     }
 
     /**
@@ -59,7 +63,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $exercise = Exercise::find($id);
+        return $exercise;
     }
 
     /**
@@ -71,7 +76,9 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $exercise =  Exercise::find($id);  
+        $exercise->fill($request->all());  
+        $exercise->save(); 
     }
 
     /**
@@ -82,6 +89,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $exercise = Exercise::find($id);
+        return $exercise->destroy($id);
     }
 }

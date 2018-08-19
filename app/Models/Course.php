@@ -12,6 +12,11 @@ class Course extends Model
         "name",
         "year",
         "teacher",
+<<<<<<< HEAD
         "state",
+=======
+        "state"
+
+>>>>>>> master
     ];
 }

@@ -6,6 +6,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';
 die();
 }else{
     $id = $_SESSION['user'];
+    if($_SESSION["user_type"] != 'teacher'){
+        echo '<meta http-equiv="refresh" content="0; url=/student/profile" />'; die();
+    } 
 }
  
 ?> 

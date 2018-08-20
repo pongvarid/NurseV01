@@ -89,4 +89,10 @@ class ExerciseController extends Controller
     {
         //
     }
+
+    public function getExercise($id)
+    {
+        $exercise = Exercise::where('id',$id)->first(); 
+        return $exercise->toJson();
+    }
 }

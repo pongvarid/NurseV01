@@ -30,6 +30,7 @@ Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิ
 Route::get('/course_data/{id}','Course\CourseController@getCourse');
 Route::resource('/logs','Logs\LogsController');
 Route::resource('/exercise','Course\ExerciseController');
+Route::get('/exercise_data/{id}','Course\ExerciseController@getExercise'); //ดึงข้อมูลแบบฝึกหัด ไว้edit
 Route::resource('/logs','Logs\LogsController'); 
 
 /* admin */

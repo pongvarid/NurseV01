@@ -26,9 +26,13 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-btn color="primary" @click="submit_edm()">แนบไฟล์</v-btn>
                 </v-subheader> 
                 <v-divider ></v-divider>
-            <div v-for="exercise in exercises">
-                <v-subheader >@{{exercise.name}}</v-subheader>
-            </div>
+                <div v-for="exercise in exercises">
+                    <v-list-tile  @click="goto_editExercisePage(exercise.id)">
+                        <v-list-tile-content>
+                            <v-list-tile-title>@{{exercise.name}}</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </div>
             </v-list>
         </v-card>
     </v-flex>
@@ -67,13 +71,16 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
   },
   methods: { 
-    submit_ask(){
+    submit_ask(){ //สร้างแบบฝึกหัดตอบถูกผิด
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
-    edit_course(){
+    goto_editExercisePage(id){ //แก้ไขแบบฝึกหัดตอบถูกผิด
+        window.location = "/course/exercise/edit_ask/"+id;
+    },
+    edit_course(){ //แก้ไขรายวิชา
         window.location = "/course/edit_course/{{request()->route('id')}}";
     },
-    close_course(){
+    close_course(){ //ปิดรายวิชา
         axios.put("/api/close_course/{{request()->route('id')}}",this.close)
         .then((r) => {
             alert('ปิดรายวิชาเรีบยร้อยแล้ว');
@@ -83,7 +90,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         });
         this.load();
     },
-    getCourse(){
+    getCourse(){ //ดึงข้อมูลรายวิชา
         let result =  axios.get("/api/course_data/{{request()->route('id')}}")
       .then((r) => {
           this.courses = r.data;
@@ -91,7 +98,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
           alert('error: '+e);
       });
       },
-    getExercise(){
+    getExercise(){ //ดึงข้อมูลแบบฝึกหัด
         let result =  axios.get("/api/exercise/{{request()->route('id')}}")
       .then((r) => {
           this.exercises = r.data;

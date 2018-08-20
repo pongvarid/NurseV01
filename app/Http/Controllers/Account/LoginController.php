@@ -57,9 +57,9 @@ class LoginController extends Controller
 
         //โยน username password เข้าไปเพื่อให้รีเทริ์นกลับเป็น session_id
         $session_id = $up->getSID($request->username,$request->password);
-
+        $check_session_id = isset($session_id);
         //ตรวจสอบว่ามีนิสิติอยู่มั้ยถ้าไม่มี session_id จะเป็น null 
-        if(isset($session_id)){
+        if( $check_session_id &&   $session_id != null){
             // ค้นหานิสิตใน database ว่ามีมั้ยถ้าไม่มีบันทึกรหัสลง database
            if($this->checkStudent($request->username) == 0){
                $student = new Student();

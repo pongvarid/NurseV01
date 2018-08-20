@@ -97,14 +97,15 @@
     
     loginGo() {
       if (this.teacher_user == "1") { 
-        alert('สวัสดีค่ะ อาจารย์');
+        
         axios
       .post("/api/check/teacher/login",this.login)
       .then(function(response) { 
         if(response.data == '1'){
+            alert('สวัสดีค่ะ อาจารย์');
             window.location = "teacher/profile";
         }else{
-      
+            alert('เกิดข้อผิดพลาดในการเข้าสู่ระบบกรุณาตรวจสอบข้อมูลให้ถูกต้องค่ะ');
         } 
       })
       .catch(function(error) {
@@ -112,14 +113,15 @@
       });
 
       } else {
-        alert('สวัสดีค่ะ นิสิต');
+   
         axios
       .post("/api/check/student/login",this.login)
       .then(function(response) { 
         if(response.data == '1'){
             window.location = "student/profile";
+            alert('สวัสดีค่ะ นิสิต');
         }else{
-      
+            alert('เกิดข้อผิดพลาดในการเข้าสู่ระบบกรุณาตรวจสอบข้อมูลให้ถูกต้องค่ะ');
         } 
       })
       .catch(function(error) {

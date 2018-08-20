@@ -74,8 +74,7 @@ class TeacherController extends Controller
     public function update(Request $request, $id)
     {
         $teacher =  Teacher::find($id);  
-        $teacher->fill($request->all()); 
-        $teacher->password =  base64_encode($request->password);
+        $teacher->fill($request->all());  
         $teacher->save(); 
     }
 

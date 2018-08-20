@@ -55,6 +55,12 @@ class CourseController extends Controller
         return $course->toJson();
     }
 
+    public function getCourse($id)
+    {
+        $course = Course::where('id',$id)->first();
+        return $course->toJson();
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,7 +81,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+ 
+        $course = Course::find($id);
+        $course->fill($request->all());
+        $course->save(); 
+      
     }
 
     /**

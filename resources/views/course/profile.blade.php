@@ -19,7 +19,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-list two-line subheader>
-                <v-divider ></v-divider> 
+                <v-divider ></v-divider>              
                 <v-subheader>
                     <v-btn color="primary" @click="submit_ask()">ตอบถูกผิด</v-btn>
                     <v-btn color="primary" @click="submit_choice()">เลือกตอบ</v-btn>
@@ -37,9 +37,17 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-card>
             <v-toolbar color="light-blue" dark>
                 <v-toolbar-side-icon></v-toolbar-side-icon>
-                <v-toolbar-title>รายวิชา {{request()->route('id')}}</v-toolbar-title>
+                <v-toolbar-title>รายวิชา @{{courses.name}}[@{{courses.code}}]</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
+            <v-divider ></v-divider>  
+            <v-btn color="warning" @click="edit_course()">แก้ไข</v-btn>
+            <v-divider ></v-divider>  
+            <v-list two-line subheader>
+                <pre>
+                    @{{courses}}
+                </pre>
+            </v-list>
         </v-card>
     </v-flex>
 </v-layout>
@@ -51,13 +59,25 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({
   el: "#app",
   data: {
-    exercises:{}
+    exercises:{},
+    courses:{},
   },
   methods: { 
     submit_ask(){
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
-    getExercise(){ ////////////////////////
+    edit_course(){
+        window.location = "/course/edit_course/{{request()->route('id')}}";
+    },
+    getCourse(){
+        let result =  axios.get("/api/course_data/{{request()->route('id')}}")
+      .then((r) => {
+          this.courses = r.data;
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
+      },
+    getExercise(){
         let result =  axios.get("/api/exercise/{{request()->route('id')}}")
       .then((r) => {
           this.exercises = r.data;
@@ -67,6 +87,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       },
       load(){
        this.getExercise();
+       this.getCourse();
       }
   },
   mounted(){

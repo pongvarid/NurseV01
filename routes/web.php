@@ -53,4 +53,8 @@ Route::get('/course/exercise/ask_exercise/{id}', function () {
     return view('exercise.ask_exercise.exercise');
 });
 
+Route::get('/course/edit_course/{id}', function () {
+    return view('course.edit');
+});
+
 

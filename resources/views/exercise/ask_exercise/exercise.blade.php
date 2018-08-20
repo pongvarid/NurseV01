@@ -65,7 +65,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             this.exercise.type = 1;
             this.exercise.answer = 'ไม่มีเฉลย';
             this.exercise.course = "{{request()->route('id')}}";
-
         },
         save(){
             this.preData();

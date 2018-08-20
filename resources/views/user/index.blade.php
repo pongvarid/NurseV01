@@ -99,7 +99,7 @@
       if (this.teacher_user == "1") { 
         alert('สวัสดีค่ะ อาจารย์');
         axios
-      .post("api/check/teacher/login",this.login)
+      .post("/api/check/teacher/login",this.login)
       .then(function(response) { 
         if(response.data == '1'){
             window.location = "teacher/profile";
@@ -114,7 +114,7 @@
       } else {
         alert('สวัสดีค่ะ นิสิต');
         axios
-      .post("api/check/student/login",this.login)
+      .post("/api/check/student/login",this.login)
       .then(function(response) { 
         if(response.data == '1'){
             window.location = "student/profile";
@@ -131,7 +131,7 @@
  
     checkUser(){ 
         if(this.reg.username != null && this.reg.username != ''){
-        let result =  axios.get('api/check/teacher/' + this.reg.username)
+        let result =  axios.get('/api/check/teacher/' + this.reg.username)
       .then((r) => {
           this.state_username = r.data;
       }).catch((e) => { 
@@ -143,7 +143,7 @@
     },
     registerStore(){
         axios
-      .post("api/teacher",this.reg)
+      .post("/api/teacher",this.reg)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ กรุณาเข้าสู่ระบบ');
        this.register = false;

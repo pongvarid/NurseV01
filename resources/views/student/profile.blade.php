@@ -86,7 +86,7 @@ else{
         this.alert_bar=true;
       },
       load(){
-        let result =  axios.get('api/student/data/<?php echo $id; ?>')
+        let result =  axios.get('/api/student/data/<?php echo $id; ?>')
       .then((r) => {
           this.student = r.data;
       }).catch((e) => { 

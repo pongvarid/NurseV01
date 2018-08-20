@@ -159,7 +159,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("api/admin/document/"+id)
+      .delete("/api/admin/document/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -172,7 +172,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("api/admin/document/"+this.dataDB.id,this.dataDB)
+      .put("/api/admin/document/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -183,7 +183,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("api/admin/document",this.dataDB)
+      .post("/api/admin/document",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -194,7 +194,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('api/admin/document/1')
+        let result =  axios.get('/api/admin/document/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

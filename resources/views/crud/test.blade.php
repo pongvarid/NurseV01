@@ -57,7 +57,7 @@
     },
     deleteData(id){
         axios
-      .delete("api/logs/"+id)
+      .delete("/api/logs/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
        
@@ -69,7 +69,7 @@
     },
     updateData(){
         axios
-      .put("api/logs/"+this.dataDB.id,this.dataDB)
+      .put("/api/logs/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -80,7 +80,7 @@
     },
     saveData(){
         axios
-      .post("api/logs",this.dataDB)
+      .post("/api/logs",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -91,7 +91,7 @@
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('api/logs/1')
+        let result =  axios.get('/api/logs/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

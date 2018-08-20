@@ -26,6 +26,7 @@ Route::get('/student/data/{session_id}','Account\LoginController@getStudentData'
 Route::resource('/teacher','Teacher\TeacherController');
 Route::resource('/course','Course\CourseController'); 
 Route::post('/course/{id}','Course\CourseController@update');
+Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิดรายวิชา
 Route::get('/course_data/{id}','Course\CourseController@getCourse');
 Route::resource('/logs','Logs\LogsController');
 Route::resource('/exercise','Course\ExerciseController');

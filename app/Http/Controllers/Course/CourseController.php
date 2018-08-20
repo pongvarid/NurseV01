@@ -82,11 +82,9 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
- 
         $course = Course::find($id);
         $course->fill($request->all());
         $course->save(); 
-      
     }
 
     /**
@@ -98,5 +96,12 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function closeCourse(Request $request, $id)
+    {
+        $course =  Course::find($id);  
+        $course->fill($request->all());  
+        $course->save(); 
     }
 }

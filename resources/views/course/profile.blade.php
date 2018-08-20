@@ -37,11 +37,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-card>
             <v-toolbar color="light-blue" dark>
                 <v-toolbar-side-icon></v-toolbar-side-icon>
-                <v-toolbar-title>รายวิชา @{{courses.name}}[@{{courses.code}}]</v-toolbar-title>
+                <v-toolbar-title>รายวิชา @{{courses.name}} [@{{courses.code}}]</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-divider ></v-divider>  
             <v-btn color="warning" @click="edit_course()">แก้ไข</v-btn>
+            <v-btn color="red" @click="close_course()" dark>ปิด<v-icon dark right>block</v-icon></v-btn>
             <v-divider ></v-divider>  
             <v-list two-line subheader>
                 <pre>
@@ -61,6 +62,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   data: {
     exercises:{},
     courses:{},
+    close:{
+        state:0,
+    },
   },
   methods: { 
     submit_ask(){
@@ -68,6 +72,16 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     edit_course(){
         window.location = "/course/edit_course/{{request()->route('id')}}";
+    },
+    close_course(){
+        axios.put("/api/close_course/{{request()->route('id')}}",this.close)
+        .then((r) => {
+            alert('ปิดรายวิชาเรีบยร้อยแล้ว');
+            window.location = "/teacher/profile/";
+        }).catch((e) => {
+            alert('error: '+e);
+        });
+        this.load();
     },
     getCourse(){
         let result =  axios.get("/api/course_data/{{request()->route('id')}}")

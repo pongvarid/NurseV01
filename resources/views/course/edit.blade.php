@@ -58,7 +58,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             });
         },
         update () {
-            //console.log(this.courses);
             axios.put("/api/course/{{request()->route('id')}}",this.courses)
         .then(function(response) { 
             alert('แก้ไขรายวิชาเรียบร้อย');

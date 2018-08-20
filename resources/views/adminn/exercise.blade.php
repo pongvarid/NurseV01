@@ -4,54 +4,53 @@
   <v-app id="inspire">
     <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Document</v-toolbar-title>
+        <v-toolbar-title>Exercise</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-spacer></v-spacer>
-        <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>
+        <v-text-field v-model="search" append-icon="search" label="ค้นหา" single-line hide-details></v-text-field>
+        <v-dialog v-model="dialog" max-width="500px" transition="dialog-bottom-transition" scrollable>
+          <v-btn slot="activator" color="primary" dark class="mb-2">เพิ่ม</v-btn>
           <v-card>
-            <v-card-title>
-              <span class="headline">
-                  <div v-if="!update">Add</div>
-                  <div v-if="update">Update</div>
-                </span>
-            </v-card-title>
-            <v-card-text>
-              <v-container grid-list-md>
-                <v-layout wrap>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.link" label="Link"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.course" label="Course"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="dataDB.remark" label="Remark"></v-text-field>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-card-text>
-
-            <v-card-actions>
+            <v-toolbar card dark color="primary">
+              <v-btn icon dark @click.native="dialog = false">
+                <v-icon>close</v-icon>
+              </v-btn>
+              <v-toolbar-title>
+                <div v-if="!update">เพิ่ม</div>
+                <div v-if="update">แก้ไข</div>
+              </v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click.native="dialogClose()">Cancel</v-btn>
-              <v-btn v-if="!update" @click="saveData()">save</v-btn>
-              <v-btn v-if="update" @click="updateData()">update</v-btn>
-            </v-card-actions>
+              <v-toolbar-items>
+                <v-btn dark flat v-if="!update" @click="saveData()">บันทึก</v-btn>
+                <v-btn dark flat v-if="update" @click="updateData()">บันทึก</v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+            <v-card-text>
+              <v-form v-model="valid">
+                <v-text-field v-model="dataDB.course" label="Course"></v-text-field>
+                <v-text-field v-model="dataDB.type" label="Type"></v-text-field>
+                <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
+                <v-text-field v-model="dataDB.score" label="Score"></v-text-field>
+                <v-text-field v-model="dataDB.ask" label="Ask"></v-text-field>
+                <v-text-field v-model="dataDB.answer" label="Answer"></v-text-field>
+                <v-text-field v-model="dataDB.remark" label="Remark"></v-text-field>
+                <v-text-field v-model="dataDB.time" label="Time"></v-text-field>
+              </v-form>
+            </v-card-text>
           </v-card>
         </v-dialog>
       </v-toolbar>
       <v-data-table :headers="headers" :items="tmp" hide-actions:pagination.sync="pagination" :total-items="totalTMP" :loading="loading"
         class="elevation-1" :search="search">
         <template slot="items" slot-scope="props">
-          <td>@{{ props.item.name }}</td>
-          <td>@{{ props.item.link }}</td>
           <td>@{{ props.item.course }}</td>
+          <td>@{{ props.item.type }}</td>
+          <td>@{{ props.item.name }}</td>
+          <td>@{{ props.item.score }}</td>
+          <td>@{{ props.item.ask }}</td>
+          <td>@{{ props.item.answer }}</td>
           <td>@{{ props.item.remark }}</td>
+          <td>@{{ props.item.time }}</td>
           <td>@{{ props.item.created_at }}</td>
           <td>@{{ props.item.updated_at }}</td>
           <td class="justify-center layout px-0">
@@ -89,10 +88,14 @@
     search: '',
     dialog: false,
     headers: [
-      { text: 'Name', value: 'name' },
-      { text: 'Link', value: 'link' },
       { text: 'Course',value: 'course' },
+      { text: 'Type', value: 'type' },
+      { text: 'Name', value: 'nam' },
+      { text: 'Score', value: 'score' },
+      { text: 'Aks', value: 'aks' },
+      { text: 'Answer', value: 'answer' },
       { text: 'Remark', value: 'remark' },
+      { text: 'Time', value: 'time' },
       { text: 'Created_at', value: 'created_at' },
       { text: 'Updated_at', value: 'updated_at' },
       { text: 'Actions', value: 'name', sortable: false }
@@ -168,7 +171,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admind/"+id)
+      .delete("<?=env('link');?>/api/admin/exercise/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -181,7 +184,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admind/"+this.dataDB.id,this.dataDB)
+      .put("<?=env('link');?>/api/admin/exercise/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -192,7 +195,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admind",this.dataDB)
+      .post("<?=env('link');?>/api/admin/exercise",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -203,7 +206,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admind/1')
+        let result =  axios.get('<?=env('link');?>/api/admin/exercise/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

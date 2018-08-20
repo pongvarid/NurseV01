@@ -16,7 +16,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-flex text-xs-center>
               <v-card class="elevation-12">
                 <v-toolbar dark color="primary">
-                  <v-toolbar-title>เพิ่มรายวิชา</v-toolbar-title>
+                  <v-toolbar-title>เพิ่มรายวิชา </v-toolbar-title>
                   <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
@@ -45,7 +45,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       valid: true,
       course:{
         state:1,
-        teacher:<?php echo $id;?> //อาจารย์
+        teacher:<?php echo $id;?>, //อาจารย์
       },
     },
     methods: {

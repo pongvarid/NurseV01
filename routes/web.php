@@ -32,7 +32,7 @@ Route::get('/test2', function () {
 Route::get('/test','Account\LoginController@studentLogin');
 
 Route::get('/admin', function () {
-    return view('adminn.test');
+    return view('document.index');
 });
 /* Stashed changes*/
 
@@ -48,7 +48,9 @@ Route::get('/course/profile/{id}', function () {
 Route::get('/crud', function () {
     return view('crud.crud');
 });
-
+Route::get('/c', function () {
+    return view('crud.test');
+});
 Route::get('/course/exercise/ask_exercise/{id}', function () {
     return view('exercise.ask_exercise.exercise');
 });

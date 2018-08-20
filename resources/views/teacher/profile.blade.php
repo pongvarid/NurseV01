@@ -52,9 +52,12 @@ die();
                             <v-icon>fas fa-align-justify </v-icon>
                             <v-toolbar-title>รายวิชา</v-toolbar-title>
                             <v-spacer></v-spacer>
-                            <v-btn icon @click="create_course()">
+                            <v-btn v-if="teacher.count > 0" icon @click="create_course()">
                                 <v-icon>fas fa-plus-circle </v-icon>
                             </v-btn>
+                            <h5 v-if="teacher.count == 0">
+                                Course Full
+                            </h5>
                         </v-toolbar>
                         <v-card-text>
                             <div v-for="courses in course">
@@ -69,8 +72,6 @@ die();
                                 </v-list-tile>
                                 <v-divider></v-divider>
                             </div>
-
-
                     </v-card>
                 </v-flex>
 

@@ -68,7 +68,7 @@
                 },
                 saveData(){
                     axios
-                .post("<?=env('link');?>/api/document",this.dataDB)
+                .post("api/document",this.dataDB)
                 .then(function(response) {
                     alert('บันทึกข้อมูลสำเร็จ');
                 

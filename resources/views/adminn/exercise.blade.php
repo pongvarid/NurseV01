@@ -171,7 +171,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admin/exercise/"+id)
+      .delete("api/admin/exercise/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -184,7 +184,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admin/exercise/"+this.dataDB.id,this.dataDB)
+      .put("api/admin/exercise/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -195,7 +195,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admin/exercise",this.dataDB)
+      .post("api/admin/exercise",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -206,7 +206,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admin/exercise/1')
+        let result =  axios.get('api/admin/exercise/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

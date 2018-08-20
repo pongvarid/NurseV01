@@ -3,6 +3,10 @@
 <div id="app" class="container">
   <v-app id="inspire">
     <div>
+      
+    </div>
+
+    <div>
       <v-toolbar flat color="white">
         <v-toolbar-title>Teacher</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>
@@ -165,7 +169,7 @@ methods: {
         var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
         if(confirms){
             axios
-      .delete("<?=env('link');?>/api/admin/teacher/"+id)
+      .delete("api/admin/teacher/"+id)
       .then(function(response) {
         alert('ลบข้อมูลสำเร็จ'); 
       })
@@ -178,7 +182,7 @@ methods: {
     updateData(){
         console.log();
         axios
-      .put("<?=env('link');?>/api/admin/teacher/"+this.dataDB.id,this.dataDB)
+      .put("api/admin/teacher/"+this.dataDB.id,this.dataDB)
       .then(function(response) {
         alert('แก้ไขข้อมูลสำเร็จ'); 
       })
@@ -189,7 +193,7 @@ methods: {
     },
     saveData(){
         axios
-      .post("<?=env('link');?>/api/admin/teacher",this.dataDB)
+      .post("api/admin/teacher",this.dataDB)
       .then(function(response) {
         alert('บันทึกข้อมูลสำเร็จ');
        
@@ -200,7 +204,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('<?=env('link');?>/api/admin/teacher/1')
+        let result =  axios.get('api/admin/teacher/1')
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

@@ -9,10 +9,6 @@ class Student extends Model
     protected $table = "student";
     protected $fillable = [
         "username",
-        "name",
-        "faculty",
-        "major",
-        "data",
         "permission"
     ];
 }

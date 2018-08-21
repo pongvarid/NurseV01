@@ -22,7 +22,7 @@
                 <v-layout class="container" v-if="register!=true">
                     <v-flex xs12>
                         <form>
-                            <v-text-field v-model="login.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
+                            <v-text-field  v-model="login.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
                             <v-text-field v-model="login.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
                             <v-checkbox label="อาจารย์" v-model="teacher_user"></v-checkbox>
                             <v-btn @click="loginGo()">

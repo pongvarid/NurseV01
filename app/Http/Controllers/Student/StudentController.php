@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Student;
 class StudentController extends Controller
 {
     /**

@@ -26,13 +26,14 @@ Route::get('/student/data/{session_id}','Account\LoginController@getStudentData'
 Route::resource('/teacher','Teacher\TeacherController');
 Route::resource('/course','Course\CourseController'); 
 Route::post('/course/{id}','Course\CourseController@update');
+Route::post('/course_in','Course\CourseController@register'); //ลงทะเบียนเรียน
 Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิดรายวิชา
-Route::get('/course_data/{id}','Course\CourseController@getCourse');
+Route::get('/course_data/{id}','Course\CourseController@getCourse'); //ดึงข้อมูลรายวิชา
 Route::get('/search_course/{course}','Course\CourseController@searchCourse');//search
 Route::get('/view/coirse/{id}','Course\CourseController@viewCourse');
 Route::resource('/logs','Logs\LogsController');
 Route::resource('/exercise','Course\ExerciseController');
-Route::get('/exercise_data/{id}','Course\ExerciseController@getExercise'); //ดึงข้อมูลแบบฝึกหัด ไว้edit
+Route::get('/exercise_data/{id}','Course\ExerciseController@show'); //ดึงข้อมูลแบบฝึกหัด 
 
 Route::resource('/logs','Logs\LogsController'); 
 

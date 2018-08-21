@@ -50,7 +50,8 @@ else{
                                         </v-list-tile-content>
                                     </v-list-tile>
                                     <v-divider></v-divider>
-                                </div> 
+                                </div>
+                            </v-card-text>
                         </v-card>
                     </v-flex>
                 </v-layout>

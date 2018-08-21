@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Course;
 use App\Models\Course;
+use App\Models\CourseIn;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -109,5 +110,14 @@ class CourseController extends Controller
         $course =  Course::find($id);  
         $course->fill($request->all());  
         $course->save(); 
+    }
+
+    public function register(Request $request)
+    {
+        $register = new CourseIn();
+        $register->fill($request->all());
+        $save = $register->save();
+        if($save) return 1;
+        else return 0;
     }
 }

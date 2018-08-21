@@ -28,19 +28,23 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                                 <v-layout row wrap>
                                     <template v-for="data in tmp">
                                             <v-flex xs3 >
-                                              <v-card color="cyan darken-2" class="white--text">
+                                              <v-card color="teal darken-2" class="white--text">
                                                 <v-card-title primary-title>
                                                   <div>
                                                       <div class="headline">ชื่อเอกสาร: @{{data.name}}</div>
                                                       <div>รายละเอียด: @{{data.remark}}</div>
                                                       <div>
-                                                        <v-btn color="yellow" @click="openLink(data)">เปิด</v-btn>
+                                                        <v-btn color="cyan" @click="openLink(data)"><v-icon dark>call_to_action</v-icon> เปิด</v-btn>
                                                       </div>
                                                     </div>
                                                 </v-card-title>
                                                 <v-card-actions>
-                                                    <v-btn color="red" @click="deleteData(data.id)">ลบ</v-btn>
-                                                    <v-btn color="blue" @click="updateOpen(data)">แก้ไข</v-btn>
+                                                    <v-btn fab dark color="red" @click="deleteData(data.id)">
+                                                        <v-icon dark>delete</v-icon>
+                                                    </v-btn>
+                                                    <v-btn fab dark color="indigo" @click="updateOpen(data)">
+                                                        <v-icon dark>edit</v-icon>
+                                                    </v-btn>
                                                 </v-card-actions>
                                               </v-card>
                                             </v-flex>

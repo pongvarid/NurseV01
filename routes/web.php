@@ -31,9 +31,29 @@ Route::get('/test2', function () {
 
 Route::get('/test','Account\LoginController@studentLogin');
 
-Route::get('/admin', function () {
-    return view('document.index');
+//admin -----------------------------------------------------------//
+Route::get('/admin/course', function () {
+    return view('adminn.course');
 });
+Route::get('/admin/document', function () {
+    return view('adminn.document');
+});
+Route::get('/admin/exercise', function () {
+    return view('adminn.exercise');
+});
+Route::get('/admin/exercised', function () {
+    return view('adminn.exercised');
+});
+Route::get('/admin/logs', function () {
+    return view('adminn.logs');
+});
+Route::get('/admin/student', function () {
+    return view('adminn.student');
+});
+Route::get('/admin/teacher', function () {
+    return view('adminn.teacher');
+});
+//--------------------- end admin --------------------------------//
 Route::get('/search', function () {
     return view('course.search');
 });
@@ -76,7 +96,9 @@ Route::get('/course/exercise/choice/{id}', function () {
 Route::get('/course/exercise/choice_edit/{id}', function () {
     return view('exercise.choice.edit');
 });
-
+Route::get('/course/exercise/file/{id}', function () {
+    return view('exercise.ask_file.exercise');
+});
  
 //(END)--Exercise---------------------------------------------------------------------------------------//
 

@@ -23,7 +23,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-card-text>
                     <v-text-field v-model="exercise.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
                     <v-text-field v-model="exercise.score" label="คะแนนเต็ม" type="number"></v-text-field>
-                    <v-text-field v-model.number="exercise.count" label="จำนวนข้อ" type="number"></v-text-field>
+                    <v-text-field v-model.number="exercise.count" mask="##" label="จำนวนข้อ" type="tel"></v-text-field>
                     <v-text-field v-model="exercise.remark" label="หมายเหตุ" type="text"></v-text-field>
                     <v-text-field v-model="exercise.time" label="กำหนดส่ง" type="date"></v-text-field>
                 </v-card-text>

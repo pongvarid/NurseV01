@@ -22,6 +22,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-card-text>
                     <v-text-field v-model="course.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
                     <v-text-field v-model="course.name"  label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field v-model="course.name_eng"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
                     <v-text-field v-model="course.year"  label="ปีการศึกษา" type="text"></v-text-field>
                   </v-card-text>
                 <v-card-actions>

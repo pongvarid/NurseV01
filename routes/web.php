@@ -63,5 +63,9 @@ Route::get('/course/exercise/edit_ask/{id}', function () {
     return view('exercise.ask_exercise.edit');
 });
 
+Route::get('/course/register/{id}', function () { //ลงทะเบียน
+    return view('course.view_course.register_course');
+});
+
 
 

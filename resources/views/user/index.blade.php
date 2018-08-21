@@ -12,7 +12,7 @@
                                 <img src="http://up.ac.th/img/logo/building_logo.png" alt="" width="48">
                             </v-flex>
                             <v-flex class="mrl-6 mrt-10" xs12>
-                                <h3 class="nm" v-if="register == true">สมัครสมาชิกสำหรับอาจารย์</h3>
+                                <h3 class="nm" v-if="register == true"> สมัครสมาชิกสำหรับอาจารย์</h3>
                                 <h3 class="nm" v-if="register == false">เข้าสู่ระบบ</h3>
                             </v-flex>
                         </v-layout>
@@ -22,8 +22,8 @@
                 <v-layout class="container" v-if="register!=true">
                     <v-flex xs12>
                         <form>
-                            <v-text-field  v-model="login.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
-                            <v-text-field v-model="login.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
+                    <v-text-field prepend-icon="fas fa-user" v-model="login.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
+                    <v-text-field prepend-icon="fas fa-lock" v-model="login.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
                             <v-checkbox label="อาจารย์" v-model="teacher_user"></v-checkbox>
                             <v-btn @click="loginGo()">
                                 <v-icon>fas fa-sign-in-alt</v-icon>&nbsp;เข้าสู่ระบบ (Login)</v-btn>
@@ -49,13 +49,13 @@
                     <v-flex xs12>
                         <form>
 
-                            <v-text-field prepend-icon="far fa-address-book" v-model="reg.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
+                            <v-text-field prepend-icon="fas fa-user" v-model="reg.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
                             <p style="color:green;" v-if="state_username == 0">ชื่อผู้ใช้นี้ใช้งานได้</p>
                             <p style="color:red;" v-if="state_username == 1">มีชื่อผู้ใช้นี้แล้ว</p>
                             <v-btn @click="checkUser()">ตรวจสอบชื่อผู้ใช้</v-btn>
-                            <v-text-field v-model="reg.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
-                            <v-text-field v-model="reg.name" type="text" label="ชื่อ-สกุล (Name-Surname)" required></v-text-field>
-                            <v-textarea v-model="reg.remark" type="text" label="เกี่ยวกับคุณ (About you) บอกนิสิตเกี่ยวกับตัวคุณ "></v-textarea>
+                            <v-text-field prepend-icon="fas fa-lock" v-model="reg.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
+                            <v-text-field prepend-icon="fas fa-address-card" v-model="reg.name" type="text" label="ชื่อ-สกุล (Name-Surname)" required></v-text-field>
+                            <v-textarea prepend-icon="fas fa-pencil-alt" v-model="reg.remark" type="text" label="เกี่ยวกับคุณ (About you) บอกนิสิตเกี่ยวกับตัวคุณ "></v-textarea>
                             <v-btn @click="registerStore()" v-if="state_username != 1 && state_username != 3 ">
                                 <v-icon>fas fa-user-plus </v-icon>&nbsp;สมัครสมาชิก (Login)</v-btn>
                         </form>

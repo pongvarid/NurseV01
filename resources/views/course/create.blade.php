@@ -16,18 +16,18 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-flex text-xs-center>
               <v-card class="elevation-12">
                 <v-toolbar dark color="primary">
-                  <v-toolbar-title>เพิ่มรายวิชา </v-toolbar-title>
+                  <v-icon>fas fa-plus</v-icon><v-toolbar-title>เพิ่มรายวิชา </v-toolbar-title>
                   <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field v-model="course.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
-                    <v-text-field v-model="course.name"  label="ชื่อรายวิชา" type="text"></v-text-field>
-                    <v-text-field v-model="course.name_eng"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
-                    <v-text-field v-model="course.year"  label="ปีการศึกษา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fas fa-dice" v-model="course.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
+                    <v-text-field prepend-icon="fas fa-pen-square" v-model="course.name"  label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fab fa-adn" v-model="course.name_eng"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
+                    <v-text-field prepend-icon="far fa-calendar-alt" v-model="course.year"  label="ปีการศึกษา" type="text"></v-text-field>
                   </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" :disabled="!valid" @click="submit()">ยื่นยัน</v-btn>
+                  <v-btn color="primary" :disabled="!valid" @click="submit()">ยืนยัน</v-btn>
                 </v-card-actions>
           </v-card>
             </v-flex>

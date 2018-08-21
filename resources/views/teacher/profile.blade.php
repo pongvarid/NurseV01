@@ -25,7 +25,7 @@ die();
                     <v-toolbar-title>อาจารย์</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn icon>
-                        <v-icon>search</v-icon>
+                        
                     </v-btn>
                 </v-toolbar>
 
@@ -89,9 +89,9 @@ die();
         </v-card-title>
 
         <v-card-text>
-            <v-text-field label="ชื่อ-สกุล" v-model="teacher.name" outline></v-text-field>
-            <v-text-field label="รหัสผ่าน" v-model="teacher.password" outline></v-text-field>
-            <v-textarea outline label="เกี่ยวกับคุณ" v-model="teacher.remark"></v-textarea>
+            <v-text-field prepend-icon="fas fa-user" label="ชื่อ-สกุล" v-model="teacher.name" outline></v-text-field>
+            <v-text-field prepend-icon="fas fa-lock" label="รหัสผ่าน" v-model="teacher.password" outline></v-text-field>
+            <v-textarea  prepend-icon="fas fa-edit" outline label="เกี่ยวกับคุณ" v-model="teacher.remark"></v-textarea>
         </v-card-text>
 
         <v-divider></v-divider>

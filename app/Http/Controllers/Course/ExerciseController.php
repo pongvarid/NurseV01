@@ -87,7 +87,8 @@ class ExerciseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $exercise = Exercise::find($id);
+        return $exercise->destroy($id);
     }
 
 }

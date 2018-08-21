@@ -61,10 +61,12 @@ class LoginController extends Controller
         //ตรวจสอบว่ามีนิสิติอยู่มั้ยถ้าไม่มี session_id จะเป็น null 
         if( $check_session_id &&   $session_id != null){
             // ค้นหานิสิตใน database ว่ามีมั้ยถ้าไม่มีบันทึกรหัสลง database
+            
+             
            if($this->checkStudent($request->username) == 0){
                $student = new Student();
                $student->username = $request->username;
-               $student->save;
+               $student->save();
            }
            //เปิด session
            session_start();

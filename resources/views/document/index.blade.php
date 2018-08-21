@@ -10,13 +10,55 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 @section('vue')
 <div id="app">
     <v-app id="inspire">
+        <v-flex d-flex xs12 sm12 class="container">
+            <v-layout row wrap>
+                <v-flex d-flex>
+                    <v-card>
+                        <v-toolbar color="indigo" dark>
+                            <v-icon>fas fa-align-justify </v-icon>
+                            <v-toolbar-title>จัดการเอกสาร</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" dark @click.stop="dialog = true">
+                                <v-icon>add</v-icon>
+                            </v-btn>
+                        </v-toolbar>
+                        <v-card-text>
+
+                            <v-container fluid grid-list-lg>
+                                <v-layout row wrap>
+                                    <template v-for="data in tmp">
+                                            <v-flex xs3 >
+                                              <v-card color="cyan darken-2" class="white--text">
+                                                <v-card-title primary-title>
+                                                  <div>
+                                                      <div class="headline">ชื่อเอกสาร: @{{data.name}}</div>
+                                                      <div>รายละเอียด: @{{data.remark}}</div>
+                                                      <div>@{{data.link}}
+                                                        <v-btn color="yellow" @click="openLink(data)">เปิด</v-btn>
+                                                      </div>
+                                                    </div>
+                                                </v-card-title>
+                                                <v-card-actions>
+                                                    <v-btn color="red" @click="deleteData(data.id)">ลบ</v-btn>
+                                                    <v-btn color="blue" @click="updateOpen(data)">แก้ไข</v-btn>
+                                                </v-card-actions>
+                                              </v-card>
+                                            </v-flex>
+                                          </template>
+                                </v-layout>
+                            </v-container>
+
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-flex>
         <div>
             <v-layout row justify-center>
-                <v-btn color="primary" dark @click.stop="dialog = true">เพิ่มเอกสารประกอบการสอน</v-btn>
                 <v-dialog v-model="dialog" width="500" transition="dialog-bottom-transition" scrollable>
                     <v-card tile>
                         <v-toolbar card dark color="primary">
-                            <v-btn icon dark @click.native="dialog = false">
+                            <v-btn icon dark @click="dialogClose()">
                                 <v-icon>close</v-icon>
                             </v-btn>
                             <v-toolbar-title>เพิ่มเอกสารประกอบการสอน</v-toolbar-title>
@@ -41,13 +83,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             </v-layout>
         </div>
     </v-app>
-    <div v-for="data in tmp">
-        <div>
-            <pre>@{{data}}</pre>
-            <v-btn color="red" @click="deleteData(data.id)">delete</v-btn>
-            <v-btn color="blue" @click="updateOpen(data)">update</v-btn>
-        </div>
-    </div>
 </div>
 @endsection
  
@@ -131,6 +166,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     alert('error');
                 });
                 },
+                openLink(tmp) {
+                    this.dataDB = tmp;
+                    window.open(this.dataDB.link, '_blank');
+                }
             },
             mounted(){
                 this.load();

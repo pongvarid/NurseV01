@@ -34,11 +34,11 @@ else{
                             <h5>@{{student.StudentCode}}</h5>
                         </center>
                         <hr>
-                        <h5>สาขา :  @{{student.ProgramName_TH}}</h5>
-                        <p>คณะ :  @{{student.FacultyName_TH}}</p>
+                        <h5> <v-icon>fas fa-book-reader</v-icon> &nbsp สาขา :  @{{student.ProgramName_TH}}</h5>
+                        <p> <v-icon>fas fa-user-graduate</v-icon> &nbsp คณะ :  @{{student.FacultyName_TH}}</p>
                         <hr>
-                        <p>เบอร์ : @{{student.Telephone}}</p>
-                        <p>ที่อยู่ : @{{student.Address}}</p>
+                        <p> <v-icon>fas fa-mobile-alt</v-icon> &nbsp เบอร์ : @{{student.Telephone}}</p>
+                        <p><v-icon>fas fa-map-marker-alt</v-icon> &nbsp ที่อยู่ : @{{student.Address}}</p>
                        <hr>
                     </v-card-text>
                 </v-card>

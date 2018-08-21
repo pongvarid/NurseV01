@@ -26,7 +26,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-subheader>
                         <v-btn color="primary" @click="submit_ask()">ตอบถูกผิด</v-btn>
                         <v-btn color="primary" @click="submit_choice()">เลือกตอบ</v-btn>
-                        <v-btn color="primary" @click="submit_edm()">แนบไฟล์</v-btn>
+                        <v-btn color="primary" @click="submit_askfile()">แนบไฟล์</v-btn>
                     </v-subheader>
                     <v-divider></v-divider>
                     <div v-for="exercise in exercises">
@@ -101,6 +101,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       });
       this.load();}
     },
+    submit_askfile(){
+        window.location = "/course/exercise/file/{{request()->route('id')}}";
+    },
     submit_ask(){ //สร้างแบบฝึกหัดตอบถูกผิด
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
@@ -110,7 +113,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     goto_editExercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
         if(type == '1'){
             window.location = "/course/exercise/edit_ask/"+id;
-        }else if(type == '2'){
+        }else if(type == '2'){ 
             window.location = "/course/exercise/choice_edit/"+id;
         }else if(type == '3'){
 

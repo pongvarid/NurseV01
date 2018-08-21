@@ -9,9 +9,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 ?> 
 @extends('core.vuetify') 
 @section('vue')
-<v-container>
-    <v-layout row>
-        <v-flex xs12 sm4>
+<v-container grid-list-md>
+        <v-layout row wrap>
+            <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
                     <v-toolbar-side-icon>
@@ -23,7 +23,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-card-text>
                     <v-text-field prepend-icon=" far fa-clipboard " v-model="exercise.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
                     <v-text-field prepend-icon=" fas fa-clipboard-list " v-model="exercise.score" label="คะแนนเต็ม" type="number"></v-text-field>
-                    <v-text-field prepend-icon=" fas fa-calculator " v-model.number="exercise.count" mask="##" label="จำนวนข้อ" type="tel"></v-text-field>
+                    <v-text-field disabled prepend-icon=" fas fa-calculator " v-model.number="exercise.count" mask="##" label="จำนวนข้อ" type="tel"></v-text-field>
                     <v-text-field prepend-icon=" far fa-comment " v-model="exercise.remark" label="หมายเหตุ" type="text"></v-text-field>
                     <v-text-field prepend-icon=" far fa-calendar-alt " v-model="exercise.time" label="กำหนดส่ง" type="date"></v-text-field>
                 </v-card-text>
@@ -34,7 +34,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-card-actions>
             </v-card>
         </v-flex>
-        <v-flex xs12 sm1></v-flex>
+ 
         <v-flex xs12 sm8>
             <v-card>
                 <v-toolbar color="light-blue" dark>

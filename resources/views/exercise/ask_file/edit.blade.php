@@ -9,9 +9,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 ?> 
 @extends('core.vuetify') 
 @section('vue')
-<v-container>
-    <v-layout row>
-        <v-flex xs12 sm4>
+<v-container grid-list-md>
+        <v-layout row wrap>
+            <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
                     <v-toolbar-side-icon>
@@ -34,7 +34,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-card-actions>
             </v-card>
         </v-flex>
-        <v-flex xs12 sm1></v-flex>
+ 
         <v-flex xs12 sm8>
             <v-card>
                 <v-toolbar color="light-blue" dark>

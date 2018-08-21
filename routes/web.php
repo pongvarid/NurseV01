@@ -99,6 +99,9 @@ Route::get('/course/exercise/choice_edit/{id}', function () {
 Route::get('/course/exercise/file/{id}', function () {
     return view('exercise.ask_file.exercise');
 });
+Route::get('/course/exercise/file_edit/{id}', function () {
+    return view('exercise.ask_file.edit');
+});
  
 //(END)--Exercise---------------------------------------------------------------------------------------//
 

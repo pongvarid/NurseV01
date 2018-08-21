@@ -69,8 +69,15 @@ Route::get('/course/exercise/edit_ask/{id}', function () {
 });
 
 Route::get('/course/register/{id}', function () { //ลงทะเบียน
-    return view('course.view_course.register_course');
+    return view('course.course_view.register_course');
 });
 
+Route::get('/student/course/{id}', function () { //course ของ นิสิต
+    return view('student.student_view.course');
+});
+
+Route::get('/student/course/exercise/ask_exercise/{id}', function () { //นิสิต ทำ แบบฝึกหัดถามตอบ
+    return view('student.student_view.ask_exercise');
+});
 
 

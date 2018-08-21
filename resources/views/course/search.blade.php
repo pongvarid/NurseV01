@@ -56,7 +56,7 @@ methods: {
       });
   },
       viewCouse(id){
-        window.location = "/course/view_course/register_course/"+id;
+        window.location = "/course/register/"+id;
       }
   },
   mounted(){

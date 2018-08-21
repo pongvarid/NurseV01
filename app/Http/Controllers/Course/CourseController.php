@@ -15,9 +15,15 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $course = new Course(); 
+        return $course->get()->toJson();
     }
-
+    
+    public function searchCourse($course)
+    {  
+         $course = Course::where('code',$course)->get();
+        return $course;
+    }
     /**
      * Show the form for creating a new resource.
      *

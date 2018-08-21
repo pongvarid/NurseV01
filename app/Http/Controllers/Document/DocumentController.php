@@ -47,9 +47,10 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course)
     {
-        //
+        $document = Document::where('course',$course)->get();
+        return $document;
     }
 
     /**
@@ -60,7 +61,8 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $document = Document::find($id);
+        return $document;
     }
 
     /**
@@ -72,7 +74,9 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $document = Document::find($id);  
+        $document->fill($request->all());  
+        $document->save(); 
     }
 
     /**
@@ -83,6 +87,7 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $document = Document::find($id);
+        return $document->destroy($id);
     }
 }

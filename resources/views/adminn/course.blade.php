@@ -197,7 +197,7 @@ methods: {
       this.dialogClose(); 
     },
       load(){
-        let result =  axios.get('/api/admin/course/1')
+        let result =  axios.get('/api/admin/course/1') 
       .then((r) => {
           this.tmp = r.data;  
       }).catch((e) => { 

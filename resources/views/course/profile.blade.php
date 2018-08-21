@@ -131,7 +131,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         }
     },
     document(){
-        window.location = "/course/edit_course/{{request()->route('id')}}";
+        window.location = "/course/document/{{request()->route('id')}}";
     },
     edit_course(){ //แก้ไขรายวิชา
         window.location = "/course/edit_course/{{request()->route('id')}}";

@@ -92,4 +92,8 @@ Route::get('/student/course/exercise/ask_exercise/{id}', function () { //นิ�
     return view('student.student_view.ask_exercise');
 });
 
+Route::get('/course/document/{id}', function () { //จัดการ document
+    return view('document.index');
+});
+
 

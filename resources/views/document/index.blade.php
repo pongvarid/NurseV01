@@ -1,3 +1,11 @@
+<?php 
+/*-------------------SET SESSION-----------------------*/
+session_start();
+$user = isset($_SESSION['user']); 
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
+    $id = $_SESSION['user'];
+}
+?> 
 @extends('core.vuetify') 
 @section('vue')
 <div id="app">
@@ -14,7 +22,8 @@
                             <v-toolbar-title>เพิ่มเอกสารประกอบการสอน</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items>
-                                <v-btn dark flat @click="saveData()">บันทึก</v-btn>
+                                <v-btn dark flat v-if="!update" @click="saveData()">บันทึก</v-btn>
+                                <v-btn dark flat v-if="update" @click="updateData()">บันทึก</v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
                         <v-card-text>
@@ -25,15 +34,20 @@
                                     persistent-hint required></v-text-field>
                             </v-form>
                             <v-divider></v-divider>
-
                         </v-card-text>
-
                         <div style="flex: 1 1 auto;"></div>
                     </v-card>
                 </v-dialog>
             </v-layout>
         </div>
     </v-app>
+    <div v-for="data in tmp">
+        <div>
+            <pre>@{{data}}</pre>
+            <v-btn color="red" @click="deleteData(data.id)">delete</v-btn>
+            <v-btn color="blue" @click="updateOpen(data)">update</v-btn>
+        </div>
+    </div>
 </div>
 @endsection
  
@@ -55,8 +69,9 @@
             linkRules: [
             v => !!v || 'กรุณากรอกที่อยู่เอกสาร'
             ],
-
+            tmp: [],
             dataDB:{},
+            update:false,
             dialog: false,
             },
             methods: { 
@@ -66,20 +81,59 @@
                     this.dialog = false;
                     this.load();
                 },
-                saveData(){
-                    axios
-                .post("/api/document",this.dataDB)
+                updateOpen(tmp){
+                    this.update = true;
+                    this.dialog = true;
+                    this.dataDB = tmp;
+                },
+                deleteData(id){
+                    var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะลบข้อมูล");
+                    if(confirms){
+                        axios
+                .delete("/api/document/"+id)
                 .then(function(response) {
-                    alert('บันทึกข้อมูลสำเร็จ');
-                
+                    alert('ลบข้อมูลสำเร็จ'); 
+                })
+                .catch(function(error) {
+                    alert('error');
+                });
+                this.dialogClose(); 
+                    }
+                },
+                updateData(){
+                    axios
+                .put("/api/document/"+this.dataDB.id,this.dataDB)
+                .then(function(response) {
+                    alert('แก้ไขข้อมูลสำเร็จ'); 
                 })
                 .catch(function(error) {
                     alert('error');
                 });
                 this.dialogClose(); 
                 },
-                
-                
+                saveData(){
+                    this.dataDB.course = "{{request()->route('id')}}";
+                    axios
+                .post("/api/document",this.dataDB)
+                .then(function(response) {
+                    alert('บันทึกข้อมูลสำเร็จ');
+                })
+                .catch(function(error) {
+                    alert('error');
+                });
+                this.dialogClose(); 
+                },
+                load(){
+                    let result = axios.get("/api/document/{{request()->route('id')}}") 
+                .then((r) => {
+                    this.tmp = r.data;  
+                }).catch((e) => { 
+                    alert('error');
+                });
+                },
+            },
+            mounted(){
+                this.load();
             }
             })
 

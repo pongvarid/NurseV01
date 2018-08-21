@@ -56,17 +56,29 @@ Route::get('/crud', function () {
 Route::get('/c', function () {
     return view('crud.test');
 });
-Route::get('/course/exercise/ask_exercise/{id}', function () {
-    return view('exercise.ask_exercise.exercise');
-});
-
 Route::get('/course/edit_course/{id}', function () {
     return view('course.edit');
+});
+
+//Exercise---------------------------------------------------------------------------------------//
+Route::get('/course/exercise/ask_exercise/{id}', function () {
+    return view('exercise.ask_exercise.exercise');
 });
 
 Route::get('/course/exercise/edit_ask/{id}', function () {
     return view('exercise.ask_exercise.edit');
 });
+
+Route::get('/course/exercise/choice/{id}', function () {
+    return view('exercise.choice.exercise');
+});
+
+Route::get('/course/exercise/choice_edit/{id}', function () {
+    return view('exercise.choice.edit');
+});
+
+ 
+//(END)--Exercise---------------------------------------------------------------------------------------//
 
 Route::get('/course/register/{id}', function () { //ลงทะเบียน
     return view('course.course_view.register_course');

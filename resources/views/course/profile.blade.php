@@ -32,13 +32,13 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <div v-for="exercise in exercises">
                         <v-list-tile >
                             <v-list-tile-content>
-                                <v-layout row>
+                                <v-layout style="width:100%;" row>
                                     <v-flex xs12 @click="goto_editExercisePage(exercise.id,exercise.type)">
                                             <v-list-tile-title class="mrt-10 pointer">@{{exercise.name}} @{{getExerciseType(exercise.type)}} </v-list-tile-title>
 
                                     </v-flex>
                                     <v-flex xs1>
-                                            <v-btn @click="deleteExercise(exercise.id)" icon color="red" dark>
+                                            <v-btn style="float:right;" @click="deleteExercise(exercise.id)" icon color="red" dark>
                                                     <v-icon>fas fa-times</v-icon>
                                                 </v-btn>
                                     </v-flex>
@@ -104,11 +104,14 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     submit_ask(){ //สร้างแบบฝึกหัดตอบถูกผิด
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
+    submit_choice(){
+        window.location = "/course/exercise/choice/{{request()->route('id')}}";
+    },
     goto_editExercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
         if(type == '1'){
             window.location = "/course/exercise/edit_ask/"+id;
         }else if(type == '2'){
-
+            window.location = "/course/exercise/choice_edit/"+id;
         }else if(type == '3'){
 
         }else{

@@ -17,19 +17,19 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-toolbar-side-icon>
                         <v-icon>fas fa-user-circle</v-icon>
                     </v-toolbar-side-icon>
-                    <v-toolbar-title>แก้ไขแบบฝึกหัด</v-toolbar-title>
+                    <v-toolbar-title>แบบฝึกหัด</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field prepend-icon=" far fa-clipboard " v-model="exercises.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
-                    <v-text-field prepend-icon=" fas fa-clipboard-list " v-model="exercises.score" label="คะแนนเต็ม" type="number"></v-text-field>
-                    {{-- <v-text-field prepend-icon=" fas fa-calculator " v-model.number="exercises.count" label="จำนวนข้อ" type="number"></v-text-field> --}}
-                    <v-text-field prepend-icon=" far fa-comment " v-model="exercises.remark" label="หมายเหตุ" type="text"></v-text-field>
-                    <v-text-field  prepend-icon=" far fa-calendar-alt " v-model="exercises.time" label="กำหนดส่ง" type="date"></v-text-field>
+                    <v-text-field v-model="exercise.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
+                    <v-text-field v-model="exercise.score" label="คะแนนเต็ม" type="number"></v-text-field>
+                    <v-text-field v-model.number="exercise.count" mask="##" label="จำนวนข้อ" type="tel"></v-text-field>
+                    <v-text-field v-model="exercise.remark" label="หมายเหตุ" type="text"></v-text-field>
+                    <v-text-field v-model="exercise.time" label="กำหนดส่ง" type="date"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="update()">ยื่นยัน</v-btn>
+                    <v-btn color="primary" @click="save()">ยื่นยัน</v-btn>
 
                 </v-card-actions>
             </v-card>
@@ -42,8 +42,13 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-toolbar-title>คำถาม</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text> 
-                    <v-text-field  v-for="x,index in exercises.ask" v-model="exercises.ask[index]" :label="'ข้อ'+(index+1)" type="text"></v-text-field> 
+                <v-card-text v-for="x in exercise.count"> 
+                    <v-text-field v-model="exercise.ask[x-1]" :label="'ข้อ'+x" type="text"></v-text-field>
+                    <v-select v-model="choices.answer[x-1]" :items="answer" label="เฉลย" solo></v-select>
+                    <v-text-field v-model="choices.a[x-1]" label="a:" type="text"></v-text-field>
+                    <v-text-field v-model="choices.b[x-1]" label="b:" type="text"></v-text-field>
+                    <v-text-field v-model="choices.c[x-1]" label="c:" type="text"></v-text-field>
+                    <v-text-field v-model="choices.d[x-1]" label="d:" type="text"></v-text-field>
                 </v-card-text>
 
             </v-card>
@@ -56,64 +61,87 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 <script>
     new Vue({ el: "#app",
     data: {
-       perData:{},
-       exercises:{
-           ask:[],
-       },
+        answer:['a','b','c','d'],
+        choices:{
+            a:[],
+            b:[],
+            c:[],
+            d:[],
+            answer:[],
+        },
+        exercise:{  
+            ask:[],
+            answer:[],
+        },
     },
     methods: {
-        update(){
-            let check = this.checkStringAsk();
-            if(check){
-            this.exercises.ask = ","+this.exercises.ask.toString();
-            let result =  axios.put("/api/exercise/askanswer/{{request()->route('id')}}",this.exercises)
-            .then((r) => {
-                alert('แก้ไขข้อมูลสำเร็จ');
-                this.load();
-            }).catch((e) => { 
-                alert('error: '+e);
-            });}else{
-                alert('ห้ามใส่เครื่องหมาย "," ในคำถาม');
-            }
+        convertInteger(data){
+            return Number(data);
         },
-        checkStringAsk(){
-        let ask = this.exercises.ask;
-        let resource = true;
-        console.log(ask);
-           for(let i=0; i< ask.length; i++){
-            let tmpAsk =  this.exercises.ask[i].split(","); 
-            if(tmpAsk.length >1){
-                resource = false;
-                break;
-            }
-           }
-           return resource;
+        preData(){
+            this.exercise.ask = ","+this.exercise.ask.toString();
+            this.choiceMake();
+            this.exercise.type = 2;
+            this.exercise.course = "{{request()->route('id')}}";
         },
-        getExercise(){
-            let result =  axios.get("/api/exercise/askanswer/{{request()->route('id')}}")
-            .then((r) => {
-                this.exercises = r.data;
-                this.getAsk();
-            }).catch((e) => { 
-                alert('error: '+e);
+        choiceMake(){
+            let choiceTmp = '';
+            for(let i=0; i<=this.exercise.count-1;i++){ 
+               
+                let mert_choice = "<choice>"+this.choices.a[i]+","+this.choices.b[i]+","+this.choices.c[i]+","+this.choices.d[i];
+                choiceTmp+=mert_choice;
+            }
+            let answer_choice = '<answer>'+","+this.choices.answer.toString(); 
+            choiceTmp+=answer_choice;
+            this.exercise.answer = choiceTmp;
+
+        },
+        save(){
+            this.preData();
+            
+         axios.put("/api/exercise/"+this.exercise.id,this.exercise)
+            .then(function(response) { 
+                if(response.data == '1'){
+                    alert('แก้ไขรายวิชาเรียบร้อย'); 
+                }else{
+                    alert('error');
+                } 
+            })
+            .catch(function(error) {
+                alert('error: '+error);
             });
+            this.load();
         },
-        getAsk(){
-            let ask = this.exercises.ask.split(",");
-            let result_ask = [];
-            for(let i=0; i<ask.length; i++){
-                if(i == 0){continue;}
-                result_ask[i-1] = ask[i]; 
+        subStringChoice(data){
+            return data.split(",");
+        },
+        getChoiceByDataBase(data){
+            for(let i=0; i<this.exercise.count; i++ ){
+                let choice = this.subStringChoice(data[i]);
+                this.choices.a[i] =  choice[0];
+                this.choices.b[i] =  choice[1];
+                this.choices.c[i] =  choice[2];
+                this.choices.d[i] =  choice[3];
             }
-            this.exercises.ask = result_ask;
         },
         load(){
-            this.getExercise(); 
-        },
+            let result =  axios.get('/api/exercise/choice/{{request()->route('id')}}')
+                .then((r) => {
+                     
+                    this.exercise =  r.data;
+                    this.exercise.count = Number(r.data.ask.length);
+                    this.getChoiceByDataBase(r.data.choice);
+                    this.choices.answer =  r.data.answer;
+                    
+                    console.log(r.data);
+                }).catch((e) => { 
+                    alert('error');
+                });
+        }
      },
-     mounted(){
-      this.load();
-    },
+     mounted() {
+         this.load();
+     }
     });
 
 </script>

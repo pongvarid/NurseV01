@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Exercise;
+use App\Services\Choice;
 class ChoiceController extends Controller
 {
     /**
@@ -45,10 +46,17 @@ class ChoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { 
        $exercise =  Exercise::find($id);
-        return $exercise ;
+       $choice = new Choice();
+       $choice->setData($exercise);
+       $exercise->ask = $choice->convertAsk();
+       $exercise->answer = $choice->convertAnswer();
+       $exercise->choice = $choice->convertChoice();
+      return  $exercise;
     }
+
+ 
 
     /**
      * Show the form for editing the specified resource.

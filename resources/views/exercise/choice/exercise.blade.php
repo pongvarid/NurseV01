@@ -90,7 +90,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             let choiceTmp = '';
             for(let i=0; i<=this.exercise.count;i++){
                 if(i==0){continue;}
-                let mert_choice = "<choice>"+this.choices.a[i]+","+this.choices.b[i]+","+this.choices.c[i]+","+this.choices.d[i]+"<choice>";
+                let mert_choice = "<choice>"+this.choices.a[i]+","+this.choices.b[i]+","+this.choices.c[i]+","+this.choices.d[i];
                 choiceTmp+=mert_choice;
             }
             let answer_choice = '<answer>'+this.choices.answer.toString(); 

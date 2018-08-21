@@ -76,7 +76,12 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $exercise =  Exercise::find($id);
+        $exercise->fill($request->all());
+         $save = $exercise->save();
+          if($save) return 1;
+          else return 0;
     }
 
     /**

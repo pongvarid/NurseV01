@@ -40,6 +40,8 @@ Route::resource('/logs','Logs\LogsController');
 /*exercise*/
 Route::resource('/exercise/askanswer','Exercise\AskAnswerController');
 
+Route::resource('/exercise/choice','Exercise\ChoiceController');
+Route::get('/exercise/choice/edit/ask/{id}','Exercise\ChoiceController@searchCourse');
 /* admin */
 Route::resource('/admin/teacher','Admin\TeacherController'); 
 Route::resource('/admin/student','Admin\StudentController');  

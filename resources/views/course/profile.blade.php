@@ -9,20 +9,52 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 ?> 
 @extends('core.vuetify') 
 @section('vue')
-<v-container>
-    <v-layout row>
-        <v-flex xs12 sm4>
-            <v-btn @click="document()">จัดการเอกสาร</v-btn>
+<v-container grid-list-md>
+        <v-layout row wrap>
+                <v-flex d-flex xs12 sm4>
+                        <v-card>
+                            <v-toolbar color="light-blue" dark>
+                                <v-toolbar-side-icon></v-toolbar-side-icon>
+                                <v-toolbar-title>ข้อมูล</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar><br>
+                            <center>
+                            <img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/note-128.png" alt="">
+                           <h4>@{{courses.name}} </h4>
+                           <h5> @{{courses.code}}</h5> 
+                            <v-divider></v-divider>
+                            <v-card-text>
+                            <v-btn color="warning" @click="edit_course()">แก้ไข</v-btn>
+                            <v-btn color="red" @click="close_course()" dark>ปิด
+                                <v-icon dark right>block</v-icon>
+                            </v-btn> </center>
+                            <v-divider></v-divider>
+                            <v-list two-line subheader class="mrl-20"> 
+                                <h5>ไอดีอาจารย์ : @{{courses.id}}</h5>
+                                <h5>ปีการศึกษา : @{{courses.year}}</h5>
+                                <h5>สถานะ : @{{courses.state}}</h5>
+                                <h5>สร้างเมื่อ : @{{courses.created_at}}</h5>
+                                <h5>เเก้ไข : @{{courses.updated_at}}</h5> 
+                                
+                            </v-list>
+                        </v-card-text>
+                        </v-card>
+                    </v-flex> 
+            <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
                     <v-toolbar-side-icon>
                         <v-icon>fas fa-user-circle</v-icon>
                     </v-toolbar-side-icon>
-                    <v-toolbar-title>สร้างแบบฝึกหัด</v-toolbar-title>
+                    <v-toolbar-title>เมนู</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-list two-line subheader>
+                        <v-divider></v-divider>
+                            <h3>&nbsp;เอกสาร</h3>
+                        <v-btn color="yellow" @click="document()">จัดการเอกสาร</v-btn>
                     <v-divider></v-divider>
+                    <h3>&nbsp;แบบฝึกหัด</h3>
                     <v-subheader>
                         <v-btn color="primary" @click="submit_ask()">ตอบถูกผิด</v-btn>
                         <v-btn color="primary" @click="submit_choice()">เลือกตอบ</v-btn>
@@ -52,27 +84,25 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-list>
             </v-card>
         </v-flex>
-        <v-flex xs12 sm1></v-flex>
-        <v-flex xs12 sm8>
-            <v-card>
-                <v-toolbar color="light-blue" dark>
-                    <v-toolbar-side-icon></v-toolbar-side-icon>
-                    <v-toolbar-title>รายวิชา @{{courses.name}} [@{{courses.code}}]</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                </v-toolbar>
-                <v-divider></v-divider>
-                <v-btn color="warning" @click="edit_course()">แก้ไข</v-btn>
-                <v-btn color="red" @click="close_course()" dark>ปิด
-                    <v-icon dark right>block</v-icon>
-                </v-btn>
-                <v-divider></v-divider>
-                <v-list two-line subheader>
-                    <pre>
-                    @{{courses}}
-                </pre>
-                </v-list>
-            </v-card>
-        </v-flex>
+        <v-flex d-flex xs12 sm4>
+                <v-card>
+                    <v-toolbar color="light-blue" dark>
+                        <v-toolbar-side-icon></v-toolbar-side-icon>
+                        <v-toolbar-title>นิสิต</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                    </v-toolbar>
+                    <v-divider></v-divider>
+                   <center>
+                        <v-btn>เพิ่ม TA</v-btn>
+                       <v-btn>คะแนน</v-btn>
+                   </center>
+                   <v-divider></v-divider>
+                   <h4>&nbsp;&nbsp;นิสิตที่ลงทะเบียนเรียน</h4>
+
+                   <h4>&nbsp;&nbsp;TA</h4>
+                </v-card>
+            </v-flex> 
+        
     </v-layout>
 </v-container>
 @endsection
@@ -148,6 +178,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             alert('error: '+e);
         });
         this.load();
+    },
+    getStudent(){
+
     },
     getCourse(){ //ดึงข้อมูลรายวิชา
         let result =  axios.get("/api/course_data/{{request()->route('id')}}")

@@ -32,6 +32,9 @@ Route::get('/test2', function () {
 Route::get('/test','Account\LoginController@studentLogin');
 
 //admin -----------------------------------------------------------//
+Route::get('/admin', function () {
+    return view('adminn.course');
+});
 Route::get('/admin/course', function () {
     return view('adminn.course');
 });

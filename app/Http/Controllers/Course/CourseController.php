@@ -120,4 +120,9 @@ class CourseController extends Controller
         if($save) return 1;
         else return 0;
     }
+
+    public function viewCourseIN($id){
+        $courseIn = CourseIn::find($id);
+        return $courseIn;
+    }
 }

@@ -17,13 +17,14 @@
 
 <body>
   <?php
+
+  
    
     $i_user = isset($_SESSION['user']);
    ?>
-    <div class="w3-bar w3-red">
-      <a href="#" class="w3-bar-item w3-button">Home</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small">Link 1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small">Link 2</a>
+    <div class="w3-bar box-blue wh">
+ 
+      
       <?php if($i_user){?>
       <?php
                 if($_SESSION['user_type'] == 'student'){
@@ -37,9 +38,17 @@
           <?php
                 }
                 if(isset($_SESSION["admin"]) ){
-                  if($_SESSION["admin"] == '1'){
-                  ?>
-            <a href="/admin/" class="w3-bar-item w3-button w3-hide-small">admin</a>
+                  if($_SESSION["admin"] == '2'){
+                  ?> 
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/teacher"  >อาจารย์</a>
+                <a class="w3-bar-item w3-button w3-hide-small"  href="/admin/student"  >นิสิต</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  >รายวิชา</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  >การลงทะเบียน</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/document"  >เอกสาร</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercise"  >แบบฝึกหัด</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercised"  >การทำแบบฝึกหัด</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/logs"  >Logs</a>
+              
             <?php
                 }}
                 ?>
@@ -48,9 +57,10 @@
               <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
     </div>
 
-    <div id="demo" class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
+    <div id="demo" class="w3-bar-block box-blue wh w3-hide w3-hide-large w3-hide-medium">
       <a href="#" class="w3-bar-item w3-button">Link 1</a>
       <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      
       <?php if($i_user){?>
       <a href="/logout" class="w3-bar-item w3-button w3-hide-small">ออกจากระบบ</a>
       <?php } ?>

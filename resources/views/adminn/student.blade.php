@@ -1,3 +1,13 @@
+<?php 
+/*-------------------SET SESSION-----------------------*/
+session_start();
+$user = isset($_SESSION['user']); 
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';
+die();
+}else{
+    $id = $_SESSION['user'];
+} 
+?> 
 @extends('core.vuetify') 
 @section('vue')
 <div id="app" class="container">
@@ -28,9 +38,7 @@
             <v-card-text>
               <v-form v-model="valid">
                 <v-text-field v-model="dataDB.username" label="Username"></v-text-field>
-                <v-text-field v-model="dataDB.name" label="Name"></v-text-field>
-                <v-text-field v-model="dataDB.faculty" label="Faculty"></v-text-field>
-                <v-text-field v-model="dataDB.major" label="Major"></v-text-field>
+           
                 <v-text-field v-model="dataDB.permission" label="Permission"></v-text-field>
               </v-form>
             </v-card-text>
@@ -41,9 +49,7 @@
         class="elevation-1" :search="search">
         <template slot="items" slot-scope="props">
           <td>@{{ props.item.username }}</td>
-          <td>@{{ props.item.name }}</td>
-          <td>@{{ props.item.faculty }}</td>
-          <td>@{{ props.item.major }}</td>
+   
           <td>@{{ props.item.permission }}</td>
           <td>@{{ props.item.created_at }}</td>
           <td>@{{ props.item.updated_at }}</td>
@@ -83,9 +89,7 @@
     dialog: false,
     headers: [
       { text: 'User Name',value: 'username' },
-      { text: 'Name', value: 'name' },
-      { text: 'Faculty', value: 'faculty' },
-      { text: 'Major', value: 'major' },
+  
       { text: 'Permission', value: 'permission' },
       { text: 'Created_at', value: 'created_at' },
       { text: 'Updated_at', value: 'updated_at' },

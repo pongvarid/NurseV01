@@ -1,3 +1,13 @@
+<?php 
+/*-------------------SET SESSION-----------------------*/
+session_start();
+$user = isset($_SESSION['user']); 
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';
+die();
+}else{
+    $id = $_SESSION['user'];
+} 
+?> 
 @extends('core.vuetify') 
 @section('vue')
 <div id="app" class="container">

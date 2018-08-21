@@ -1,8 +1,20 @@
+<?php 
+/*-------------------SET SESSION-----------------------*/
+session_start();
+$user = isset($_SESSION['user']); 
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';
+die();
+}else{
+    $id = $_SESSION['user'];
+} 
+?> 
+
 @extends('core.vuetify') 
 @section('vue')
 <div id="app" class="container">
   <v-app id="inspire">
-    <div>
+  
+    <div><br>
       <v-toolbar flat color="white">
         <v-toolbar-title>Course</v-toolbar-title>
         <v-divider class="mx-2" inset vertical></v-divider>

@@ -29,7 +29,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="save()">ยื่นยัน</v-btn>
+                    <v-btn color="primary" @click="save()">ยืนยัน</v-btn>
 
                 </v-card-actions>
             </v-card>

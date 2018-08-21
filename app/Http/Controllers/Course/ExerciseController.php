@@ -86,7 +86,7 @@ class ExerciseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         $exercise = Exercise::find($id);
         return $exercise->destroy($id);
     }

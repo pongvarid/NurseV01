@@ -30,16 +30,24 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     </v-subheader>
                     <v-divider></v-divider>
                     <div v-for="exercise in exercises">
-                        <v-list-tile @click="goto_editExercisePage(exercise.id,exercise.type)">
+                        <v-list-tile >
                             <v-list-tile-content>
-                                <v-list-tile-title>@{{exercise.name}} @{{getExerciseType(exercise.type)}} </v-list-tile-title>
+                                <v-layout row>
+                                    <v-flex xs12 @click="goto_editExercisePage(exercise.id,exercise.type)">
+                                            <v-list-tile-title class="mrt-10 pointer">@{{exercise.name}} @{{getExerciseType(exercise.type)}} </v-list-tile-title>
 
+                                    </v-flex>
+                                    <v-flex xs1>
+                                            <v-btn @click="deleteExercise(exercise.id)" icon color="red" dark>
+                                                    <v-icon>fas fa-times</v-icon>
+                                                </v-btn>
+                                    </v-flex>
+                                </v-layout>
+                             
                             </v-list-tile-content>
-                            <v-btn @click="deleteExercise(exercise.id)" icon color="red" dark>
-                                <v-icon>fas fa-times</v-icon>
-                            </v-btn>
+                        
                         </v-list-tile>
-
+                 
                     </div>
                 </v-list>
             </v-card>
@@ -83,12 +91,15 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   methods: { 
 
     deleteExercise(id){ 
-        axios.get("/api/exercise/"+id)
+        let deletes = confirm("คุณแน่ใจใช่ไหมที่จะลบข้อมูล");
+        if(deletes){
+        axios.delete("/api/exercise/"+id)
       .then((r) => { 
         alert("ลบข้อมูลแบบฝึกหัดสำเร็จ");
       }).catch((e) => { 
           alert('error: '+e);
       });
+      this.load();}
     },
     submit_ask(){ //สร้างแบบฝึกหัดตอบถูกผิด
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";

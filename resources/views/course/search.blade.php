@@ -9,8 +9,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 ?> 
 @extends('core.vuetify') 
 @section('vue')
+
 <div id="app">
-  <v-text-field v-model="search" append-icon="search" label="ค้นหา" single-line hide-details></v-text-field>
+<v-container>
+
+  <v-text-field v-model="search"  label="ค้นหา" single-line hide-details></v-text-field> 
   <v-btn @click="searchCouse()">ค้นหา</v-btn>
 
   <!--// //course}}*/ -->
@@ -33,7 +36,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       </v-layout>
     </v-container>
   </v-card>
-
+</v-cotainer>
 </div>
 @endsection
  

@@ -70,9 +70,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                         </v-toolbar>
                         <v-card-text>
                             <v-form v-model="valid">
-                                <v-text-field v-model="dataDB.name" :rules="nameRules" label="ชื่อเอกสาร" required></v-text-field>
-                                <v-text-field v-model="dataDB.remark" :rules="remarkRules" label="รายละเอียดเอกสาร" required></v-text-field>
-                                <v-text-field v-model="dataDB.link" :rules="linkRules" label="ที่อยู่ไฟล์เอกสาร" hint="ตัวอย่าง https://drive.google.com"
+                                <v-text-field prepend-icon="fas fa-paste" v-model="dataDB.name" :rules="nameRules" label="ชื่อเอกสาร" required></v-text-field>
+                                <v-text-field prepend-icon="far fa-file" v-model="dataDB.remark" :rules="remarkRules" label="รายละเอียดเอกสาร" required></v-text-field>
+                                <v-text-field prepend-icon="far fa-paper-plane" v-model="dataDB.link" :rules="linkRules" label="ที่อยู่ไฟล์เอกสาร" hint="ตัวอย่าง https://drive.google.com"
                                     persistent-hint required></v-text-field>
                             </v-form>
                             <v-divider></v-divider>

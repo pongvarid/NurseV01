@@ -42,7 +42,7 @@ die();
                     <h5 v-if="teacher.permission == 1"> <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : อาจารย์</h5>
                     <h5 v-if="teacher.permission == 0">สถานะ : อาจารย์/แอดมิน</h5>
                     <h5> <v-icon>fas fa-book-open</v-icon> &nbsp รายวิชาที่สร้างได้ : @{{teacher.count}}</h5>
-                    <p>@{{teacher.remark}}</p>
+                    <p><v-icon>fas fa-pencil-alt</v-icon> &nbsp@{{teacher.remark}}</p>
                 </v-card-text>
             </v-card>
         </v-flex>

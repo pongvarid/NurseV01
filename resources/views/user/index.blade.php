@@ -49,7 +49,7 @@
                     <v-flex xs12>
                         <form>
 
-                            <v-text-field v-model="reg.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
+                            <v-text-field prepend-icon="far fa-address-book" v-model="reg.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
                             <p style="color:green;" v-if="state_username == 0">ชื่อผู้ใช้นี้ใช้งานได้</p>
                             <p style="color:red;" v-if="state_username == 1">มีชื่อผู้ใช้นี้แล้ว</p>
                             <v-btn @click="checkUser()">ตรวจสอบชื่อผู้ใช้</v-btn>

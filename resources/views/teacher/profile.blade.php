@@ -41,7 +41,7 @@ die();
                     <hr>
                     <h5 v-if="teacher.permission == 1">สถานะ : อาจารย์</h5>
                     <h5 v-if="teacher.permission == 0">สถานะ : อาจารย์/แอดมิน</h5>
-                    <h5>รายวิชาที่สร้างได้ : @{{teacher.count}}</h5>
+                    <h5> รายวิชาที่สร้างได้ : @{{teacher.count}}</h5>
                     <p>@{{teacher.remark}}</p>
                 </v-card-text>
             </v-card>

@@ -34,6 +34,9 @@ Route::get('/test','Account\LoginController@studentLogin');
 Route::get('/admin', function () {
     return view('document.index');
 });
+Route::get('/search', function () {
+    return view('course.search');
+});
 /* Stashed changes*/
 
 Route::get('/course/create', function () {
@@ -44,7 +47,9 @@ Route::get('/course/create', function () {
 Route::get('/course/profile/{id}', function () {
     return view('course.profile');
 });
-
+Route::get('/course/search', function () {
+    return view('course.search');
+});
 Route::get('/crud', function () {
     return view('crud.crud');
 });

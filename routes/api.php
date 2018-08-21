@@ -28,9 +28,12 @@ Route::resource('/course','Course\CourseController');
 Route::post('/course/{id}','Course\CourseController@update');
 Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิดรายวิชา
 Route::get('/course_data/{id}','Course\CourseController@getCourse');
+Route::get('/search_course/{course}','Course\CourseController@searchCourse');//search
+Route::get('/view/coirse/{id}','Course\CourseController@viewCourse');
 Route::resource('/logs','Logs\LogsController');
 Route::resource('/exercise','Course\ExerciseController');
 Route::get('/exercise_data/{id}','Course\ExerciseController@getExercise'); //ดึงข้อมูลแบบฝึกหัด ไว้edit
+
 Route::resource('/logs','Logs\LogsController'); 
 
 /*exercise*/

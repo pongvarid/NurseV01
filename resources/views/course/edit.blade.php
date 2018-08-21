@@ -20,9 +20,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                   <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field v-model="courses.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
-                    <v-text-field v-model="courses.name" label="ชื่อรายวิชา" type="text"></v-text-field>
-                    <v-text-field v-model="courses.year" label="ปีการศึกษา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fas fa-dice"  v-model="courses.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
+                    <v-text-field prepend-icon="fas fa-pen-square" v-model="courses.name" label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="far fa-calendar-alt" v-model="courses.year" label="ปีการศึกษา" type="text"></v-text-field>
                   </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>

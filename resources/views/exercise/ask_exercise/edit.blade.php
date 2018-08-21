@@ -21,11 +21,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field v-model="exercises.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
-                    <v-text-field v-model="exercises.score" label="คะแนนเต็ม" type="number"></v-text-field>
-                    {{-- <v-text-field v-model.number="exercises.count" label="จำนวนข้อ" type="number"></v-text-field> --}}
-                    <v-text-field v-model="exercises.remark" label="หมายเหตุ" type="text"></v-text-field>
-                    <v-text-field v-model="exercises.time" label="กำหนดส่ง" type="date"></v-text-field>
+                    <v-text-field prepend-icon=" far fa-clipboard " v-model="exercises.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
+                    <v-text-field prepend-icon=" fas fa-clipboard-list " v-model="exercises.score" label="คะแนนเต็ม" type="number"></v-text-field>
+                    {{-- <v-text-field prepend-icon=" fas fa-calculator " v-model.number="exercises.count" label="จำนวนข้อ" type="number"></v-text-field> --}}
+                    <v-text-field prepend-icon=" far fa-comment " v-model="exercises.remark" label="หมายเหตุ" type="text"></v-text-field>
+                    <v-text-field  prepend-icon=" far fa-calendar-alt " v-model="exercises.time" label="กำหนดส่ง" type="date"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>

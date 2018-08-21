@@ -33,7 +33,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                                                   <div>
                                                       <div class="headline">ชื่อเอกสาร: @{{data.name}}</div>
                                                       <div>รายละเอียด: @{{data.remark}}</div>
-                                                      <div>@{{data.link}}
+                                                      <div>
                                                         <v-btn color="yellow" @click="openLink(data)">เปิด</v-btn>
                                                       </div>
                                                     </div>

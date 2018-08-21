@@ -33,6 +33,9 @@ Route::resource('/exercise','Course\ExerciseController');
 Route::get('/exercise_data/{id}','Course\ExerciseController@getExercise'); //ดึงข้อมูลแบบฝึกหัด ไว้edit
 Route::resource('/logs','Logs\LogsController'); 
 
+/*exercise*/
+Route::resource('/exercise/askanswer','Exercise\AskAnswerController');
+
 /* admin */
 Route::resource('/admin/teacher','Admin\TeacherController'); 
 Route::resource('/admin/student','Admin\StudentController');  

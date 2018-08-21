@@ -42,9 +42,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-toolbar-title>คำถาม</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text>
-                    <pre>@{{exercises}}</pre>
-                    {{-- <v-text-field v-for="x in exercise.count" v-model="exercise.ask[x]" :label="'ข้อ'+x" type="text"></v-text-field> --}}
+                <v-card-text> 
+                    <v-text-field  v-for="x,index in exercises.ask" v-model="exercises.ask[index]" :label="'ข้อ'+(index+1)" type="text"></v-text-field> 
                 </v-card-text>
 
             </v-card>
@@ -57,43 +56,60 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 <script>
     new Vue({ el: "#app",
     data: {
-        exercises:{  
-            ask:[],
-        },
+       perData:{},
+       exercises:{
+           ask:[],
+       },
     },
     methods: {
+        update(){
+            let check = this.checkStringAsk();
+            if(check){
+            this.exercises.ask = ","+this.exercises.ask.toString();
+            let result =  axios.put("/api/exercise/askanswer/{{request()->route('id')}}",this.exercises)
+            .then((r) => {
+                alert('แก้ไขข้อมูลสำเร็จ');
+                this.load();
+            }).catch((e) => { 
+                alert('error: '+e);
+            });}else{
+                alert('ห้ามใส่เครื่องหมาย "," ในคำถาม');
+            }
+        },
+        checkStringAsk(){
+        let ask = this.exercises.ask;
+        let resource = true;
+        console.log(ask);
+           for(let i=0; i< ask.length; i++){
+            let tmpAsk =  this.exercises.ask[i].split(","); 
+            if(tmpAsk.length >1){
+                resource = false;
+                break;
+            }
+           }
+           return resource;
+        },
         getExercise(){
-            let result =  axios.get("/api/exercise_data/{{request()->route('id')}}")
+            let result =  axios.get("/api/exercise/askanswer/{{request()->route('id')}}")
             .then((r) => {
                 this.exercises = r.data;
+                this.getAsk();
             }).catch((e) => { 
                 alert('error: '+e);
             });
         },
-        load(){
-            this.getExercise();
+        getAsk(){
+            let ask = this.exercises.ask.split(",");
+            let result_ask = [];
+            for(let i=0; i<ask.length; i++){
+                if(i == 0){continue;}
+                result_ask[i-1] = ask[i]; 
+            }
+            this.exercises.ask = result_ask;
         },
-        // preData(){
-        //     this.exercise.ask = this.exercise.ask.toString();
-        //     this.exercise.type = 1;
-        //     this.exercise.answer = 'ไม่มีเฉลย';
-        //     this.exercise.course = "{{request()->route('id')}}";
-        // },
-        // update(){
-        //     this.preData();
-        //     axios.post("/api/exercise",this.exercise)
-        //     .then(function(response) { 
-        //         if(response.data == '1'){
-        //             alert('บันทึกรายวิชาเรียบร้อย');
-        //             window.location = "/course/profile/{{request()->route('id')}}";
-        //         }else{
-        //             alert('error');
-        //         } 
-        //     })
-        //     .catch(function(error) {
-        //         alert('error: '+error);
-        //     });
-        // },
+        load(){
+            this.getExercise(); 
+        },
      },
      mounted(){
       this.load();

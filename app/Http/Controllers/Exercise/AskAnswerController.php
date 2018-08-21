@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Course;
-use App\Models\Exercise;
+namespace App\Http\Controllers\Exercise;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Exercise;
 
-class ExerciseController extends Controller
+class AskAnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        // return view('exercise.chooseExercise');
+        //
     }
 
     /**
@@ -24,7 +25,7 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -35,13 +36,10 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-     
-         $exercise = new Exercise();
-       $exercise->fill($request->all());
-        $save = $exercise->save();
-         if($save) return 1;
-         else return 0;
-         
+        $exercise = new Exercise();
+        $exercise->fill($request->all());
+       $exercise->save();
+       
     }
 
     /**
@@ -52,7 +50,7 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
-        $exercise = Exercise::where('course',$id)->get();
+        $exercise = Exercise::where('id',$id)->first(); 
         return $exercise->toJson();
     }
 
@@ -64,7 +62,7 @@ class ExerciseController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -76,7 +74,10 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $exercise = Exercise::find($id); 
+        $exercise->fill($request->all());
+        $exercise->save();
+        
     }
 
     /**
@@ -89,5 +90,4 @@ class ExerciseController extends Controller
     {
         //
     }
-
 }

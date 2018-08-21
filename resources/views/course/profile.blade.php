@@ -27,7 +27,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-subheader> 
                 <v-divider ></v-divider>
                 <div v-for="exercise in exercises">
-                    <v-list-tile  @click="goto_editExercisePage(exercise.id)">
+                    <v-list-tile  @click="goto_editExercisePage(exercise.id,exercise.type)">
                         <v-list-tile-content>
                             <v-list-tile-title>@{{exercise.name}}</v-list-tile-title>
                         </v-list-tile-content>
@@ -74,8 +74,17 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     submit_ask(){ //สร้างแบบฝึกหัดตอบถูกผิด
         window.location = "/course/exercise/ask_exercise/{{request()->route('id')}}";
     },
-    goto_editExercisePage(id){ //แก้ไขแบบฝึกหัดตอบถูกผิด
-        window.location = "/course/exercise/edit_ask/"+id;
+    goto_editExercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
+        if(type == '1'){
+            window.location = "/course/exercise/edit_ask/"+id;
+        }else if(type == '2'){
+
+        }else if(type == '3'){
+
+        }else{
+
+        }
+      
     },
     edit_course(){ //แก้ไขรายวิชา
         window.location = "/course/edit_course/{{request()->route('id')}}";

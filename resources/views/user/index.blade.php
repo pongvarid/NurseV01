@@ -54,7 +54,7 @@
                             <v-text-field prepend-icon="fas fa-user" v-model="reg.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
                             <p style="color:green;" v-if="state_username == 0">ชื่อผู้ใช้นี้ใช้งานได้</p>
                             <p style="color:red;" v-if="state_username == 1">มีชื่อผู้ใช้นี้แล้ว</p>
-                            <v-btn @click="checkUser()">ตรวจสอบชื่อผู้ใช้</v-btn>
+                            <v-btn style="background-color:#683ECF;" dark @click="checkUser()">  <v-icon>fas fa-check</v-icon>&nbsp ตรวจสอบชื่อผู้ใช้</v-btn>
                             <v-text-field prepend-icon="fas fa-lock" v-model="reg.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
                             <v-text-field prepend-icon="fas fa-address-card" v-model="reg.name" type="text" label="ชื่อ-สกุล (Name-Surname)" required></v-text-field>
                             <v-textarea prepend-icon="fas fa-pencil-alt" v-model="reg.remark" type="text" label="เกี่ยวกับคุณ (About you) บอกนิสิตเกี่ยวกับตัวคุณ "></v-textarea>

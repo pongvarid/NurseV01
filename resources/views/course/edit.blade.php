@@ -28,7 +28,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                   </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" @click="update()">ยืนยัน</v-btn>
+                  <v-btn color="primary" @click="update()"><v-icon>fas fa-check</v-icon>&nbsp ยืนยัน</v-btn>
                 </v-card-actions>
           </v-card>
             </v-flex>

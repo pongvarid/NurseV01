@@ -67,7 +67,7 @@ else{
                                         <v-icon color="blue">fas fa-feather-alt </v-icon>
                                     </v-list-tile-avatar>
                                     <v-list-tile-content>
-                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name}}</v-list-tile-title>
+                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name}} [@{{JSON.parse(course.courseData)[0].code}}]</v-list-tile-title>
                                         <v-list-tile-title>@{{JSON.parse(course.courseData)[0].year}}</v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>

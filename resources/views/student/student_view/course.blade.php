@@ -25,19 +25,19 @@ else{
                 <v-card-text>
                     <v-layout row wrap>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" box disabled></v-text-field>             
+                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" outline append-icon="place" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.code"  label="รหัสรายวิชา" box disabled></v-text-field>             
+                            <v-text-field v-model="courses.code"  label="รหัสรายวิชา" outline append-icon="place" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.year"  label="ปีการศึกษา" box disabled></v-text-field>             
+                            <v-text-field v-model="courses.year"  label="ปีการศึกษา" outline append-icon="place" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.teacher"  label="อาจารย์" box disabled></v-text-field>             
+                            <v-text-field v-model="courses.teacher"  label="อาจารย์" outline append-icon="place" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" box disabled></v-text-field>             
+                            <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" outline append-icon="place" readonly></v-text-field>             
                         </v-flex>
                     </v-layout>
                 </v-card-text>

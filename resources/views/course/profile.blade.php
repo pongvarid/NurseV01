@@ -53,7 +53,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-list two-line subheader>
                     <v-divider></v-divider>
                     <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
-                    <v-btn color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn>
+                    <v-container><v-btn block color="warning"dark @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
                     <v-divider></v-divider>
                     <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
                     <v-container>

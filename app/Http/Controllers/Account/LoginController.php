@@ -66,6 +66,7 @@ class LoginController extends Controller
            if($this->checkStudent($request->username) == 0){
                $student = new Student();
                $student->username = $request->username;
+               $student->data = $this->getStudentData($session_id);
                $student->save();
            }
            //เปิด session

@@ -50,7 +50,8 @@ class CourseInController extends Controller
      */
     public function show($id)
     {
-        //
+        $course_in = CourseIn::where('course',$id)->get();
+        return  $course_in;
     }
 
     /**

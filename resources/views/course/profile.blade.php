@@ -120,7 +120,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         </v-toolbar>
         <br><br>
         <div v-for="students in student">
-            <div v-if="students.studentIn.permission == 1">
+            <div v-if="students.permission == 1">
 
                 <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 
@@ -149,7 +149,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
        
       
         <div v-for="students in student">
-            <div v-if="students.studentIn.permission == 2">
+            <div v-if="students.permission == 2">
 
                 <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 

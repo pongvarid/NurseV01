@@ -1,4 +1,3 @@
-
 <?php 
 /*-------------------SET SESSION-----------------------*/
 session_start();
@@ -11,7 +10,8 @@ else{
         echo '<meta http-equiv="refresh" content="0; url=/teacher/profile" />'; die();
     } 
 }
-?> 
+?>
+
 @extends('core.vuetify') 
 @section('vue')
 <v-container grid-list-md>
@@ -32,15 +32,16 @@ else{
 
                     <div v-for="asks,index in ask">
                         <div v-if="index !=0">
-                                <h4>ข้อ : @{{index}}</h4>
-                                <v-textarea  label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
-                                <v-text-field  :label="'(A) '+answer[index].split(',')"  box></v-text-field>
-                                <v-text-field  label="B"  box></v-text-field>
-                                <v-text-field  label="C"  box></v-text-field>
-                                <v-text-field  label="D"  box></v-text-field>
+                            <h4>ข้อ : @{{index}}</h4>
+                            <v-textarea label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
+                            <v-text-field :label="'(A) '+answer[index].split(',')[0]" box></v-text-field>
+                            <v-text-field :label="'(B) '+answer[index].split(',')[1]" box></v-text-field>
+                            <v-text-field :label="'(C) '+answer[index].split(',')[2]" box></v-text-field>
+                            <v-text-field :label="'(D) '+answer[index].split(',')[3]" box></v-text-field>
 
-                                <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
-                        </div> 
+                            <v-select :items="choices" v-model="choiceToGo[index]" label="กรุณาเลือกคำตอบ" solo></v-select>
+
+                        </div>
                     </div>
                     <v-btn @click="save()">ส่งคำตอบ</v-btn>
                 </v-container>
@@ -56,11 +57,13 @@ else{
     new Vue({
   el: "#app",
   data: {
+      choices:['a','b','c','d'],
       exercise:{ 
           ask:[],
       },
       ask:{},
       answer:[],
+      choiceToGo:[],
       answerData:{},
   },
   methods: { 
@@ -69,7 +72,7 @@ else{
         this.answerData.type = '2'; 
         this.answerData.student = '{{$_SESSION["student"]}}'; 
         this.answerData.score = '0'; 
-        this.answerData.answer = this.answer.toString(); 
+        this.answerData.answer = this.choiceToGo.toString(); 
     },
     save(){
         this.preData();

@@ -11,9 +11,14 @@ use App\Soap\UniversityOfPhayao;
 class LoginController extends Controller
 {
     /****ตรวจสอบชื่อผู้ใช้ (นักเรียน) ใน ดาต้าเบส  *****/
-    public function checkStudent($username){
+    public function checkStudent($username,$type){
+    
        $student =  Student::where('username',$username)->first();
-        return $this->checkNull($student);
+       if($type == '1'){
+        return $this->checkNull($student);}
+        else{
+            return $student;
+        }
     }
 
     /****ตรวจสอบชื่อผู้ใช้ (อาจารย์) ใน ดาต้าเบส  *****/
@@ -60,14 +65,14 @@ class LoginController extends Controller
         $check_session_id = isset($session_id);
         //ตรวจสอบว่ามีนิสิติอยู่มั้ยถ้าไม่มี session_id จะเป็น null 
         if( $check_session_id &&   $session_id != null){
-            // ค้นหานิสิตใน database ว่ามีมั้ยถ้าไม่มีบันทึกรหัสลง database
-            
-             
-           if($this->checkStudent($request->username) == 0){
+            // ค้นหานิสิตใน database ว่ามีมั้ยถ้าไม่มีบันทึกรหัสลง database 
+           if($this->checkStudent($request->username,'1') == 0){
                $student = new Student();
                $student->username = $request->username;
                $student->data = $this->getStudentData($session_id);
                $student->save();
+           }else{
+               $this->updateStudentData(  $request->username ,$this->getStudentData($session_id));
            }
            //เปิด session
            session_start();
@@ -80,6 +85,15 @@ class LoginController extends Controller
         }
      
 
+    }
+
+    public function updateStudentData($username,$data){
+        $student_items = $this->checkStudent($username,0);
+       if( isset( $student_items )  ){ 
+        $student = Student::find($student_items->id);
+        $student->data = $data;
+        $student->save();
+       }
     }
 
     /****เรียกใช้ข้อมูลนิสิตเป็น json*****/

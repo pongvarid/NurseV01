@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Exercise;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\ExerciseAskAnswer;
 use App\Models\Exercise;
 
-
-class AskAnswerController extends Controller
+class ExercisedAskAnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,10 +37,7 @@ class AskAnswerController extends Controller
      */
     public function store(Request $request)
     {
-        $exercise = new Exercise();
-        $exercise->fill($request->all());
-       $exercise->save();
-       
+        //
     }
 
     /**
@@ -51,8 +48,11 @@ class AskAnswerController extends Controller
      */
     public function show($id)
     {
-        $exercise = Exercise::where('id',$id)->first(); 
-        return $exercise->toJson();
+        $exercise = Exercise::find($id);
+        $exercised = new ExerciseAskAnswer(); 
+      //  return  $exercised->getAsk();
+
+      return  $exercise;
     }
 
     /**
@@ -63,7 +63,7 @@ class AskAnswerController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -75,10 +75,7 @@ class AskAnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $exercise = Exercise::find($id); 
-        $exercise->fill($request->all());
-        $exercise->save();
-        
+        //
     }
 
     /**

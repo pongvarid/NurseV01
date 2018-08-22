@@ -90,4 +90,10 @@ class DocumentController extends Controller
         $document = Document::find($id);
         return $document->destroy($id);
     }
+
+    public function getDocument($id)
+    {
+        $document = Document::where('course',$id)->get();
+        return $document->toJson();
+    }
 }

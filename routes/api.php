@@ -58,11 +58,8 @@ Route::resource('/admin/logs','Admin\LogsController');
 
 /* Document */
 Route::resource('/document','Document\DocumentController');   
+Route::get('/document_data/{id}','Document\DocumentController@getDocument');
 
 
 /* CourseIN */
-Route::resource('/coursein','Course\CourseInController');   
-
-/*exercise for doing and check */
-
-Route::resource('/exercise/do/askanswer','Exercise\ExercisedAskAnswerController');   
+Route::resource('/coursein','Course\CourseInController');

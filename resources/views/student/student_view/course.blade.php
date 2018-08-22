@@ -19,11 +19,29 @@ else{
             <v-card color="">
                 <v-toolbar color="indigo" dark>
                     <v-icon>fas fa-user-circle </v-icon>
-                    <v-toolbar-title>ข้อมูลรายวิชา</v-toolbar-title>
+                    <v-toolbar-title>ข้อมูลรายวิชา @{{courses.name}} [@{{courses.code}}]</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <pre>@{{courses}}</pre>
+                    {{-- <pre>@{{courses}}</pre> --}}
+                    <v-layout row wrap>
+                        <v-flex xs12 sm6 md3>
+                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" box disabled></v-text-field>             
+                        </v-flex>
+                        <v-flex xs12 sm6 md3>
+                            <v-text-field v-model="courses.code"  label="รหัสรายวิชา" box disabled></v-text-field>             
+                        </v-flex>
+                        <v-flex xs12 sm6 md3>
+                            <v-text-field v-model="courses.year"  label="ปีการศึกษา" box disabled></v-text-field>             
+                        </v-flex>
+                        <v-flex xs12 sm6 md3>
+                            <v-text-field v-model="courses.teacher"  label="อาจารย์" box disabled></v-text-field>             
+                        </v-flex>
+                        <v-flex xs12 sm6 md3>
+                            <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" box disabled></v-text-field>             
+                        </v-flex>
+                       
+                    </v-layout>
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -37,9 +55,9 @@ else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                        <v-btn flat large color="primary" block>เอกสาร1</v-btn>
-                        <v-btn flat large color="primary" block>เอกสาร2</v-btn>
-                        <v-btn flat large color="primary" block>เอกสาร3</v-btn>
+                    <div v-for="document in documents">
+                        <v-btn  large color="primary" block>@{{document.name}}</v-btn>
+                    </div>
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -91,6 +109,7 @@ else{
      course:"{{request()->route('id')}}",
      permission:1,
    },
+   documents:{},
   },
   methods: {
     goto_exercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
@@ -102,8 +121,15 @@ else{
 
         }else{
 
-        }
-        
+        } 
+    },
+    getDocument(){
+        let result = axios.get("/api/document_data/{{request()->route('id')}}")
+        .then((r)=>{
+          this.documents = r.data;
+        }).catch((e)=>{
+          alert('error: '+e);
+        });
     },
       getCourse(){
         let result = axios.get("/api/course_data/{{request()->route('id')}}")
@@ -127,6 +153,7 @@ else{
       load(){
         this.getCourse();
         this.getExercise();
+        this.getDocument();
       },
   },
   mounted(){

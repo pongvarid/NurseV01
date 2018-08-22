@@ -57,3 +57,5 @@ Route::resource('/admin/logs','Admin\LogsController');
 Route::resource('/document','Document\DocumentController');   
 
 
+/* CourseIN */
+Route::resource('/coursein','Course\CourseInController');   

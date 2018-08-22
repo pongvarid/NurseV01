@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Exercise;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\ExerciseAskAnswer;
+use App\Services\ExerciseChoice;
 use App\Models\Exercise;
 use App\Models\Exercised;
 
-class ExercisedAskAnswerController extends Controller
+class ExercisedChoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,10 +52,11 @@ class ExercisedAskAnswerController extends Controller
     public function show($id)
     {
         $exercise = Exercise::find($id);
-        $exercised = new ExerciseAskAnswer(); 
-      //  return  $exercised->getAsk();
-
-      return  $exercise;
+        $exercised = new ExerciseChoice(); 
+        $exercised->getData($exercise);
+        $exercise->answer = $exercised->getChoice();
+       return $exercise;
+ 
     }
 
     /**

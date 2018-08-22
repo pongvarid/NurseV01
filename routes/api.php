@@ -64,3 +64,5 @@ Route::get('/document_data/{id}','Document\DocumentController@getDocument');
 Route::resource('/coursein','Course\CourseInController');
 
 Route::resource('/exercise/do/askanswer','Exercise\ExercisedAskAnswerController');  
+
+Route::resource('/exercise/do/choice','Exercise\ExercisedChoiceController');  

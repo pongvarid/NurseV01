@@ -24,7 +24,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <h5> @{{courses.code}}</h5>
                     <v-divider></v-divider>
                     <v-card-text>
-                        <v-btn color="warning" @click="edit_course()">แก้ไข</v-btn>
+                        <v-btn color="warning" @click="edit_course()"> แก้ไข &nbsp <v-icon>fas fa-pen</v-icon></v-btn>
                         <v-btn color="red" @click="close_course()" dark>ปิด
                             <v-icon dark right>block</v-icon>
                         </v-btn>
@@ -52,14 +52,16 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar>
                 <v-list two-line subheader>
                     <v-divider></v-divider>
-                    <h3>&nbsp;เอกสาร</h3>
-                    <v-btn color="yellow" @click="document()">จัดการเอกสาร</v-btn>
+                    <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
+                    <v-btn color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn>
                     <v-divider></v-divider>
-                    <h3>&nbsp;แบบฝึกหัด</h3>
+                    <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
                     <v-subheader>
-                        <v-btn color="primary" @click="submit_ask()">ตอบถูกผิด</v-btn>
-                        <v-btn color="primary" @click="submit_choice()">เลือกตอบ</v-btn>
-                        <v-btn color="primary" @click="submit_askfile()">แนบไฟล์</v-btn>
+                    <d-layout row>
+                        <v-btn color="primary" @click="submit_ask()"><v-icon>fas fa-chevron-circle-right</v-icon>&nbsp ตอบถูกผิด</v-btn>
+                        <v-btn color="primary" @click="submit_choice()"><v-icon>fas fa-chevron-circle-right</v-icon>&nbspเลือกตอบ</v-btn>
+                        <v-btn color="primary" @click="submit_askfile()"><v-icon>fas fa-chevron-circle-right</v-icon>&nbspแนบไฟล์</v-btn>
+                    </d-layout>
                     </v-subheader>
                     <v-divider></v-divider>
                     <div v-for="exercise in exercises">
@@ -95,9 +97,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-divider></v-divider>
                 <center>
 
-                    <v-btn>คะแนน</v-btn>
-                    <v-btn @click="studentDialog = true">ข้อมูลนิสิต</v-btn>
-                    <v-btn @click="TADialog = true">ข้อมูล TA</v-btn>
+                    <v-btn><v-icon>far fa-circle</v-icon>&nbspคะแนน</v-btn>
+                    <v-btn @click="studentDialog = true"><v-icon>far fa-circle</v-icon>&nbspข้อมูลนิสิต</v-btn>
+                    <v-btn @click="TADialog = true"><v-icon>far fa-circle</v-icon>&nbspข้อมูล TA</v-btn>
                 </center>
                 <v-divider></v-divider>
 

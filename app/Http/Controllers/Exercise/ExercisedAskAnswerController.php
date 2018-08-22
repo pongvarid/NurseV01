@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ExerciseAskAnswer;
 use App\Models\Exercise;
-
+use App\Models\Exercised;
 class ExercisedAskAnswerController extends Controller
 {
     /**
@@ -37,7 +37,9 @@ class ExercisedAskAnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exercised = new Exercised();
+        $exercised->fill($request->all()); 
+        $exercised->save();
     }
 
     /**

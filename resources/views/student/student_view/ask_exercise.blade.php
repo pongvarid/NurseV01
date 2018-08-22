@@ -30,10 +30,13 @@ else{
                     </v-alert>
 
                     <div v-for="asks,index in ask">
-                        <h2>ข้อ : @{{index}}</h2>
-                        <v-textarea disabled :label="ข้อ+index" :value="asks" :hint="ข้อ+index"></v-textarea>
-                        <v-text-field label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
+                        <div v-if="index !=0">
+                                <h4>ข้อ : @{{index}}</h4>
+                                <v-textarea  label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
+                                <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
+                        </div> 
                     </div>
+                    <v-btn @click="save()">ส่งคำตอบ</v-btn>
                 </v-container>
             </v-card>
 
@@ -51,10 +54,25 @@ else{
           ask:[],
       },
       ask:{},
+      answer:[],
+      answerData:{},
   },
   methods: { 
-    getAsk(){
-        
+    preData(){
+        this.answerData.course = "{{request()->route('id')}}";
+        this.answerData.type = '1'; 
+        this.answerData.student = '{{$_SESSION["student"]}}'; 
+        this.answerData.score = '0'; 
+        this.answerData.answer = this.answer.toString(); 
+    },
+    save(){
+        this.preData();
+        axios.post("/api/exercise/do/askanswer",this.answerData)
+      .then((r) => {
+ alert('ส่งานสำเร็จ');
+      }).catch((e) => { 
+          alert('error');
+      });
     },
      load(){
         axios.get("/api/exercise/do/askanswer/{{request()->route('id')}}")
@@ -67,8 +85,7 @@ else{
      }
   },
   mounted(){
-    this.load();
-    this.getAsk();
+    this.load(); 
   }
 });
 

@@ -25,8 +25,10 @@
                     <v-text-field prepend-icon="fas fa-user" v-model="login.username" label="ชื่อผู้ใช้ (Username)" required></v-text-field>
                     <v-text-field prepend-icon="fas fa-lock" v-model="login.password" type="password" label="รหัสผ่าน (Password)" required></v-text-field>
                             <v-checkbox label="อาจารย์" v-model="teacher_user"></v-checkbox>
-                            <v-btn @click="loginGo()">
+                            <center>
+                            <v-btn style="background-color:#683ECF;" dark @click="loginGo()">
                                 <v-icon>fas fa-sign-in-alt</v-icon>&nbsp;เข้าสู่ระบบ (Login)</v-btn>
+                            </center>
                         </form>
                         <div class="card-border violet pd-10 mrt-10" style="width:100%;">
                             <v-layout row>
@@ -64,9 +66,9 @@
                                 <v-flex xs2>
                                     <v-icon class="mrt-10 mrl-8" style="font-size:40px;">fas fa-sign-in-alt </v-icon>
                                 </v-flex>
-                                <v-flex xs10>
+                                <v-flex  xs10 > 
                                     <p class="mrt-10">
-                                        <a @click="register = false">กลับไปยังหน้าเข้าสู่ระบบ</a>
+                                        <a  @click="register = false">กลับไปยังหน้าเข้าสู่ระบบ</a>
                                     </p>
                                 </v-flex>
                             </v-layout>

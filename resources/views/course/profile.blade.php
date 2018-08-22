@@ -14,8 +14,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                    <v-toolbar-side-icon></v-toolbar-side-icon>
-                    <v-toolbar-title>ข้อมูล</v-toolbar-title>
+                    <v-icon>far fa-file-alt</v-icon>
+                    <v-toolbar-title> ข้อมูล</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar><br>
                 <center>
@@ -44,16 +44,14 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                    <v-toolbar-side-icon>
                         <v-icon>fas fa-user-circle</v-icon>
-                    </v-toolbar-side-icon>
                     <v-toolbar-title>เมนู</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-list two-line subheader>
                     <v-divider></v-divider>
                     <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
-                    <v-container><v-btn block color="warning"dark @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
+                    <v-container><v-btn block color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
                     <v-divider></v-divider>
                     <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
                     <v-container>
@@ -89,16 +87,16 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                    <v-toolbar-side-icon></v-toolbar-side-icon>
+                    <v-icon>fas fa-book-reader</v-icon>
                     <v-toolbar-title>นิสิต</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-divider></v-divider>
                 <center>
                 <v-container>
-                    <v-btn block color="light-green" dark > <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
-                    <v-btn block color="light-green" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
-                    <v-btn block color="light-green" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark > <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
                 </v-container>
                 </center>
                 <v-divider></v-divider>

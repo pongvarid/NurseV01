@@ -87,6 +87,7 @@ else{
    register:{
      student:"{{$_SESSION['student']}}",
      course:"{{request()->route('id')}}",
+     permission:1,
    },
   },
   methods: {

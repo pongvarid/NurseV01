@@ -29,30 +29,30 @@
       <?php
                 if($_SESSION['user_type'] == 'student'){
                   ?>
-        <a href="/student/profile" class="w3-bar-item w3-button w3-hide-small">โปรไฟล์</a>
+        <a href="/student/profile" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
         <?php
                 }
                 if($_SESSION['user_type'] == 'teacher'){
                   ?>
-          <a href="/teacher/profile" class="w3-bar-item w3-button w3-hide-small">โปรไฟล์</a>
+          <a href="/teacher/profile" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
           <?php
                 }
                 if(isset($_SESSION["admin"]) ){
                   if($_SESSION["admin"] == '2'){
                   ?> 
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/teacher"  >อาจารย์</a>
-                <a class="w3-bar-item w3-button w3-hide-small"  href="/admin/student"  >นิสิต</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  >รายวิชา</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  >การลงทะเบียน</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/document"  >เอกสาร</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercise"  >แบบฝึกหัด</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercised"  >การทำแบบฝึกหัด</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/logs"  >Logs</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/teacher"  > <i class="fas fa-user-tie"></i>&nbsp อาจารย์</a>
+                <a class="w3-bar-item w3-button w3-hide-small"  href="/admin/student"  > <i class="fas fa-book-reader"></i>&nbsp นิสิต</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  > <i class="fas fa-book-open"></i>&nbsp รายวิชา</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  > <i class="fas fa-laptop-code"></i>&nbsp การลงทะเบียน</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/document"  > <i class="far fa-clipboard"></i>&nbsp เอกสาร</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercise"  > <i class="fas fa-clipboard-list"></i>&nbsp แบบฝึกหัด</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercised"  > <i class="fas fa-clipboard-check"></i>&nbsp การทำแบบฝึกหัด</a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/logs"  > Logs</a>
               
             <?php
                 }}
                 ?>
-              <a href="/logout" class="w3-bar-item w3-button w3-hide-small">ออกจากระบบ</a>
+              <a href="/logout" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-power-off"></i>&nbsp ออกจากระบบ</a>
               <?php } ?>
               <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
     </div>

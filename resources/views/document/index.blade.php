@@ -23,29 +23,38 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                             </v-btn>
                         </v-toolbar>
                         <v-card-text>
-
                             <v-container fluid grid-list-lg>
                                 <v-layout row wrap>
                                     <template v-for="data in tmp">
-                                            <v-flex xs3 >
-                                              <v-card color="teal darken-2" class="white--text">
+                                            <v-flex d-flex xs12 sm4>
+                                              <v-card color="w3-container w3-light-grey darken-2" class="white--text">
                                                 <v-card-title primary-title>
                                                   <div>
                                                       <div class="headline">ชื่อเอกสาร: @{{data.name}}</div>
                                                       <div>รายละเอียด: @{{data.remark}}</div>
-                                                      <div>
-                                                        <v-btn color="cyan" @click="openLink(data)"><v-icon dark>call_to_action</v-icon> เปิด</v-btn>
-                                                      </div>
+                                                      <br>
                                                     </div>
-                                                </v-card-title>
-                                                <v-card-actions>
-                                                    <v-btn fab dark color="red" @click="deleteData(data.id)">
-                                                        <v-icon dark>delete</v-icon>
+                                                    <div class="text-xs-center d-flex align-center">
+                                                    <v-btn 
+                                                        color="success"
+                                                        class="white--text" 
+                                                        @click="openLink(data)"
+                                                        >เปิด<v-icon right dark>call_to_action</v-icon>
+                                                    </v-btn> 
+                                                    <v-btn
+                                                        color="warning"
+                                                        class="white--text"
+                                                        @click="updateOpen(data)"
+                                                        >แก้ไข<v-icon right dark>edit</v-icon>
                                                     </v-btn>
-                                                    <v-btn fab dark color="indigo" @click="updateOpen(data)">
-                                                        <v-icon dark>edit</v-icon>
+                                                    <v-btn
+                                                        color="error"
+                                                        class="white--text"
+                                                        @click="deleteData(data.id)"
+                                                        >ลบ<v-icon right dark>delete</v-icon>
                                                     </v-btn>
-                                                </v-card-actions>
+                                            </div>
+                                            </v-card-title>
                                               </v-card>
                                             </v-flex>
                                           </template>

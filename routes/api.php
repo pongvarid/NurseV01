@@ -23,7 +23,6 @@ Route::post('/check/student/login','Account\LoginController@studentLogin');
 
 Route::get('/student/data/{session_id}','Account\LoginController@getStudentData');
 
-
 Route::put('/course_in/addTA/{id}','Course\CourseInController@updatePermissionTA'); // add TA
 
 Route::resource('/teacher','Teacher\TeacherController');

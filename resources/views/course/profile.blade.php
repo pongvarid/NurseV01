@@ -183,10 +183,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   },
   methods: { 
     addTA(){
-        console.log();
           axios.put("/api/course_in/addTA/"+this.dataDB.student,this.dataDB)
           .then(function(response) {
-        alert('เพิ่ม TA ข้อมูลสำเร็จ'); 
+        alert('เพิ่ม TA ข้อมูลสำเร็จ');
+        //console.log(this.dataDB);
         })
         .catch(function(error) {
         alert('error');

@@ -31,11 +31,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </center>
                 <v-divider></v-divider>
                 <v-list two-line subheader class="mrl-20">
-                    <h5>ไอดีอาจารย์ : @{{courses.id}}</h5>
-                    <h5>ปีการศึกษา : @{{courses.year}}</h5>
-                    <h5>สถานะ : @{{courses.state}}</h5>
-                    <h5>สร้างเมื่อ : @{{courses.created_at}}</h5>
-                    <h5>เเก้ไข : @{{courses.updated_at}}</h5>
+                    <h5> <v-icon>far fa-address-card</v-icon> &nbsp ไอดีอาจารย์ : @{{courses.id}}</h5>
+                    <h5> <v-icon>far fa-calendar-alt</v-icon> &nbsp ปีการศึกษา : @{{courses.year}}</h5>
+                    <h5> <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : @{{courses.state}}</h5>
+                    <h5> <v-icon>fas fa-user-edit</v-icon> &nbsp สร้างเมื่อ : @{{courses.created_at}}</h5>
+                    <h5> <v-icon>fas fa-user-cog</v-icon> &nbsp เเก้ไข : @{{courses.updated_at}}</h5>
 
                 </v-list>
                 </v-card-text>

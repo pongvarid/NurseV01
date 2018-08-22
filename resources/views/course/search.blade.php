@@ -11,32 +11,59 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 @section('vue')
 
 <div id="app">
-<v-container>
-
-  <v-text-field v-model="search"  label="ค้นหา" single-line hide-details></v-text-field> 
-  <v-btn @click="searchCourse()">ค้นหา</v-btn>
-
-  <!--// //course}}*/ -->
-  <v-card>
-    <v-container fluid grid-list-lg>
+  <v-container>
+    <v-flex d-flex xs12 sm12>
       <v-layout row wrap>
-        <template v-for="data in course">
-        <v-flex xs3 >
-          <v-card color="blue-grey darken-2" class="white--text">
-            <v-card-title primary-title>
-              <div class="headline">@{{data.name}}</div>
-              <div><br>@{{data.code}}</div>
-            </v-card-title>
-            <v-card-actions>
-              <v-btn flat dark @click="viewCouse(data.id)">รายละเอียด</v-btn>
-            </v-card-actions>
+        <v-flex d-flex>
+          <v-card>
+            <v-toolbar color="box-purple" dark>
+              <v-icon>fas fa-align-justify </v-icon>
+              <v-toolbar-title>รายวิชา</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-text-field v-model="search" label="ค้นหา" single-line hide-details></v-text-field>
+              <v-btn @click="searchCouse()">ค้นหา</v-btn>
+            </v-toolbar>
+            <v-container fluid grid-list-lg>
+              <v-layout row wrap>
+                <template v-if="!course">
+                  <v-flex class="text-xs-center">
+                    <h3>
+                    ค้นหารายวิชา
+                    </h3>
+                  </v-flex>
+                </template>
+                <template v-if="course && course == '' ">
+                    <v-flex class="text-xs-center">
+                      <h3>
+                      ไม่มีรายวิชา
+                      </h3>
+                    </v-flex>
+                  </template>
+                <template v-for="data in course" v-if="data.state != 0">
+                    <v-flex xs12 sm4>
+                      <v-card color="w3-container w3-light-grey" >
+                        <v-card-title primary-title>
+                            <div>
+                              <div><img style="width:30%;" 
+                                src="https://cdn0.iconfinder.com/data/icons/interior-and-decor-vol-1-1/512/15-128.png"
+                                alt=""></div>
+                              <div class="headline">รหัสวิชา: @{{data.code}}</div>
+                              <div>ชื่อวิชา: @{{data.name}}</div>
+                            </div>
+                        </v-card-title>
+                        <v-card-actions>
+                          <v-btn flat dark @click="viewCouse(data.id)">รายละเอียด</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-flex>
+                  </template>
+              </v-layout>
+            </v-container>
           </v-card>
         </v-flex>
-      </template>
       </v-layout>
-    </v-container>
-  </v-card>
-</v-cotainer>
+    </v-flex>
+    </v-cotainer>
 </div>
 @endsection
  
@@ -48,22 +75,33 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     course:'',
     search: '',
     dataDB:{},
+    tmp:[],
   },
 methods: {
-  searchCourse(){
+  searchCouse(){
     axios.get("/api/search_course/"+this.search)
     .then((r) => {
-          this.course = r.data;  
+          this.course = r.data;
+        
       }).catch((e) => { 
-          alert('error');
+          alert('กรุณากรอกข้อมูลใหม่อีกครั้ง');
       });
   },
-      viewCouse(id){
-        window.location = "/course/register/"+id;
-      }
+  viewCouse(id){
+    window.location = "/course/register/"+id;
+  },
+  load(){
+    let result =  axios.get('/api/admin/course/1') 
+    .then((r) => {
+      this.tmp = r.data;  
+    
+    }).catch((e) => { 
+      alert('error');
+    });
+  }
   },
   mounted(){
-      //this.load();
+      this.load();
   }
 });
 

@@ -19,13 +19,13 @@ else{
             <v-card color="">
                 <v-toolbar color="indigo" dark>
                     <v-icon>fas fa-user-circle </v-icon>
-                    <v-toolbar-title>ข้อมูลรายวิชา @{{courses.name}} [@{{courses.code}}]</v-toolbar-title>
+                    <v-toolbar-title>ข้อมูลรายวิชา @{{courses.name.split(',')[1]}} (@{{courses.name.split(',')[2]}}) [@{{courses.code}}]</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
                     <v-layout row wrap>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" outline append-icon="fas fa-book" readonly></v-text-field>             
+                            <v-text-field v-model="courses.name.split(',')[1]" label="ชื่อรายวิชา" outline append-icon="place" readonly></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md3>
                             <v-text-field v-model="courses.code"  label="รหัสรายวิชา" outline append-icon="fas fa-dice" readonly></v-text-field>             
@@ -53,13 +53,11 @@ else{
                     <v-toolbar-title>ข้อมูลเอกสาร</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text>
                 <v-container>
                         <div v-for="document in documents">
                             <v-btn  color="primary" block @click="goto_filePage(document.link)">@{{document.name}}</v-btn>
                         </div>
                     </v-container> 
-                </v-card-text>
             </v-card>
         </v-flex>
         <v-flex d-flex xs12 sm4>
@@ -91,13 +89,11 @@ else{
                     <v-toolbar-title>นิสิตที่ลงเรียน</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text>
                     <v-container>
                         <v-btn block style="background-color:#683ECF;" dark > <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
                         <v-btn block style="background-color:#683ECF;" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
                         <v-btn block style="background-color:#683ECF;" dark  @click="studentDialogTA = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
                     </v-container>
-                </v-card-text>
             </v-card>
         </v-flex>
     </v-layout>
@@ -115,10 +111,12 @@ else{
             <br><br>
             <div v-for="students in student">
                 <div v-if="students.permission == 1">
-                    <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
-                    <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
-                    </p>
-                    <v-divider></v-divider>
+                    <v-container>
+                        <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                        <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                        </p>
+                        <v-divider></v-divider>
+                    </v-container>
                 </div>
             </div>
         </v-card>
@@ -135,10 +133,12 @@ else{
                 <br><br>
                 <div v-for="students in student">
                     <div v-if="students.permission == 2">
-                        <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
-                        <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
-                        </p>
-                        <v-divider></v-divider>
+                        <v-container>
+                            <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                            <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                            </p>
+                            <v-divider></v-divider>
+                        </v-container>
                     </div>
                 </div>
             </v-card>
@@ -217,7 +217,8 @@ else{
         this.getCourse();
         this.getExercise();
         this.getDocument();
-        this.getStudent();     },
+        this.getStudent();     
+    },
   },
   mounted(){
       this.load();

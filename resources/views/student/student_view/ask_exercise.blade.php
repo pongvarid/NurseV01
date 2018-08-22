@@ -11,28 +11,54 @@ else{
     } 
 }
 ?> 
-     
 @extends('core.vuetify') 
- 
-    
 @section('vue')
- @{{exercise.ask}}
- 
+<v-container grid-list-md>
+    <v-layout row wrap>
+
+        <v-flex d-flex xs12 sm12>
+            <v-card color="">
+                <v-toolbar color="indigo" dark>
+                    <v-icon>fas fa-user-circle </v-icon>
+                    <v-toolbar-title> @{{exercise.name}}</v-toolbar-title>
+                    <v-spacer></v-spacer>
+
+                </v-toolbar>
+                <v-container>
+                        <v-alert value="info" type="info">
+                                @{{exercise.remark}}
+                            </v-alert>
+                </v-container>
+       
+               @{{ask}}
+            </v-card>
+
+        </v-flex>
+    </v-layout>
+</v-container>
 @endsection
  
 @section('vue_script')
 <script>
-  new Vue({
+    new Vue({
   el: "#app",
   data: {
-      exercise:null,
+      exercise:{ 
+          ask:[],
+      },
+      ask:{},
   },
   methods: { 
+    getAsk(){
        
+     
+        
+    },
      load(){
         axios.get("/api/exercise/do/askanswer/{{request()->route('id')}}")
       .then((r) => {
           this.exercise = r.data;
+          this.ask =  r.data.ask;
       }).catch((e) => { 
           alert('error');
       });
@@ -40,10 +66,9 @@ else{
   },
   mounted(){
     this.load();
+    this.getAsk();
   }
 });
 
-
 </script>
 @endsection
- 

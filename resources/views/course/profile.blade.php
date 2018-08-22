@@ -136,18 +136,19 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
     <v-card>
         <v-toolbar dark color="primary">
-            <v-btn icon dark @click="TADialog = false">
+            <v-btn icon dark @click="dialogClose()">
                 <v-icon>close</v-icon>
             </v-btn>
             <v-toolbar-title>ข้อมูล TA</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-text-field class="mrt-10" label="ใส่รหัสนิสิต TA ที่ต้องการเพิ่ม"  ></v-text-field></v-flex>
-            <v-btn>เพิ่ม TA</v-btn> 
-           
+            <v-text-field v-model="dataDB.student" class="mrt-10" label="ใส่รหัสนิสิต TA ที่ต้องการเพิ่ม"></v-text-field>
+            </v-flex>
+            <v-btn @click="addTA()">เพิ่ม TA</v-btn>
+
         </v-toolbar>
         <br><br>
-       
-      
+
+
         <div v-for="students in student">
             <div v-if="students.permission == 2">
 
@@ -168,9 +169,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({
   el: "#app",
   data: {
+    dataDB: {},
     TADialog:false,
-      studentDialog:false,
-      student:{},
+    studentDialog:false,
+    student:{},
     exercises:{},
     courses:{},
     close:{
@@ -178,7 +180,22 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
   },
   methods: { 
-
+    addTA(){
+        console.log();
+          axios.put("/api/course_in/addTA/"+this.dataDB.student,this.dataDB)
+          .then(function(response) {
+        alert('เพิ่ม TA ข้อมูลสำเร็จ'); 
+        })
+        .catch(function(error) {
+        alert('error');
+        });
+        this.load();
+    },
+    dialogClose(){
+        this.dataDB = {};
+        this.TADialog = false;
+        this.load();
+    },
     deleteExercise(id){ 
         let deletes = confirm("คุณแน่ใจใช่ไหมที่จะลบข้อมูล");
         if(deletes){
@@ -209,7 +226,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         }else{
 
         }
-      
     },
     getExerciseType(type){
         if(type == '1'){

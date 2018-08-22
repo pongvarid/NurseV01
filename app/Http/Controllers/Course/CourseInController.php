@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Course;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseIn;
-use App\Models\Teacher;
-use App\Models\Student;
 use App\Services\StudentService;
+use Illuminate\Http\Request;
 
 class CourseInController extends Controller
 {
@@ -51,12 +49,12 @@ class CourseInController extends Controller
      */
     public function show($id)
     {
-        $course_in = CourseIn::where('course',$id)->get();
+        $course_in = CourseIn::where('course', $id)->get();
         $student = new StudentService();
-        
-         $student->studentGetData($course_in);
+
+        $student->studentGetData($course_in);
         $student->feathData();
-       
+
         return $student->feathData();
     }
 
@@ -92,5 +90,10 @@ class CourseInController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updatePermissionTA(Request $request, $id)
+    {
+        $course_in = CourseIn::where('student', $id)->update(['permission' => "2"]);
+        
     }
 }

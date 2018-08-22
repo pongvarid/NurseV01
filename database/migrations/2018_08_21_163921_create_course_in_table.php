@@ -17,7 +17,7 @@ class CreateCourseInTable extends Migration
             $table->increments('id');
             $table->string('student');   
             $table->string('course');     
-            $table->string('permission'); 
+            $table->string('permission')->default(1); 
             $table->timestamps();
         });
     }

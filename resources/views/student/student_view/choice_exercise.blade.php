@@ -34,7 +34,11 @@ else{
                         <div v-if="index !=0">
                                 <h4>ข้อ : @{{index}}</h4>
                                 <v-textarea  label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
-                                
+                                <v-text-field  :label="'(A) '+answer[index].split(',')"  box></v-text-field>
+                                <v-text-field  label="B"  box></v-text-field>
+                                <v-text-field  label="C"  box></v-text-field>
+                                <v-text-field  label="D"  box></v-text-field>
+
                                 <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
                         </div> 
                     </div>

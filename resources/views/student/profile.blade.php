@@ -4,7 +4,8 @@ session_start();
 $user = isset($_SESSION['user']); 
 if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />'; die();}
 else{
-    $id = $_SESSION['user']; 
+    $id = $_SESSION['user'];
+    $code = $_SESSION['student']; 
     if($_SESSION["user_type"] != 'student'){
         echo '<meta http-equiv="refresh" content="0; url=/teacher/profile" />'; die();
     } 
@@ -56,18 +57,20 @@ else{
                             </v-btn>
                         </v-toolbar>
                         <v-card-text>
-                            <div v-for="courses in course">
+                            {{-- <pre>@{{courses}}</pre> --}}
+                            <div v-for="course in courses">
                                 <v-list-tile avatar @click="goto_coursePage(courses.id)">
                                     <v-list-tile-avatar>
                                         <v-icon color="blue">fas fa-feather-alt </v-icon>
                                     </v-list-tile-avatar>
                                     <v-list-tile-content>
-                                        <v-list-tile-title>@{{courses.name}}</v-list-tile-title>
-                                        <v-list-tile-sub-title>@{{courses.code}}</v-list-tile-sub-title>
+                                        <v-list-tile-title>@{{course.courseData}}</v-list-tile-title>
+                                       
                                     </v-list-tile-content>
                                 </v-list-tile>
                                 <v-divider></v-divider>
                             </div>
+                        </v-card-text>
                     </v-card>
                 </v-flex>
 
@@ -81,12 +84,21 @@ else{
     new Vue({
   el: "#app",
   data: {  
-   student:{}
+   student:{},
+   courses:{},
   },
   methods: { 
       hello(){
         this.alert_text = "test";
         this.alert_bar=true;
+      },
+      getCourseIn(){
+        let result =  axios.get('/api/course_in/<?php echo $code; ?>')
+      .then((r) => {
+          this.courses = r.data;
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
       },
       searchCourse(){
         window.location = "/course/search";
@@ -98,7 +110,8 @@ else{
       }).catch((e) => { 
           alert('error');
       });
-      }
+      this.getCourseIn();
+      },
   },
   mounted(){
       this.load();

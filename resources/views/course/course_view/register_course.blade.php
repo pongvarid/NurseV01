@@ -13,7 +13,7 @@ else{
 @extends('core.vuetify') 
 @section('vue')
 <v-container grid-list-md>
-    <v-btn color="success" @click="submit_register()" large block>ลงทะเบียนเรียน</v-btn><br>
+    <v-btn v-if="dataCheck==1" color="success" @click="submit_register()" large block>ลงทะเบียนเรียน</v-btn><br>
     <v-layout row wrap>
         <v-flex d-flex>
             <v-card color="">
@@ -84,12 +84,22 @@ else{
   data: {  
    courses:{},
    exercises:{},
+   dataCheck:1,
    register:{
      student:"{{$_SESSION['student']}}",
      course:"{{request()->route('id')}}",
    },
   },
   methods: {
+      check(){
+        axios.get("/api/check?student={{$_SESSION['student']}}&course={{request()->route('id')}}")
+        .then((r)=>{
+            this.dataCheck = r.data;
+          
+        }).catch((e)=>{
+
+        });
+      },
       submit_register(){
         axios.post("/api/course_in",this.register)
       .then(function(response) { 
@@ -126,6 +136,7 @@ else{
       load(){
         this.getCourse();
         this.getExercise();
+        this.check();
       },
   },
   mounted(){

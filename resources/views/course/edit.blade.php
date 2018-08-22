@@ -57,7 +57,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             let result =  axios.get("/api/course_data/{{request()->route('id')}}")
             .then((r) => {
                 this.courses = r.data;
-                this.name.th = this.courses.name.substr(2);
+                this.name.th = this.courses.name.substr('2');
             }).catch((e) => { 
                 alert('error: '+e);
             });

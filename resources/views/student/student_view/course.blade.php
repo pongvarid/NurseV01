@@ -25,19 +25,19 @@ else{
                 <v-card-text>
                     <v-layout row wrap>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" outline append-icon="place" readonly></v-text-field>             
+                            <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" outline append-icon="fas fa-book" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.code"  label="รหัสรายวิชา" outline append-icon="place" readonly></v-text-field>             
+                            <v-text-field v-model="courses.code"  label="รหัสรายวิชา" outline append-icon="fas fa-dice" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.year"  label="ปีการศึกษา" outline append-icon="place" readonly></v-text-field>             
+                            <v-text-field v-model="courses.year"  label="ปีการศึกษา" outline append-icon="far fa-calendar-alt" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.teacher"  label="อาจารย์" outline append-icon="place" readonly></v-text-field>             
+                            <v-text-field v-model="courses.teacher"  label="อาจารย์" outline append-icon="fas fa-user-tie" readonly></v-text-field>             
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" outline append-icon="place" readonly></v-text-field>             
+                            <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" outline append-icon="far fa-clock" readonly></v-text-field>             
                         </v-flex>
                     </v-layout>
                 </v-card-text>
@@ -49,6 +49,7 @@ else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="indigo" dark>
+                <v-icon>fas fa-server</v-icon>
                     <v-toolbar-title>ข้อมูลเอกสาร</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
@@ -62,6 +63,7 @@ else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="indigo" dark>
+                <v-icon>far fa-clipboard</v-icon>
                     <v-toolbar-title>ข้อมูลแบบฝึกหัด</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
@@ -83,6 +85,7 @@ else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="indigo" dark>
+                <v-icon>fas fa-book-reader</v-icon>
                     <v-toolbar-title>นิสิตที่ลงเรียน</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>

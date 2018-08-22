@@ -53,9 +53,11 @@ else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    <div v-for="document in documents">
-                        <v-btn large color="primary" block>@{{document.name}}</v-btn>
-                    </div>
+                    <v-container>
+                        <div v-for="document in documents">
+                            <v-btn  color="primary" block @click="goto_filePage(document.link)">@{{document.name}}</v-btn>
+                        </div>
+                    </v-container> 
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -86,12 +88,56 @@ else{
                     <v-toolbar-title>นิสิตที่ลงเรียน</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text>
+                <v-container>
+                    <v-btn block style="background-color:#683ECF;" dark > <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark  @click="studentDialogTA = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
+                </v-container>
 
             </v-card>
         </v-flex>
     </v-layout>
 </v-container>
+<v-dialog v-model="studentDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-card>
+            <v-toolbar dark color="primary">
+                <v-btn icon dark @click.native="studentDialog = false">
+                    <v-icon>close</v-icon>
+                </v-btn>
+                <v-toolbar-title>ข้อมูลนิสิต</v-toolbar-title>
+                <v-spacer></v-spacer>
+            </v-toolbar>
+            <br><br>
+            <div v-for="students in student">
+                <div v-if="students.permission == 1">
+                    <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                    <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                    </p>
+                    <v-divider></v-divider>
+                </div>
+            </div>
+        </v-card>
+    </v-dialog>
+    <v-dialog v-model="studentDialogTA" fullscreen hide-overlay transition="dialog-bottom-transition">
+            <v-card>
+                <v-toolbar dark color="primary">
+                    <v-btn icon dark @click.native="studentDialogTA = false">
+                        <v-icon>close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title>ข้อมูล TA</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                </v-toolbar>
+                <br><br>
+                <div v-for="students in student">
+                    <div v-if="students.permission == 2">
+                        <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                        <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                        </p>
+                        <v-divider></v-divider>
+                    </div>
+                </div>
+            </v-card>
+        </v-dialog>
 @endsection
  
 @section('vue_script')
@@ -99,18 +145,32 @@ else{
     new Vue({
   el: "#app",
   data: {  
-   courses:{},
-   teacher:{},
-   exercises:{},
-   dataCheck:1,
-   documents:{},
-   register:{
-     student:"{{$_SESSION['student']}}",
-     course:"{{request()->route('id')}}",
-     permission:1,
+    teacher:{},
+    student:{},
+    studentDialog:false,
+    studentDialogTA:false,
+    courses:{},
+    exercises:{},
+    dataCheck:1,
+    documents:{},
+    register:{
+        student:"{{$_SESSION['student']}}",
+        course:"{{request()->route('id')}}",
+        permission:1,
    },
   },
   methods: {
+    getStudent(){
+        let result =  axios.get("/api/coursein/{{request()->route('id')}}")
+      .then((r) => {
+          this.student = r.data;
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
+    },
+    goto_filePage(link){
+        window.open(link, '_blank');
+    },
       check(){
         axios.get("/api/check?student={{$_SESSION['student']}}&course={{request()->route('id')}}")
         .then((r)=>{
@@ -147,9 +207,6 @@ else{
           alert('error: '+e);
         });
       },
-      load(){
-        this.getCourse();
-      },
       getExercise(){
         let result = axios.get("/api/exercise_data/{{request()->route('id')}}")
         .then((r)=>{
@@ -172,11 +229,12 @@ else{
         this.getExercise();
         this.check();
         this.getDocument();
+        this.getStudent();
       },
   },
   mounted(){
       this.load();
-  }
+  },
 });
 
 </script>

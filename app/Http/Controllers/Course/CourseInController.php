@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseIn;
 use App\Models\Teacher;
 use App\Models\Student;
+use App\Services\StudentService;
 
 class CourseInController extends Controller
 {
@@ -51,7 +52,12 @@ class CourseInController extends Controller
     public function show($id)
     {
         $course_in = CourseIn::where('course',$id)->get();
-        return  $course_in;
+        $student = new StudentService();
+        
+         $student->studentGetData($course_in);
+        $student->feathData();
+       
+        return $student->feathData();
     }
 
     /**

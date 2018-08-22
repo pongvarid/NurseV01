@@ -27,7 +27,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                   </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" :disabled="!valid" @click="submit()">ยนยัน</v-btn>
+                  <v-btn color="primary" :disabled="!valid" @click="submit()">ยืนยัน</v-btn>
                 </v-card-actions>
           </v-card>
             </v-flex>
@@ -56,7 +56,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     methods: {
       submit () {
-        this.course.name =this.name.th+","+this.name.en;
+        this.course.name =","+this.name.th+","+this.name.en;
         axios.post("/api/course",this.course)
       .then(function(response) { 
         if(response.data == '1'){

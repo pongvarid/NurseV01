@@ -5,7 +5,7 @@ $user = isset($_SESSION['user']);
 if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     $id = $_SESSION['user'];
 }
- 
+
 ?> 
 @extends('core.vuetify') 
 @section('vue')
@@ -21,13 +21,14 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar>
                 <v-card-text>
                     <v-text-field prepend-icon="fas fa-dice"  v-model="courses.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
-                    <v-text-field prepend-icon="fas fa-pen-square" v-model="courses.name" label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fas fa-pen-square" v-model="name.th" label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fab fa-adn" v-model="name.eg"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
                     <v-text-field prepend-icon="far fa-calendar-alt" v-model="courses.year" label="ปีการศึกษา" type="text"></v-text-field>
+                  @{{courses.name}}
                   </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="primary" @click="update()">ยืนยัน</v-btn>
-            
                 </v-card-actions>
           </v-card>
             </v-flex>
@@ -43,19 +44,26 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     
     new Vue({ el: '#app',
     data:{
-        courses:{},
-       
+        name:{
+          th:null,
+          eg:null,
+        },
+        courses:{
+          course:this.name,
+        },
     },
     methods: {
         getCourse(){
             let result =  axios.get("/api/course_data/{{request()->route('id')}}")
             .then((r) => {
                 this.courses = r.data;
+                this.name.th = this.courses.name.substr(2);
             }).catch((e) => { 
                 alert('error: '+e);
             });
         },
         update () {
+            this.course.name =this.name.th+" ("+this.name.en+")";
             axios.put("/api/course/{{request()->route('id')}}",this.courses)
         .then(function(response) { 
             alert('แก้ไขรายวิชาเรียบร้อย');

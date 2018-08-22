@@ -62,13 +62,13 @@ else{
                         <v-card-text>
                             {{-- <pre>@{{courses}}</pre> --}}
                             <div v-for="course in courses">
-                                <v-list-tile avatar @click="goto_coursePage(courses.id)">
+                                <v-list-tile avatar @click="goto_coursePage(JSON.parse(course.courseData)[0].id)">
                                     <v-list-tile-avatar>
                                         <v-icon color="blue">fas fa-feather-alt </v-icon>
                                     </v-list-tile-avatar>
                                     <v-list-tile-content>
-                                        <v-list-tile-title>@{{course.courseData}}</v-list-tile-title>
-                                       
+                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name}}</v-list-tile-title>
+                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].year}}</v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                                 <v-divider></v-divider>
@@ -95,6 +95,9 @@ else{
         this.alert_text = "test";
         this.alert_bar=true;
       },
+      goto_coursePage(id){
+        window.location = "/student/course/"+id;
+    },
       getCourseIn(){
         let result =  axios.get('/api/course_in/<?php echo $code; ?>')
       .then((r) => {

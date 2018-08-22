@@ -64,16 +64,18 @@ die();
                         </v-toolbar>
                         <v-card-text>
                             <div v-for="courses in course">
-                                <v-list-tile avatar @click="goto_coursePage(courses.id)">
-                                    <v-list-tile-avatar>
-                                        <v-icon color="blue">fas fa-feather-alt </v-icon>
-                                    </v-list-tile-avatar>
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>@{{courses.name}}</v-list-tile-title>
-                                        <v-list-tile-sub-title>@{{courses.code}}</v-list-tile-sub-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <v-divider></v-divider>
+                                <div v-if="courses.state == 1">
+                                    <v-list-tile avatar @click="goto_coursePage(courses.id)">
+                                        <v-list-tile-avatar>
+                                            <v-icon color="blue">fas fa-feather-alt </v-icon>
+                                        </v-list-tile-avatar>
+                                        <v-list-tile-content>
+                                            <v-list-tile-title>@{{courses.name}}</v-list-tile-title>
+                                            <v-list-tile-sub-title>@{{courses.code}}</v-list-tile-sub-title>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <v-divider></v-divider>
+                                </div>
                             </div>
                     </v-card>
                 </v-flex>

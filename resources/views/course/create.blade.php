@@ -21,8 +21,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar>
                 <v-card-text>
                     <v-text-field prepend-icon="fas fa-dice" v-model="course.code"  label="รหัสรายวิชา" type="text" ></v-text-field>
-                    <v-text-field prepend-icon="fas fa-pen-square" v-model="course.name"  label="ชื่อรายวิชา" type="text"></v-text-field>
-                    <v-text-field prepend-icon="fab fa-adn" v-model="course.name_eng"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fas fa-pen-square" v-model="name.th"  label="ชื่อรายวิชา" type="text"></v-text-field>
+                    <v-text-field prepend-icon="fab fa-adn" v-model="name.en"  label="ชื่อรายวิชาภาษาอังกฤษ" type="text"></v-text-field>
                     <v-text-field prepend-icon="far fa-calendar-alt" v-model="course.year"  label="ปีการศึกษา" type="text"></v-text-field>
                   </v-card-text>
                 <v-card-actions>
@@ -44,13 +44,19 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({ el: '#app',
     data:{
       valid: true,
+      name:{
+        en:null,
+        th:null
+      },
       course:{
         state:1,
         teacher:<?php echo $id;?>, //อาจารย์
+        course:this.name,
       },
     },
     methods: {
       submit () {
+        this.course.name =this.name.th+","+this.name.en;
         axios.post("/api/course",this.course)
       .then(function(response) { 
         if(response.data == '1'){

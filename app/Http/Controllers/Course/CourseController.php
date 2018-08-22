@@ -120,9 +120,33 @@ class CourseController extends Controller
         if($save) return 1;
         else return 0;
     }
-
     public function viewCourseIN($id){
         $courseIn = CourseIn::find($id);
         return $courseIn;
+    }
+    public function getCourseIn($id)
+    {
+        $coursein = CourseIn::where('student',$id)->get();
+        $i=0;
+       foreach($coursein as $key){
+        $coursein[$i]->courseData =   $this->getCourseData($key->course);
+            $i++;
+        }
+        return  $coursein->toJson(); 
+    }
+
+    public function getCourseData($id){
+        $course = Course::where('id',$id)->get();
+        return $course->toJson(); 
+    }
+
+    public function check(Request $request)
+    {
+        $course = $_GET['course'];
+        $student = $_GET['student']; 
+        $check = CourseIn::where('course',$course)->where('student', $student)->first();
+       if(isset($check)){return 0;}
+       else{return 1;} 
+        
     }
 }

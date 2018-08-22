@@ -23,9 +23,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-card-text>
                     <v-text-field prepend-icon=" far fa-clipboard " v-model="exercises.name" label="ชื่อแบบฝึกหัด" type="text"></v-text-field>
                     <v-text-field prepend-icon=" fas fa-clipboard-list " v-model="exercises.score" label="คะแนนเต็ม" type="number"></v-text-field>
-                    {{-- <v-text-field prepend-icon=" fas fa-calculator " v-model.number="exercises.count" label="จำนวนข้อ" type="number"></v-text-field> --}}
+                    <v-text-field prepend-icon=" fas fa-calculator " v-model.number="exercises.count" label="จำนวนข้อ" type="number" disabled></v-text-field>
                     <v-text-field prepend-icon=" far fa-comment " v-model="exercises.remark" label="หมายเหตุ" type="text"></v-text-field>
-                    <v-text-field  prepend-icon=" far fa-calendar-alt " v-model="exercises.time" label="กำหนดส่ง" type="date"></v-text-field>
+                    <v-text-field prepend-icon=" far fa-calendar-alt " v-model="exercises.time" label="กำหนดส่ง" type="date"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -34,7 +34,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-card-actions>
             </v-card>
         </v-flex>
-        
+
         <v-flex d-flex xs12 sm8>
             <v-card>
                 <v-toolbar color="light-blue" dark>
@@ -42,8 +42,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-toolbar-title>คำถาม</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-card-text> 
-                    <v-text-field  v-for="x,index in exercises.ask" v-model="exercises.ask[index]" :label="'ข้อ'+(index+1)" type="text"></v-text-field> 
+                <v-card-text>
+                    <v-text-field v-for="x,index in exercises.ask" v-model="exercises.ask[index]" :label="'ข้อ'+(index+1)" type="text"></v-text-field>
                 </v-card-text>
 
             </v-card>
@@ -106,9 +106,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 result_ask[i-1] = ask[i]; 
             }
             this.exercises.ask = result_ask;
+            this.exercises.count = result_ask.length;
+           
         },
         load(){
-            this.getExercise(); 
+            this.getExercise();
         },
      },
      mounted(){

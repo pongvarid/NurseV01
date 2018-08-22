@@ -23,7 +23,6 @@ else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                    {{-- <pre>@{{courses}}</pre> --}}
                     <v-layout row wrap>
                         <v-flex xs12 sm6 md3>
                             <v-text-field v-model="courses.name"  label="ชื่อรายวิชา" box disabled></v-text-field>             
@@ -40,7 +39,6 @@ else{
                         <v-flex xs12 sm6 md3>
                             <v-text-field v-model="courses.created_at"  label="วันที่เปิดรายวิชา" box disabled></v-text-field>             
                         </v-flex>
-                       
                     </v-layout>
                 </v-card-text>
             </v-card>

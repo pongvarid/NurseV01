@@ -56,13 +56,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-btn color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn>
                     <v-divider></v-divider>
                     <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
-                    <v-subheader>
-                    <v-layout row wrap>
-                        <v-btn color="primary" @click="submit_ask()"><v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
-                        <v-btn color="primary" @click="submit_choice()"><v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
-                        <v-btn color="primary" @click="submit_askfile()"><v-icon>fas fa-paperclip</v-icon>&nbspแนบไฟล์</v-btn>
-                    </v-layout>
-                    </v-subheader>
+                    <v-container>
+                    
+                        <v-btn block color="primary" @click="submit_ask()"><v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
+                        <v-btn block color="primary" @click="submit_choice()"><v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
+                        <v-btn block color="primary" @click="submit_askfile()"><v-icon>fas fa-paperclip</v-icon>&nbspแนบไฟล์</v-btn>
+                    </v-container>
                     <v-divider></v-divider>
                     <div v-for="exercise in exercises">
                         <v-list-tile>
@@ -96,10 +95,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar>
                 <v-divider></v-divider>
                 <center>
-
-                    <v-btn><v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
-                    <v-btn @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
-                    <v-btn @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
+                <v-container>
+                    <v-btn block color="light-green" dark > <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
+                    <v-btn block color="light-green" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
+                    <v-btn block color="light-green" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
+                </v-container>
                 </center>
                 <v-divider></v-divider>
 

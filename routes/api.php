@@ -62,3 +62,7 @@ Route::resource('/document','Document\DocumentController');
 
 /* CourseIN */
 Route::resource('/coursein','Course\CourseInController');   
+
+/*exercise for doing and check */
+
+Route::resource('/exercise/do/askanswer','Exercise\ExercisedAskAnswerController');   

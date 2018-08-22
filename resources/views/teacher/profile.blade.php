@@ -70,7 +70,7 @@ die();
                                             <v-icon color="blue">fas fa-feather-alt </v-icon>
                                         </v-list-tile-avatar>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>@{{courses.name}}</v-list-tile-title>
+                                            <v-list-tile-title>@{{courses.name.split(',')[1]}} (@{{courses.name.split(',')[2]}})</v-list-tile-title>
                                             <v-list-tile-sub-title>@{{courses.code}}</v-list-tile-sub-title>
                                         </v-list-tile-content>
                                     </v-list-tile>

@@ -20,7 +20,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar><br>
                 <center>
                     <img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/note-128.png" alt="">
-                    <h4>@{{courses.name}} </h4>
+                    <h4>@{{courses.name.split(',')[1]}} (@{{courses.name.split(',')[2]}}) </h4>
                     <h5> @{{courses.code}}</h5>
                     <v-divider></v-divider>
                     <v-card-text>
@@ -176,7 +176,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     studentDialog:false,
     student:{},
     exercises:{},
-    courses:{},
+    courses:{
+        name:'',
+    },
     close:{
         state:0,
     },

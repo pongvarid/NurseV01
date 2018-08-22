@@ -29,52 +29,51 @@ else{
         </v-flex>
     </v-layout>
     <br>
-            <v-layout row wrap>
-                <v-flex d-flex xs12 sm4>
-                    <v-card>
-                        <v-toolbar color="indigo" dark>
-                            <v-toolbar-title>ข้อมูลเอกสาร</v-toolbar-title>
-                            <v-spacer></v-spacer>
-                        </v-toolbar>
-                        <v-card-text>
+    <v-layout row wrap>
+        <v-flex d-flex xs12 sm4>
+            <v-card>
+                <v-toolbar color="indigo" dark>
+                    <v-toolbar-title>ข้อมูลเอกสาร</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text>
 
-                        </v-card-text>
-                    </v-card>
-                </v-flex>
-                <v-flex d-flex xs12 sm4>
-                    <v-card>
-                        <v-toolbar color="indigo" dark>
-                            <v-toolbar-title>ข้อมูลแบบฝึกหัด</v-toolbar-title>
-                            <v-spacer></v-spacer>
-                        </v-toolbar>
-                        <v-card-text>
-                          <v-card-text>
-                              <div v-for="exercise in exercises">
-                                  <v-list-tile>
-                                      <v-list-tile-content>
-                                          <h3 class="headline mb-0">@{{exercise.name}}</h3>
-                                          <div>@{{exercise.time}}</div> 
-                                      </v-list-tile-content>
-                                  </v-list-tile>
-                                  <v-divider></v-divider>
-                              </div>
-                          </v-card-text>
-                        </v-card-text>
-                    </v-card>
-                </v-flex>
-                <v-flex d-flex xs12 sm4>
-                    <v-card>
-                        <v-toolbar color="indigo" dark>
-                            <v-toolbar-title>นิสิตที่ลงเรียน</v-toolbar-title>
-                            <v-spacer></v-spacer>
-                        </v-toolbar>
-                        <v-card-text>
-                            
-                    </v-card>
-                </v-flex>
-            </v-layout>
+                </v-card-text>
+            </v-card>
+        </v-flex>
+        <v-flex d-flex xs12 sm4>
+            <v-card>
+                <v-toolbar color="indigo" dark>
+                    <v-toolbar-title>ข้อมูลแบบฝึกหัด</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text>
+                    <v-card-text>
+                        <div v-for="exercise in exercises">
+                            <v-list-tile>
+                                <v-list-tile-content>
+                                    <h3 class="headline mb-0">@{{exercise.name}}</h3>
+                                    <div>@{{exercise.time}}</div>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-divider></v-divider>
+                        </div>
+                    </v-card-text>
+                </v-card-text>
+            </v-card>
+        </v-flex>
+        <v-flex d-flex xs12 sm4>
+            <v-card>
+                <v-toolbar color="indigo" dark>
+                    <v-toolbar-title>นิสิตที่ลงเรียน</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text>
+
+            </v-card>
+        </v-flex>
+    </v-layout>
 </v-container>
-
 @endsection
  
 @section('vue_script')
@@ -105,14 +104,11 @@ else{
       .then(function(response) { 
         if(response.data == '1'){
             alert("ลงทะเบียนเรียนเรียบร้อยแล้ว");
-            window.location = "/student/profile";
-        }else{
-      
-        } 
+        }   
       })
       .catch(function(error) {
         alert('error: '+e);
-      });
+      });this.load();
       },
       getCourse(){
         let result = axios.get("/api/course_data/{{request()->route('id')}}")

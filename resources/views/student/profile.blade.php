@@ -28,7 +28,10 @@ else{
 
                 <v-card-text>
                     <center>
-                        <img style="width:50%;" src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
+                       
+                        <img   v-if="student.Title == 'นางสาว'"  style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-128.png"
+                            alt="">
+                     <img   v-if="student.Title == 'นาย'"  style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png"
                             alt="">
                         <h2>@{{student.FirstName_TH}}&nbsp;@{{student.LastName_TH}}</h2>
                         <h5>@{{student.StudentCode}}</h5>

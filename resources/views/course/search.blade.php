@@ -14,7 +14,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 <v-container>
 
   <v-text-field v-model="search"  label="ค้นหา" single-line hide-details></v-text-field> 
-  <v-btn @click="searchCouse()">ค้นหา</v-btn>
+  <v-btn @click="searchCourse()">ค้นหา</v-btn>
 
   <!--// //course}}*/ -->
   <v-card>
@@ -50,7 +50,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     dataDB:{},
   },
 methods: {
-  searchCouse(){
+  searchCourse(){
     axios.get("/api/search_course/"+this.search)
     .then((r) => {
           this.course = r.data;  

@@ -55,7 +55,7 @@ else{
                 </v-toolbar>
                 <v-card-text>
                     <div v-for="document in documents">
-                        <v-btn  large color="primary" block>@{{document.name}}</v-btn>
+                        <v-btn  large color="primary" block @click="goto_filePage(document.link)">@{{document.name}}</v-btn>
                     </div>
                 </v-card-text>
             </v-card>
@@ -91,6 +91,7 @@ else{
                 </v-toolbar>
                 <v-card-text>
 
+                </v-card-text>
             </v-card>
         </v-flex>
     </v-layout>
@@ -113,13 +114,17 @@ else{
    documents:{},
   },
   methods: {
+    goto_filePage(link){
+        console.log(link);
+        window.open(link, '_blank');
+    },
     goto_exercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
         if(type == '1'){
             window.location = "/student/course/exercise/ask_exercise/"+id;
         }else if(type == '2'){
-
+            window.location = "/student/course/exercise/choice_exercise/"+id;
         }else if(type == '3'){
-
+            window.location = "/student/course/exercise/file_exercise/"+id;
         }else{
 
         } 

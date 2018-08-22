@@ -120,6 +120,14 @@ Route::get('/student/course/exercise/ask_exercise/{id}', function () { //นิ�
     return view('student.student_view.ask_exercise');
 });
 
+Route::get('/student/course/exercise/choice_exercise/{id}', function () { //นิสิต ทำ choice
+    return view('student.student_view.choice_exercise');
+});
+
+Route::get('/student/course/exercise/file_exercise/{id}', function () { //นิสิต ทำ file
+    return view('student.student_view.file_exercise');
+});
+
 Route::get('/course/document/{id}', function () { //จัดการ document
     return view('document.index');
 });

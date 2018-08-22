@@ -25,12 +25,16 @@ else{
 
                 </v-toolbar>
                 <v-container>
-                        <v-alert value="info" type="info">
-                                @{{exercise.remark}}
-                            </v-alert>
+                    <v-alert value="info" type="info">
+                        @{{exercise.remark}}
+                    </v-alert>
+
+                    <div v-for="asks,index in ask">
+                        <h2>ข้อ : @{{index}}</h2>
+                        <v-textarea disabled :label="ข้อ+index" :value="asks" :hint="ข้อ+index"></v-textarea>
+                        <v-text-field label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
+                    </div>
                 </v-container>
-       
-               @{{ask}}
             </v-card>
 
         </v-flex>
@@ -50,15 +54,13 @@ else{
   },
   methods: { 
     getAsk(){
-       
-     
         
     },
      load(){
         axios.get("/api/exercise/do/askanswer/{{request()->route('id')}}")
       .then((r) => {
           this.exercise = r.data;
-          this.ask =  r.data.ask;
+          this.ask =  r.data.ask.split(",");
       }).catch((e) => { 
           alert('error');
       });

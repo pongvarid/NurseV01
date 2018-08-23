@@ -121,12 +121,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <br><br>
         <div v-for="students in student">
             <div v-if="students.permission == 1">
-
+            <v-container>
                 <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 
                 <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
                 </p>
-
+            </v-container>
                 <v-divider></v-divider>
             </div>
         </div>
@@ -151,12 +151,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
         <div v-for="students in student">
             <div v-if="students.permission == 2">
-
+                <v-container>
                 <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 
                 <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
                 </p>
-
+            </v-container>
                 <v-divider></v-divider>
             </div>
         </div>
@@ -224,7 +224,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         }else if(type == '2'){ 
             window.location = "/course/exercise/choice_edit/"+id;
         }else if(type == '3'){
-
+            window.location = "/course/exercise/file_edit/"+id;
         }else{
 
         }

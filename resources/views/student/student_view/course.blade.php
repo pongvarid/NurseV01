@@ -155,12 +155,11 @@ else{
     student:{},
     courses:{},
     exercises:{},
-    dataCheck:1,
     register:{
-    student:"{{$_SESSION['student']}}",
-    course:"{{request()->route('id')}}",
-    permission:1,
-   },
+        student:"{{$_SESSION['student']}}",
+        course:"{{request()->route('id')}}",
+        permission:1,
+    },
    documents:{},
   },
   methods: {
@@ -217,7 +216,7 @@ else{
         this.getCourse();
         this.getExercise();
         this.getDocument();
-        this.getStudent();     
+        this.getStudent();    
     },
   },
   mounted(){

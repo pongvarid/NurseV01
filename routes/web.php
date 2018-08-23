@@ -128,8 +128,13 @@ Route::get('/student/course/exercise/file_exercise/{id}', function () { //นิ
     return view('student.student_view.file_exercise');
 });
 
-Route::get('/course/document/{id}', function () { //จัดการ document
+Route::get('/course/document', function () { //จัดการ document
     return view('document.index');
 });
+
+Route::get('/teacher/log', function () { //จัดการ document
+    return view('teacher.log');
+});
+
 
 

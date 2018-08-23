@@ -66,3 +66,6 @@ Route::resource('/coursein','Course\CourseInController');
 Route::resource('/exercise/do/askanswer','Exercise\ExercisedAskAnswerController');  
 
 Route::resource('/exercise/do/choice','Exercise\ExercisedChoiceController');  
+
+/* Log */
+Route::get('/log_data','Logs\LogsController@getLogs');

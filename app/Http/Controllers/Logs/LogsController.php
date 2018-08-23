@@ -90,4 +90,11 @@ class LogsController extends Controller
         $logs = Logs::find($id);
         return $logs->destroy($id);
     }
+
+    public function getLogs(Request $request)
+    {
+        $type = $_GET["type"];
+        $logs = Logs::where('type',$type)->get();
+        return $logs->toJson();
+    }
 }

@@ -60,7 +60,7 @@ else{
   methods: { 
     preData(){
         this.answerData.course = "{{request()->route('id')}}";
-        this.answerData.type = '1'; 
+        this.answerData.type = '3'; 
         this.answerData.student = '{{$_SESSION["student"]}}'; 
         this.answerData.score = '0'; 
         this.answerData.answer = this.answer.toString(); 
@@ -70,6 +70,7 @@ else{
         axios.post("/api/exercise/do/askanswer",this.answerData)
       .then((r) => {
  alert('ส่งานสำเร็จ');
+ window.history.back();
       }).catch((e) => { 
           alert('error');
       });

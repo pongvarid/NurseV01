@@ -49,13 +49,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-list two-line subheader>
-                    <v-divider></v-divider>
-                    <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
-                    <v-container><v-btn block color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
-                    <v-divider></v-divider>
+                  
                     <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
                     <v-container>
-                    
+                        <v-btn block color="success" ><v-icon>fas fa-check-circle </v-icon>&nbsp <b>ตรวจข้อสอบ</b></v-btn>
+                        <v-divider></v-divider>
                         <v-btn block color="primary" @click="submit_ask()"><v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
                         <v-btn block color="primary" @click="submit_choice()"><v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
                         <v-btn block color="primary" @click="submit_askfile()"><v-icon>fas fa-paperclip</v-icon>&nbspแนบไฟล์</v-btn>
@@ -99,8 +97,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-btn block style="background-color:#683ECF;" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
                 </v-container>
                 </center>
+                <v-divider></v-divider> 
+                <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
+                <v-container><v-btn block color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
                 <v-divider></v-divider>
-
             </v-card>
         </v-flex>
 

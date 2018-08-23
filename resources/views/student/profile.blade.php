@@ -28,20 +28,24 @@ else{
 
                 <v-card-text>
                     <center>
-                       
-                        <img   v-if="student.Title == 'นางสาว'"  style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-128.png"
+
+                        <img v-if="student.Title == 'นางสาว'" style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-128.png"
                             alt="">
-                     <img   v-if="student.Title == 'นาย'"  style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png"
+                        <img v-if="student.Title == 'นาย'" style="width:50%;" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png"
                             alt="">
                         <h2>@{{student.FirstName_TH}}&nbsp;@{{student.LastName_TH}}</h2>
                         <h5>@{{student.StudentCode}}</h5>
                     </center>
                     <hr>
-                    <h5><v-icon>fas fa-book-reader</v-icon> &nbsp สาขา : @{{student.ProgramName_TH}}</h5>
-                    <p><v-icon>fas fa-user-graduate</v-icon> &nbsp คณะ : @{{student.FacultyName_TH}}</p>
+                    <h5>
+                        <v-icon>fas fa-book-reader</v-icon> &nbsp สาขา : @{{student.ProgramName_TH}}</h5>
+                    <p>
+                        <v-icon>fas fa-user-graduate</v-icon> &nbsp คณะ : @{{student.FacultyName_TH}}</p>
                     <hr>
-                    <p><v-icon>fas fa-mobile-alt</v-icon> &nbsp เบอร์ : @{{student.Telephone}}</p>
-                    <p><v-icon>fas fa-map-marker-alt</v-icon> &nbsp ที่อยู่ : @{{student.Address}}</p>
+                    <p>
+                        <v-icon>fas fa-mobile-alt</v-icon> &nbsp เบอร์ : @{{student.Telephone}}</p>
+                    <p>
+                        <v-icon>fas fa-map-marker-alt</v-icon> &nbsp ที่อยู่ : @{{student.Address}}</p>
                     <hr>
                 </v-card-text>
             </v-card>
@@ -60,15 +64,16 @@ else{
                             </v-btn>
                         </v-toolbar>
                         <v-card-text>
-                            {{-- <pre>@{{courses}}</pre> --}}
+                            {{--
+                            <pre>@{{courses}}</pre> --}}
                             <div v-for="course in courses">
                                 <v-list-tile avatar @click="goto_coursePage(JSON.parse(course.courseData)[0].id)">
                                     <v-list-tile-avatar>
                                         <v-icon color="blue">fas fa-feather-alt </v-icon>
                                     </v-list-tile-avatar>
                                     <v-list-tile-content>
-                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name}} [@{{JSON.parse(course.courseData)[0].code}}]</v-list-tile-title>
-                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].year}}</v-list-tile-title>
+                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].code}}</v-list-tile-title>
+                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name.split(',')[1]}} [@{{JSON.parse(course.courseData)[0].name.split(',')[2]}}]</v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                                 <v-divider></v-divider>
@@ -79,7 +84,6 @@ else{
 
             </v-layout>
 </v-container>
-
 @endsection
  
 @section('vue_script')

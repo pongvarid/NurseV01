@@ -22,7 +22,7 @@ class CourseController extends Controller
     
     public function searchCourse($course)
     {  
-         $course = Course::where('code',$course)->get();
+         $course = Course::where('code',$course)->orderBy('updated_at', 'desc')->get();
         return $course;
     }
     /**

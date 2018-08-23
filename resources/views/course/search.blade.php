@@ -48,11 +48,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                                 src="https://cdn0.iconfinder.com/data/icons/interior-and-decor-vol-1-1/512/15-128.png"
                                 alt=""></div>
                               <div class="headline">รหัสวิชา: @{{data.code}}</div>
-                              <div>ชื่อวิชา: @{{data.name}}</div>
+                              <div>ชื่อวิชา: @{{data.name.split(',')[1]}} (@{{data.name.split(',')[2]}})</div>
                             </div>
                         </v-card-title>
+                        <v-divider light></v-divider>
                         <v-card-actions>
-                          <v-btn flat dark @click="viewCouse(data.id)">รายละเอียด</v-btn>
+                          <v-btn flat dark outline color="indigo" @click="viewCouse(data.id)">รายละเอียด</v-btn>
                         </v-card-actions>
                       </v-card>
                     </v-flex>

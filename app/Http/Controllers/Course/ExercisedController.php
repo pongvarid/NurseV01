@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Course;
-use App\Model\Exercised;
+
+use App\Models\Exercise;
 use Illuminate\Http\Request;
+use App\Models\Logs;
 use App\Http\Controllers\Controller;
+use App\Models\Exercised;
+use App\Services\StudentService;
 
 class ExercisedController extends Controller
 {
@@ -46,7 +50,11 @@ class ExercisedController extends Controller
      */
     public function show($id)
     {
-        //
+        $exercised = Exercised::where('course', $id)->get();
+        $student = new StudentService(); 
+        $student->studentGetData($exercised);
+        $student->feathData(); 
+        return $student->feathData();
     }
 
     /**

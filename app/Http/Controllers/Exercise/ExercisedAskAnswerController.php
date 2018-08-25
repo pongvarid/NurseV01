@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ExerciseAskAnswer;
 use App\Models\Exercise;
 use App\Models\Exercised;
-
+use App\Services\StudentService;
 class ExercisedAskAnswerController extends Controller
 {
     /**
@@ -65,8 +65,8 @@ class ExercisedAskAnswerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {  
+   
     }
 
     /**
@@ -78,7 +78,7 @@ class ExercisedAskAnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -91,4 +91,6 @@ class ExercisedAskAnswerController extends Controller
     {
         //
     }
+
+    
 }

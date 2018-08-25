@@ -141,3 +141,16 @@ Route::get('/student/logs', function () { //จัดการ document
 });
 
 
+Route::get('/exercise/check/{id}', function () { //จัดการ document
+    return view('exercise.check.menu');
+});
+
+Route::get('/exercise/check/askanswer/{id}', function () { //จัดการ document
+    return view('exercise.check.ask_exercise');
+});
+Route::get('/exercise/check/askfile/{id}', function () { //จัดการ document
+    return view('exercise.check.ask_file');
+});
+Route::get('/exercise/check/choice/{id}', function () { //จัดการ document
+    return view('exercise.check.choice');
+});

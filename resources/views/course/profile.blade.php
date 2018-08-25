@@ -52,7 +52,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                   
                     <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
                     <v-container>
-                        <v-btn block color="success" ><v-icon>fas fa-check-circle </v-icon>&nbsp <b>ตรวจข้อสอบ</b></v-btn>
+                        <v-btn block color="success" @click="checkExercise()"><v-icon>fas fa-check-circle </v-icon>&nbsp <b>ตรวจข้อสอบ</b></v-btn>
                         <v-divider></v-divider>
                         <v-btn block color="primary" @click="submit_ask()"><v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
                         <v-btn block color="primary" @click="submit_choice()"><v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
@@ -63,11 +63,16 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                         <v-list-tile>
                             <v-list-tile-content>
                                 <v-layout style="width:100%;" row>
-                                    <v-flex xs12 @click="goto_editExercisePage(exercise.id,exercise.type)">
-                                        <v-list-tile-title class="mrt-10 pointer">@{{exercise.name}} @{{getExerciseType(exercise.type)}} </v-list-tile-title>
+                                    <v-flex xs8 @click="goto_editExercisePage(exercise.id,exercise.type)">
+                                        <v-list-tile-title class="mrt-10 pointer"><b>@{{exercise.name}}</b>@{{getExerciseType(exercise.type)}} </v-list-tile-title>
 
                                     </v-flex>
-                                    <v-flex xs1>
+                                    <v-flex xs2>
+                                        <v-btn style="float:right;" @click="submit_check(exercise.id,exercise.type)" icon color="green" dark>
+                                            <v-icon>fas fa-calendar-check </v-icon>
+                                        </v-btn>
+                                    </v-flex>
+                                    <v-flex xs2>
                                         <v-btn style="float:right;" @click="deleteExercise(exercise.id)" icon color="red" dark>
                                             <v-icon>fas fa-times</v-icon>
                                         </v-btn>
@@ -210,6 +215,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
       });
       this.load();}
     },
+    submit_check(id,type){
+        window.location = "/exercise/check/"+id+"?type="+type;
+    },
     submit_askfile(){
         window.location = "/course/exercise/file/{{request()->route('id')}}";
     },
@@ -240,6 +248,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         }else{
             return "(อื่นๆ)";
         }
+    },
+    checkExercise(){
+        window.location = "/exercise/check/{{request()->route('id')}}";
     },
     document(){
         window.location = "/course/document/{{request()->route('id')}}";

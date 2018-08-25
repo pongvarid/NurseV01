@@ -5,7 +5,8 @@ use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Models\Logs;
 use App\Http\Controllers\Controller;
-
+use App\Models\Exercised;
+use App\Services\StudentService;
 class ExerciseController extends Controller
 {
     /**
@@ -72,7 +73,7 @@ class ExerciseController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**

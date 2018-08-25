@@ -42,6 +42,7 @@ Route::get('/exercise_data/{id}','Course\ExerciseController@show'); //ดึง�
 Route::resource('/logs','Logs\LogsController'); 
 
 /*exercise*/
+Route::resource('/exercised','Course\ExercisedController');
 Route::resource('/exercise/askanswer','Exercise\AskAnswerController');
 
 Route::resource('/exercise/choice','Exercise\ChoiceController');

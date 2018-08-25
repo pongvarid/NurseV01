@@ -347,16 +347,19 @@ box-shadow: 0px 0px 45px -11px transparent;
 .blx{
   color:#3366FF!important;
 }
-wh-b{
+.wh-b{
   background:white!important;
 }
 
-trans-bg{
+.trans-bg{
   background:transparent!important;
 }
 
 @media only screen and (max-width: 768px) {
-  pd-die{
+  .pd-die{
     padding:0px!important;
+  }
+  .hidden-mobile{
+    display:none!important;
   }
 }

@@ -8,6 +8,7 @@ use App\Services\ExerciseChoice;
 use App\Services\Choice;
 use App\Models\Exercise;
 use App\Models\Exercised;
+use App\Models\Logs;
 
 class ExercisedChoiceController extends Controller
 {
@@ -52,10 +53,20 @@ class ExercisedChoiceController extends Controller
         
         $exercised = new Exercised();
         $exercised->fill($request->all()); 
+ 
         $exercised->type =  '5'; 
         $exercised->score =  $score;
         $exercised->save(); 
         return   $score;
+
+        $exercised->save();
+
+        $logs = new Logs();
+        $logs->user = $request->user;
+        $logs->type = 'student';
+        $logs->event = $request->event;
+        $logs = $logs->save();
+ 
     }
  
 

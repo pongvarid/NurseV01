@@ -67,16 +67,18 @@ else{
                             {{--
                             <pre>@{{courses}}</pre> --}}
                             <div v-for="course in courses">
-                                <v-list-tile avatar @click="goto_coursePage(JSON.parse(course.courseData)[0].id)">
-                                    <v-list-tile-avatar>
-                                        <v-icon color="blue">fas fa-feather-alt </v-icon>
-                                    </v-list-tile-avatar>
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].code}}</v-list-tile-title>
-                                        <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name.split(',')[1]}} [@{{JSON.parse(course.courseData)[0].name.split(',')[2]}}]</v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <v-divider></v-divider>
+                                <div v-if="JSON.parse(course.courseData)[0].state > 0">
+                                    <v-list-tile avatar @click="goto_coursePage(JSON.parse(course.courseData)[0].id)">
+                                        <v-list-tile-avatar>
+                                            <v-icon color="blue">fas fa-feather-alt </v-icon>
+                                        </v-list-tile-avatar>
+                                        <v-list-tile-content>
+                                            <v-list-tile-title>@{{JSON.parse(course.courseData)[0].code}}</v-list-tile-title>
+                                            <v-list-tile-title>@{{JSON.parse(course.courseData)[0].name.split(',')[1]}} [@{{JSON.parse(course.courseData)[0].name.split(',')[2]}}]</v-list-tile-title>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <v-divider></v-divider>
+                                </div>
                             </div>
                         </v-card-text>
                     </v-card>

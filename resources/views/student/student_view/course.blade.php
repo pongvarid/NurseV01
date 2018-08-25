@@ -39,6 +39,7 @@ else{
                         <v-flex xs12 sm6 md3>
                             <v-text-field v-model="time" label="วันที่เปิดรายวิชา" outline append-icon="far fa-clock" readonly></v-text-field>
                         </v-flex>
+
                     </v-layout>
                 </v-card-text>
             </v-card>
@@ -73,7 +74,7 @@ else{
                             <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
                                 <v-list-tile-content>
                                     <p class="headline mb-0">@{{exercise.name}}</p>
-                                <div>@{{exercise.time}}</div>
+                                    <div>@{{exercise.time}}</div>
                                 </v-list-tile-content>
                             </v-list-tile>
                             <v-divider></v-divider>
@@ -156,9 +157,12 @@ else{
     nameEN:[],
     nameTH:[],
     nameFull:[],
-    time:[],
-    timeExercises:[],
-    timeEx:[],
+    time:{
+        dateLineTime:[],
+        timeExercises:[],
+        timeEx:[],
+        day:[],
+    },
     teacher:{},
     studentDialog:false,
     studentDialogTA:false,
@@ -235,8 +239,12 @@ else{
         let result = axios.get("/api/exercise_data/{{request()->route('id')}}")
         .then((r)=>{
           this.exercises = r.data;
+          // date
           this.timeEx = this.exercises.time;
           this.timeExercises = moment(this.timeEx).format('L');
+          //this.dateLineTime = moment().format('[today] dddd');
+          
+          this.day = moment().format('[today] dddd');
           //this.calendarTime = moment().subtract(this.exercises.time, 'days').calendar(); 
         }).catch((e)=>{
           alert('error: '+e);

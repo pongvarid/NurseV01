@@ -193,14 +193,13 @@ else{
     },
       submit_register(){
         axios.post("/api/course_in",this.register)
-      .then(function(response) { 
-        if(response.data == '1'){
-            alert("ลงทะเบียนเรียนเรียบร้อยแล้ว");
-        }   
-      })
-      .catch(function(error) {
-        alert('error: '+e);
-      });this.load();
+      .then((r) => {
+            alert("ลงทะเบียนเรียนเรียบร้อยแล้ว"); 
+            window.location = "/student/course/"+this.courses.id;
+      }).catch((e) => { 
+          alert('error');
+      });
+      this.load();
       },
       getCourse(){
         let result = axios.get("/api/course_data/{{request()->route('id')}}")

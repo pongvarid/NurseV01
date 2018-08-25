@@ -43,7 +43,7 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //บันทึกรายวิชา และเก็บlog
     {
         $course = new Course();
         $course->fill($request->all());
@@ -67,14 +67,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //ดึงข้อมูล idของteacher 
     {
         $course = Course::where('teacher',$id)->orderBy('created_at', 'desc')->get();
         // ->orderBy('name', 'desc')
         return $course->toJson();
     }
 
-    public function getCourse($id)
+    public function getCourse($id) // ดึงข้อมูล idของcourse
     {
         $course = Course::where('id',$id)->first();
         return $course->toJson();
@@ -98,7 +98,7 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //แก้ไขรายวิชา เก็บlog
     {
         $course = Course::find($id);
         $course->fill($request->all());
@@ -122,7 +122,7 @@ class CourseController extends Controller
         //
     }
 
-    public function closeCourse(Request $request, $id)
+    public function closeCourse(Request $request, $id) //ปิดรายวิชา เก็บlog
     {
         $course =  Course::find($id);  
         $course->fill($request->all());  
@@ -135,7 +135,7 @@ class CourseController extends Controller
         $logs_course = $logs->save();
     }
 
-    public function register(Request $request)
+    public function register(Request $request) //ลงทะเบียนเรียน
     {
         $register = new CourseIn();
         $register->fill($request->all());
@@ -149,7 +149,7 @@ class CourseController extends Controller
     }
     public function getCourseIn($id)
     {
-        $coursein = CourseIn::where('student',$id)->get();
+        $coursein = CourseIn::where('student',$id)->orderBy('created_at', 'desc')->get();
         $i=0;
        foreach($coursein as $key){
         $coursein[$i]->courseData =   $this->getCourseData($key->course);
@@ -163,7 +163,7 @@ class CourseController extends Controller
         return $course->toJson(); 
     }
 
-    public function check(Request $request)
+    public function check(Request $request) //ปิดปุ่ม ลงทะเบียน
     {
         $course = $_GET['course'];
         $student = $_GET['student']; 

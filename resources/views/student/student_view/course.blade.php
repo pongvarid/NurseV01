@@ -76,7 +76,9 @@ else{
                                     <p class="headline mb-0">@{{exercise.name}}</p>
                                     <div>@{{exercise.time}}</div>
                                 </v-list-tile-content>
+                                
                             </v-list-tile>
+                            <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
                             <v-divider></v-divider>
                         </div>
                     </v-card-text>
@@ -154,6 +156,7 @@ else{
     new Vue({
   el: "#app",
   data: {
+    taIsMine:1,
     nameEN:[],
     nameTH:[],
     nameFull:[],
@@ -235,6 +238,15 @@ else{
       load(){
         this.getCourse();
       },
+      getTaIsMine(){
+        let result = axios.get("/api/coursein/{{$code}}/edit")
+        .then((r)=>{
+            this.taIsMine = r.data;
+           
+        }).catch((e)=>{
+          alert('error: '+e);
+        });      
+      },
       getExercise(){
         let result = axios.get("/api/exercise_data/{{request()->route('id')}}")
         .then((r)=>{
@@ -254,7 +266,8 @@ else{
         this.getCourse();
         this.getExercise();
         this.getDocument();
-        this.getStudent();    
+        this.getStudent();   
+        this.getTaIsMine(); 
     },
   },
   mounted(){

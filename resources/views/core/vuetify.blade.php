@@ -13,9 +13,10 @@
     crossorigin="anonymous">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link href="../../css/custom.css" rel="stylesheet">
+  
 </head>
 
-<body>
+<body onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);">
   <?php
 
   

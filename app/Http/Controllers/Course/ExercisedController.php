@@ -65,7 +65,8 @@ class ExercisedController extends Controller
      */
     public function edit($id)
     {
-        //
+        $exercised = Exercised::find($id)->first();
+        return $exercised;
     }
 
     /**
@@ -77,7 +78,10 @@ class ExercisedController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $exercised = Exercised::find($id);
+        $exercised->type = $request->type;
+        $exercised->score = $request->score;
+        $exercised->save();
     }
 
     /**

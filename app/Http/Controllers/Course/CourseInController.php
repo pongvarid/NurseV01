@@ -66,7 +66,9 @@ class CourseInController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course_in = CourseIn::where('student', $id)->where('permission','2')->first();
+        if(isset($course_in)){return 2;}
+        else{return 1;}
     }
 
     /**

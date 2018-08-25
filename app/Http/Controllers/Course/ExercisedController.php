@@ -65,7 +65,7 @@ class ExercisedController extends Controller
      */
     public function edit($id)
     {
-        $exercised = Exercised::find($id)->first();
+        $exercised = Exercised::find($id);
         return $exercised;
     }
 

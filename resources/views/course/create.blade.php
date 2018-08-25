@@ -40,7 +40,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
  
 @section('vue_script')
   <script>
-    
     new Vue({ el: '#app',
     data:{
       valid: true,
@@ -53,8 +52,21 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         teacher:<?php echo $id;?>, //อาจารย์
         course:this.name,
       },
+      // logs:{
+      //   user:
+      //   type:
+      //   event:
+      // },
     },
     methods: {
+      // log_create_course(){
+      //   axios.get("/api/push_logs",this.logs)
+      //   .then((r)=>{
+
+      //   }).catch((e)=>{
+      //     alert('error: '+e);
+      //   });
+      // }
       submit () {
         this.course.name =","+this.name.th+","+this.name.en;
         axios.post("/api/course",this.course)

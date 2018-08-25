@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Course;
 use App\Models\Course;
 use App\Models\CourseIn;
 use App\Models\Teacher;
+use App\Models\Logs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,9 +47,18 @@ class CourseController extends Controller
     {
         $course = new Course();
         $course->fill($request->all());
-        $save = $course->save();
-        if($save) return 1;
+        $save_course = $course->save();
+
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = 'เพิ่มรายวิชา';
+        $logs_course = $logs->save();
+
+        if($save_course && $logs_course) return 1;
         else return 0;
+
+       
     }
 
     /**
@@ -92,7 +102,13 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
         $course->fill($request->all());
-        $course->save(); 
+        $course->save();
+
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = 'แก้ไขรายวิชา';
+        $logs_course = $logs->save();
     }
 
     /**
@@ -110,7 +126,13 @@ class CourseController extends Controller
     {
         $course =  Course::find($id);  
         $course->fill($request->all());  
-        $course->save(); 
+        $course->save();
+
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = 'ปิดรายวิชา';
+        $logs_course = $logs->save();
     }
 
     public function register(Request $request)

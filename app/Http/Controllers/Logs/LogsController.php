@@ -94,7 +94,7 @@ class LogsController extends Controller
     public function getLogs(Request $request)
     {
         $type = $_GET["type"];
-        $logs = Logs::where('type',$type)->orderBy('created_at', 'desc')->get();
+        $logs = Logs::where('type',$type)->orderBy('id', 'DESC')->get();
         return $logs->toJson();
     }
 }

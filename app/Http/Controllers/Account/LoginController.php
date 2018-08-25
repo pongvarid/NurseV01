@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\Student;
+use App\Models\Logs;
 use App\Soap\UniversityOfPhayao;
 
 class LoginController extends Controller
@@ -47,6 +48,12 @@ class LoginController extends Controller
             $_SESSION["user"] =  $teacher->id; 
             $_SESSION["admin"] = $teacher->permission; //admin เป็น 1 
             $_SESSION["user_type"] = "teacher"; //ประเภท user
+
+            $logs = new Logs();
+            $logs->user = $teacher->id;
+            $logs->type = 'teacher';
+            $logs->event = 'เข้าสู่ระบบ';
+            $logs_Login = $logs->save();
             return 1;
         }else{
             return 0;

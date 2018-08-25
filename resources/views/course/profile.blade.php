@@ -179,6 +179,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     close:{
         state:0,
+        teacher:<?php echo $id; ?>,
     },
   },
   methods: { 

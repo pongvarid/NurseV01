@@ -7,8 +7,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     $linkToCheck ="";
     if(isset($_GET['type'])){
         if($_GET['type'] == "1"){ $linkToCheck="/exercise/check/askanswer/";}
-        else if($_GET['type'] == "2"){ $linkToCheck="/exercise/check/askfile/";}
-        else if($_GET['type'] == "3"){ $linkToCheck="/exercise/check/choice/";}
+        else if($_GET['type'] == "2"){ $linkToCheck="/exercise/check/choice/";}
+        else if($_GET['type'] == "3"){ $linkToCheck="/exercise/check/askfile/";}
         else{ $linkToCheck="#";}
     }
 }

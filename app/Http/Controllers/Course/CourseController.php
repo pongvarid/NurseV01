@@ -59,7 +59,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::where('teacher',$id)->get();
+        $course = Course::where('teacher',$id)->orderBy('created_at', 'desc')->get();
+        // ->orderBy('name', 'desc')
         return $course->toJson();
     }
 

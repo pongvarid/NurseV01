@@ -25,7 +25,7 @@ die();
                     <v-toolbar-title>อาจารย์</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn icon>
-                        
+
                     </v-btn>
                 </v-toolbar>
 
@@ -39,10 +39,11 @@ die();
                             <v-icon>fas fa-user-cog</v-icon>&nbsp;แก้ไขโปรไฟล์</v-btn>
                     </center>
                     <hr>
-                    <h5 v-if="teacher.permission == 1"> <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : อาจารย์</h5>
+                    <h5 v-if="teacher.permission == 1">
+                        <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : อาจารย์</h5>
                     <h5 v-if="teacher.permission == 0">สถานะ : อาจารย์/แอดมิน</h5>
-                    <h5> <v-icon>fas fa-book-open</v-icon> &nbsp รายวิชาที่สร้างได้ : @{{teacher.count}}</h5>
-                    <p><v-icon>fas fa-pencil-alt</v-icon> &nbsp@{{teacher.remark}}</p>
+                    <p>
+                        <v-icon>fas fa-pencil-alt</v-icon> &nbsp@{{teacher.remark}}</p>
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -58,9 +59,6 @@ die();
                             <v-btn v-if="teacher.count > 0" icon @click="create_course()">
                                 <v-icon>fas fa-plus-circle </v-icon>
                             </v-btn>
-                            <h5 v-if="teacher.count == 0">
-                                Course Full
-                            </h5>
                         </v-toolbar>
                         <v-card-text>
                             <div v-for="courses in course">
@@ -93,7 +91,7 @@ die();
         <v-card-text>
             <v-text-field prepend-icon="fas fa-user" label="ชื่อ-สกุล" v-model="teacher.name" outline></v-text-field>
             <v-text-field prepend-icon="fas fa-lock" label="รหัสผ่าน" v-model="teacher.password" outline></v-text-field>
-            <v-textarea  prepend-icon="fas fa-edit" outline label="เกี่ยวกับคุณ" v-model="teacher.remark"></v-textarea>
+            <v-textarea prepend-icon="fas fa-edit" outline label="เกี่ยวกับคุณ" v-model="teacher.remark"></v-textarea>
         </v-card-text>
 
         <v-divider></v-divider>

@@ -91,10 +91,13 @@ class LogsController extends Controller
         return $logs->destroy($id);
     }
 
-    public function getLogs(Request $request)
-    {
-        $type = $_GET["type"];
-        $logs = Logs::where('type',$type)->orderBy('id', 'DESC')->get();
-        return $logs->toJson();
+    public function getLogs()
+            { $type = $_GET["type"];
+            $user = $_GET['id'];
+
+            $logs = Logs::where('user',$user)->where('type',$type)->orderBy('created_at', 'DESC')->get();
+            return $logs;
+       
+      
     }
 }

@@ -9,6 +9,7 @@ use App\Services\Choice;
 use App\Models\Exercise;
 use App\Models\Exercised;
 use App\Models\Logs;
+use App\Services\LogsService;
 
 class ExercisedChoiceController extends Controller
 {
@@ -57,16 +58,11 @@ class ExercisedChoiceController extends Controller
         $exercised->type =  '5'; 
         $exercised->score =  $score;
         $exercised->save(); 
+    
+        LogsService::save($request->student,2,'ส่งแบบฝึกหัดเลือกข้อถูก');
+     
         return   $score;
-
-        $exercised->save();
-
-        $logs = new Logs();
-        $logs->user = $request->user;
-        $logs->type = 'student';
-        $logs->event = $request->event;
-        $logs = $logs->save();
- 
+       
     }
  
 

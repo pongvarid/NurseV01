@@ -29,9 +29,10 @@ else{
                                         <v-data-table
                                           :headers="headers"
                                           :items="logs"
+                                          :pagination.sync="pagination"
                                           class="elevation-1"
                                         >
-                                        <template slot="items" slot-scope="data" v-if="data.item.user == <?php echo $user; ?>">
+                                        <template slot="items" slot-scope="data" >
                                             <td>@{{ data.item.event }}</td>
                                             <td>@{{ data.item.created_at }}</td>
                                         </template>
@@ -52,12 +53,15 @@ else{
     logs:{},
     headers: [
           { text: 'ประวัติ', value: 'event' },
-          { text: 'วันที่', value: 'created_at' },
+          { text: 'วันที่', value: 'date' },
         ],
+        pagination: {
+          sortBy: 'date'
+        },
   },
   methods: { 
     getLog(){
-        axios.get("/api/log_data?type=student")
+        axios.get("/api/log_data?type=student&id={{$code}}")
         .then((r)=>{
             this.logs = r.data;
         }).catch((e)=>{

@@ -45,7 +45,7 @@ class ExerciseController extends Controller
         $logs = new Logs();
         $logs->user = $request->teacher;
         $logs->type = 'teacher';
-        $logs->event = 'สร้างแบบฝึกหัด';
+        $logs->event = $request->event;
         $logs_exercise = $logs->save();
 
         if($save && $logs_exercise) return 1;
@@ -89,7 +89,13 @@ class ExerciseController extends Controller
         $exercise =  Exercise::find($id);
         $exercise->fill($request->all());
          $save = $exercise->save();
-          if($save) return 1;
+
+         $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = $request->event;
+        $logs_exercise = $logs->save();
+          if($save &&  $logs_exercise) return 1;
           else return 0;
     }
 

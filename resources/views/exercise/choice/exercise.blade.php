@@ -75,7 +75,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             answer:[],
         },
         exercise:{  
-            teacher:<?php echo $id; ?>,
             ask:[],
             answer:[],
         },
@@ -102,6 +101,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         save(){
             this.preData();
             console.log(this.choices.answer);
+            this.exercise.teacher = "<?php echo $id; ?>";
+            this.exercise.event = "สร้างแบบฝึกหัด เลือกตอบ";
          axios.post("/api/exercise",this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){

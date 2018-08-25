@@ -58,13 +58,15 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     data: {
        perData:{},
        exercises:{
-           ask:[],
+           ask:[], 
        },
     },
     methods: {
         update(){
             let check = this.checkStringAsk();
             if(check){
+            this.exercises.teacher =  "<?php echo $id; ?>";
+            this.exercises.event =  "แก้ไขแบบฝึกหัด ตอบถูกผิด";
             this.exercises.ask = ","+this.exercises.ask.toString();
             let result =  axios.put("/api/exercise/askanswer/{{request()->route('id')}}",this.exercises)
             .then((r) => {

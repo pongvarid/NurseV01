@@ -49,9 +49,9 @@ die();
   el: "#app",
   data: {
     //count:1,
-    logs:{},
+    logs:[],
     headers: [
-          { text: 'ประวัติ', value: 'event' },
+          { text: 'ประวัติ', value: 'event', sortable: false, },
           { text: 'วันที่', value: 'created_at' },
         ],
   },

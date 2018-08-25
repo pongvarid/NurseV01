@@ -83,6 +83,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             this.choiceMake();
             this.exercise.type = 2;
             this.exercise.course = "{{request()->route('id')}}";
+            this.exercise.teacher =  "<?php echo $id; ?>";
+
         },
         choiceMake(){
             let choiceTmp = '';
@@ -98,8 +100,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         },
         save(){
             this.preData();
-            
-         axios.put("/api/exercise/"+this.exercise.id,this.exercise)
+             axios.put("/api/exercise/"+this.exercise.id,this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){
                     alert('แก้ไขรายวิชาเรียบร้อย'); 

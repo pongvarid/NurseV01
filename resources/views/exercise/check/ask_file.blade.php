@@ -70,7 +70,8 @@ $user = isset($_SESSION['user']);
                 this.answerData.score = this.countScore();
                 axios.put("/api/exercised/{{request()->route('id')}}",this.answerData)
                     .then((r) => { 
-                        alert('ตรวจสำเร็จ');
+                        alert('ตรวจสำเร็จ');   
+                        window.location=document.referrer;
                     }).catch((e) => { 
                         alert('error');
                     });

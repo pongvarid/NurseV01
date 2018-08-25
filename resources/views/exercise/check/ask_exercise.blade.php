@@ -84,6 +84,7 @@ $user = isset($_SESSION['user']);
                 axios.put("/api/exercised/{{request()->route('id')}}",this.answerData)
                     .then((r) => { 
                         alert('ตรวจสำเร็จ');
+                        window.location=document.referrer;
                     }).catch((e) => { 
                         alert('error');
                     });

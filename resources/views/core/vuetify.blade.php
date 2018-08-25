@@ -30,13 +30,13 @@
                 if($_SESSION['user_type'] == 'student'){
                   ?>
         <a href="/student/profile" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
-        <a href="/student/log" class="w3-bar-item w3-button w3-hide-small"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
+        <a href="/student/logs" class="w3-bar-item w3-button w3-hide-small"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
         <?php
                 }
                 if($_SESSION['user_type'] == 'teacher'){
                   ?>
           <a href="/teacher/profile" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
-          <a href="/teacher/log" class="w3-bar-item w3-button w3-hide-small"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
+          <a href="/teacher/logs" class="w3-bar-item w3-button w3-hide-small"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
           <?php
                 }
                 if(isset($_SESSION["admin"]) ){

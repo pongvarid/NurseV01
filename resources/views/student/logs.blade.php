@@ -2,15 +2,15 @@
 /*-------------------SET SESSION-----------------------*/
 session_start();
 $user = isset($_SESSION['user']); 
-if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';
-die();
-}else{
+if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />'; die();}
+else{
     $id = $_SESSION['user'];
-    if($_SESSION["user_type"] != 'teacher'){
-        echo '<meta http-equiv="refresh" content="0; url=/student/profile" />'; die();
+    $code = $_SESSION['student']; 
+    if($_SESSION["user_type"] != 'student'){
+        echo '<meta http-equiv="refresh" content="0; url=/teacher/profile" />'; die();
     } 
 }
- 
+
 ?> 
 @extends('core.vuetify') 
 @section('vue')
@@ -29,16 +29,14 @@ die();
                                         <v-data-table
                                           :headers="headers"
                                           :items="logs"
-                                          hide-actions
                                           class="elevation-1"
                                         >
-                                          <template slot="items" slot-scope="props">
-                                            <td>1</td>
-                                            <td class="text-xs-right">@{{ props.item.event }}</td>
-                                            <td class="text-xs-right">@{{ props.item.created_at }}</td>                                          </template>
+                                        <template slot="items" slot-scope="data" v-if="data.item.user == <?php echo $user; ?>">
+                                            <td>@{{ data.item.event }}</td>
+                                            <td>@{{ data.item.created_at }}</td>
+                                        </template>
                                         </v-data-table>
                                 </template>
-                            
                         </v-card-text>
                     </v-card>
                 </v-flex>
@@ -50,21 +48,16 @@ die();
     new Vue({
   el: "#app",
   data: {
+    //count:1,
     logs:{},
     headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'left',
-            sortable: false,
-            value: 'name'
-          },
           { text: 'ประวัติ', value: 'event' },
           { text: 'วันที่', value: 'created_at' },
         ],
   },
   methods: { 
     getLog(){
-        axios.get("/api/log_data?type=teacher")
+        axios.get("/api/log_data?type=student")
         .then((r)=>{
             this.logs = r.data;
         }).catch((e)=>{

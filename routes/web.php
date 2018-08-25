@@ -132,9 +132,12 @@ Route::get('/course/document', function () { //จัดการ document
     return view('document.index');
 });
 
-Route::get('/teacher/log', function () { //จัดการ document
-    return view('teacher.log');
+Route::get('/teacher/logs', function () { //จัดการ document
+    return view('teacher.logs');
 });
 
+Route::get('/student/logs', function () { //จัดการ document
+    return view('student.logs');
+});
 
 

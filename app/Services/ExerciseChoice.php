@@ -27,9 +27,23 @@ class ExerciseChoice implements  CheckExercise{
         return $choice;
     }
 
-    public function check(){
+ 
 
-        return "check";
+    public function check(){
+     
+         
+    }
+
+    public function checkAuto($choiceTrue,$choiceStudent){
+        $score = 0;
+        for($i=0;$i< count($choiceTrue);$i++){
+            if($choiceTrue[$i] == $choiceStudent[$i]){
+                $score++;
+            }
+        }
+        return $score;
+       
+         
     }
  
 

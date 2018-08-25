@@ -69,7 +69,7 @@ else{
   methods: { 
     preData(){
         this.answerData.course = "{{request()->route('id')}}";
-        this.answerData.type = '3'; 
+        this.answerData.type = '5'; 
         this.answerData.student = '{{$_SESSION["student"]}}'; 
         this.answerData.score = this.exercise.score; 
         this.answerData.answer = this.choiceToGo.toString(); 
@@ -79,7 +79,7 @@ else{
         axios.post("/api/exercise/do/choice",this.answerData)
       .then((r) => {
             alert('ส่งงานสำเร็จ');
-            window.history.back();
+           window.history.back();
       }).catch((e) => { 
           alert('error');
       });

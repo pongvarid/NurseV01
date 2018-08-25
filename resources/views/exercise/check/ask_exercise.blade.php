@@ -47,6 +47,7 @@ $user = isset($_SESSION['user']);
   el: "#app",
   data: {
       exercise:{ 
+           
           ask:[],
       },
       ask:{},

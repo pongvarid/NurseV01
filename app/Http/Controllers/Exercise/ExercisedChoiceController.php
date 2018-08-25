@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ExerciseChoice;
+use App\Services\Choice;
 use App\Models\Exercise;
 use App\Models\Exercised;
 
@@ -38,10 +39,25 @@ class ExercisedChoiceController extends Controller
      */
     public function store(Request $request)
     {
+       
+
+       $exercise = Exercise::find($request->course);
+       $choice = new Choice();
+       $choice->setData($exercise);
+       $choiceTrue =  $choice->convertAnswer($exercise);
+        $choiceStudent = $choice->trimp($request->answer);
+
+        $exerciseds = new ExerciseChoice();  
+        $score = ($request->score/count($choiceTrue))*$exerciseds->checkAuto($choiceTrue,$choiceStudent);
+        
         $exercised = new Exercised();
         $exercised->fill($request->all()); 
-        $exercised->save();
+        $exercised->type =  '5'; 
+        $exercised->score =  $score;
+        $exercised->save(); 
+        return   $score;
     }
+ 
 
     /**
      * Display the specified resource.

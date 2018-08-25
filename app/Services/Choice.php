@@ -32,4 +32,10 @@ class Choice{
         return  $this->answer;
     }
 
+    public function trimp($data){
+        $data = explode(',',$data);
+        $data = array_slice($data,1);
+        return  $data;
+    }
+
 }

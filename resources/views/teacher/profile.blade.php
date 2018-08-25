@@ -74,6 +74,18 @@ die();
                                     </v-list-tile>
                                     <v-divider></v-divider>
                                 </div>
+                                <div v-if="courses.state == 0">
+                                    <v-list-tile avatar @click="goto_coursePage(courses.id)">
+                                        <v-list-tile-avatar>
+                                            <v-icon color="red">fas fa-eye-slash </v-icon>
+                                        </v-list-tile-avatar>
+                                        <v-list-tile-content>
+                                            <v-list-tile-title>@{{courses.name.split(',')[1]}} (@{{courses.name.split(',')[2]}})</v-list-tile-title>
+                                            <v-list-tile-sub-title>@{{courses.code}}</v-list-tile-sub-title>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <v-divider></v-divider>
+                                </div>
                             </div>
                     </v-card>
                 </v-flex>

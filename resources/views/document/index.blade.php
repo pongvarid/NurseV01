@@ -119,7 +119,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             ],
             tmp: [],
             dataDB:{
-                teacher:<?php echo $id; ?>
+
             },
             update:false,
             dialog: false,
@@ -151,6 +151,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     }
                 },
                 updateData(){
+                    this.dataDB.teacher = "<?php echo $id; ?>";
                     axios
                 .put("/api/document/"+this.dataDB.id,this.dataDB)
                 .then(function(response) {
@@ -162,6 +163,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 this.dialogClose(); 
                 },
                 saveData(){
+                    this.dataDB.teacher = "<?php echo $id; ?>";
                     this.dataDB.course = "{{request()->route('id')}}";
                     axios
                 .post("/api/document",this.dataDB)

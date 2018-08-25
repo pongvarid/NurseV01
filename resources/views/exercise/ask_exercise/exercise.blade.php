@@ -57,7 +57,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({ el: "#app",
     data: {
         exercise:{
-            teacher:<?php echo $id; ?>,
             ask:[],
         },
     },
@@ -70,6 +69,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         },
         save(){
             this.preData();
+            this.exercise.teacher = "<?php echo $id; ?>";
+            this.exercise.event = "สร้างแบบฝึกหัด ตอบถูกผิด";
             axios.post("/api/exercise",this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){

@@ -82,7 +82,13 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);  
         $document->fill($request->all());  
-        $document->save(); 
+        $document->save();
+
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = 'แก้ไขเอกสาร';
+        $logs_document = $logs->save();      
     }
 
     /**
@@ -91,7 +97,7 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $document = Document::find($id);
         return $document->destroy($id);

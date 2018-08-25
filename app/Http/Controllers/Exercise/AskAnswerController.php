@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Exercise;
-
+use App\Models\Logs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Exercise;
@@ -78,6 +78,13 @@ class AskAnswerController extends Controller
         $exercise = Exercise::find($id); 
         $exercise->fill($request->all());
         $exercise->save();
+ 
+        
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = $request->event;
+        $logs_exercise = $logs->save();
         
     }
 

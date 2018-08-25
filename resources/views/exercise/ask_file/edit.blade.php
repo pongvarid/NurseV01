@@ -64,6 +64,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         update(){
             let check = this.checkStringAsk();
             this.exercises.ask;
+            this.exercises.teacher = "<?php echo $id; ?>";
+            this.exercises.event = "แก้ไขแบบฝึกหัด แนบไฟล์";
             let result =  axios.put("/api/exercise/askanswer/{{request()->route('id')}}",this.exercises)
             .then((r) => {
                 alert('แก้ไขข้อมูลสำเร็จ');

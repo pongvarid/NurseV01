@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Course;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
+use App\Models\Logs;
 use App\Http\Controllers\Controller;
 
 class ExerciseController extends Controller
@@ -36,11 +37,18 @@ class ExerciseController extends Controller
     public function store(Request $request)
     {
      
-         $exercise = new Exercise();
-       $exercise->fill($request->all());
+        $exercise = new Exercise();
+        $exercise->fill($request->all());
         $save = $exercise->save();
-         if($save) return 1;
-         else return 0;
+
+        $logs = new Logs();
+        $logs->user = $request->teacher;
+        $logs->type = 'teacher';
+        $logs->event = 'สร้างแบบฝึกหัด';
+        $logs_exercise = $logs->save();
+
+        if($save && $logs_exercise) return 1;
+        else return 0;
          
     }
 

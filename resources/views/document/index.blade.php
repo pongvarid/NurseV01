@@ -118,7 +118,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             v => !!v || 'กรุณากรอกที่อยู่เอกสาร'
             ],
             tmp: [],
-            dataDB:{},
+            dataDB:{
+                teacher:<?php echo $id; ?>
+            },
             update:false,
             dialog: false,
             },

@@ -56,7 +56,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 <script>
     new Vue({ el: "#app",
     data: {
-        exercise:{  
+        exercise:{
+            teacher:<?php echo $id; ?>,
             ask:[],
         },
     },

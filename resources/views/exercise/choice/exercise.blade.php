@@ -75,6 +75,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             answer:[],
         },
         exercise:{  
+            teacher:<?php echo $id; ?>,
             ask:[],
             answer:[],
         },

@@ -239,7 +239,7 @@ else{
         this.getCourse();
       },
       getTaIsMine(){
-        let result = axios.get("/api/coursein/{{$code}}/edit")
+        let result = axios.get("/api/coursein/{{$code}}/edit?course={{request()->route('id')}}")
         .then((r)=>{
             this.taIsMine = r.data;
            

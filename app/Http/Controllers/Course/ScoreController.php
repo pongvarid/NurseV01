@@ -54,12 +54,12 @@ class ScoreController extends Controller
 
         $exercise = new Exercise(); 
 
-        $exercise->where('course',$exercise->id)->get();
+        $exercise->data = $exercise->where('course',$course->id)->get(); 
         $exercise->exercised = $this->mirror($exercise->where('course',$course->id)->get());
 
         $course->exercise =   $exercise;
 
-        return   $course;
+        return    $course->exercise;
         
     }
 

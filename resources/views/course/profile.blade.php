@@ -25,8 +25,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-divider></v-divider>
                     <v-card-text>
                         <v-btn color="warning" @click="edit_course()"> แก้ไข &nbsp <v-icon>fas fa-pen</v-icon></v-btn>
-                        <v-btn color="red" @click="close_course()" dark>ปิด
+                        <v-btn color="red" @click="close_course()" v-if="dataCheck==1" dark>ปิด
                             <v-icon dark right>block</v-icon>
+                        </v-btn>
+                        <v-btn color="green" @click="open_course()" v-if="dataCheck==0" dark>เปิด
+                            <v-icon dark right>far fa-eye</v-icon>
                         </v-btn>
                 </center>
                 <v-divider></v-divider>
@@ -174,6 +177,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     new Vue({
   el: "#app",
   data: {
+    dataCheck:{},
     dataDB: {},
     TADialog:false,
     studentDialog:false,
@@ -184,6 +188,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     close:{
         state:0,
+        teacher:<?php echo $id; ?>,
+    },
+    open:{
+        state:1,
         teacher:<?php echo $id; ?>,
     },
   },
@@ -268,6 +276,24 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         });
         this.load();
     },
+    open_course(){ //เปิดรายวิชา
+        axios.put("/api/open_course/{{request()->route('id')}}",this.open)
+        .then((r) => {
+            alert('เปิดรายวิชาเรีบยร้อยแล้ว');
+            window.location = "/teacher/profile/";
+        }).catch((e) => {
+            alert('error: '+e);
+        });
+        this.load();
+    },
+    getCheck(){ //เช็คว่ารายวิชานี้ ปิดหรือยัง
+        let result =  axios.get("/api/check_closeCourse/{{request()->route('id')}}")
+      .then((r) => {
+          this.dataCheck = r.data;
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
+    },
     getStudent(){
         let result =  axios.get("/api/coursein/{{request()->route('id')}}")
       .then((r) => {
@@ -296,6 +322,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
        this.getExercise();
        this.getCourse();
        this.getStudent();
+       this.getCheck();
       }
   },
   mounted(){
@@ -305,4 +332,3 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
 </script>
 @endsection
- {{-- {{request()->route('id')}} --}}

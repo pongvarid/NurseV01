@@ -117,6 +117,13 @@ class CourseController extends Controller
         $course->save();
         LogsService::save($request->teacher,1,'ปิดรายวิชา');
     }
+    public function openCourse(Request $request, $id) //เปิดรายวิชา เก็บlog
+    {
+        $course =  Course::find($id);  
+        $course->fill($request->all());  
+        $course->save();
+        LogsService::save($request->teacher,1,'เปิดรายวิชา');
+    }
 
     public function register(Request $request) //ลงทะเบียนเรียน
     {
@@ -154,5 +161,10 @@ class CourseController extends Controller
        if(isset($check)){return 0;}
        else{return 1;} 
         
+    }
+    public function check_closeCourse($id) //ตรวจว่าวิชานี้ ปิดยัง
+    {
+        $check = Course::where('id',$id)->first();
+        return $check->state;
     }
 }

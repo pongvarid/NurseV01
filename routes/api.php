@@ -29,9 +29,11 @@ Route::resource('/teacher','Teacher\TeacherController');
 Route::resource('/course','Course\CourseController'); 
 Route::post('/course/{id}','Course\CourseController@update');
 Route::get('/check','Course\CourseController@check'); //ตรวจว่าลงเรียนยัง
+Route::get('/check_closeCourse/{id}','Course\CourseController@check_closeCourse'); //ตรวจว่าวิชานี้ ปิดยัง
 Route::post('/course_in','Course\CourseController@register'); //ลงทะเบียนเรียน
 Route::get('/course_in/{id}','Course\CourseController@getCourseIn'); //ดึงวิชาที่ลงบะเบียนเรียน
 Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิดรายวิชา
+Route::put('/open_course/{id}','Course\CourseController@openCourse'); //เปิดรายวิชา
 Route::get('/course_data/{id}','Course\CourseController@getCourse'); //ดึงข้อมูลรายวิชา
 Route::get('/search_course/{course}','Course\CourseController@searchCourse');//search
 Route::get('/view/coirse/{id}','Course\CourseController@viewCourse');

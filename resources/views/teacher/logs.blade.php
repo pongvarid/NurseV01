@@ -31,7 +31,7 @@ die();
                                           :items="logs"
                                           class="elevation-1"
                                         >
-                                        <template slot="items" slot-scope="data" v-if="data.item.user == <?php echo $id; ?>">
+                                        <template slot="items" slot-scope="data" >
                                             <td>@{{ data.item.event }}</td>
                                             <td>@{{ data.item.created_at }}</td>
                                         </template>
@@ -57,7 +57,7 @@ die();
   },
   methods: { 
     getLog(){
-        axios.get("/api/log_data?type=teacher")
+        axios.get("/api/log_data?type=teacher&&id=<?php echo $id; ?>")
         .then((r)=>{
             this.logs = r.data;
         }).catch((e)=>{

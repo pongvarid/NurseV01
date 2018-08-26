@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Course;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
-use App\Models\Logs;
+use App\Services\LogsService;
 use App\Http\Controllers\Controller;
 use App\Models\Exercised;
 use App\Services\StudentService;
@@ -41,14 +41,8 @@ class ExerciseController extends Controller
         $exercise = new Exercise();
         $exercise->fill($request->all());
         $save = $exercise->save();
-
-        $logs = new Logs();
-        $logs->user = $request->teacher;
-        $logs->type = 'teacher';
-        $logs->event = $request->event;
-        $logs_exercise = $logs->save();
-
-        if($save && $logs_exercise) return 1;
+        LogsService::save($request->teacher,1,$request->event);
+        if($save) return 1;
         else return 0;
          
     }
@@ -88,15 +82,10 @@ class ExerciseController extends Controller
         
         $exercise =  Exercise::find($id);
         $exercise->fill($request->all());
-         $save = $exercise->save();
-
-         $logs = new Logs();
-        $logs->user = $request->teacher;
-        $logs->type = 'teacher';
-        $logs->event = $request->event;
-        $logs_exercise = $logs->save();
-          if($save &&  $logs_exercise) return 1;
-          else return 0;
+        $save = $exercise->save();
+        LogsService::save($request->teacher,1,$request->event);
+        if($save) return 1;
+        else return 0;
     }
 
     /**

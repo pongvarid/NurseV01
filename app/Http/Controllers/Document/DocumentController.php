@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Document;
-use App\Models\Logs;
+use App\Services\LogsService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Document; 
@@ -39,12 +39,7 @@ class DocumentController extends Controller
         $document = new Document(); 
         $document->fill($request->all());  
         $document->save();
-
-        $logs = new Logs();
-        $logs->user = $request->teacher;
-        $logs->type = 'teacher';
-        $logs->event = 'สร้างเอกสาร';
-        $logs_document = $logs->save();
+        LogsService::save($request->teacher,1,'สร้างเอกสาร');
     }
 
     /**
@@ -83,12 +78,7 @@ class DocumentController extends Controller
         $document = Document::find($id);  
         $document->fill($request->all());  
         $document->save();
-
-        $logs = new Logs();
-        $logs->user = $request->teacher;
-        $logs->type = 'teacher';
-        $logs->event = 'แก้ไขเอกสาร';
-        $logs_document = $logs->save();      
+        LogsService::save($request->teacher,1,'แก้ไขเอกสาร');   
     }
 
     /**

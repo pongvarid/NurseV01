@@ -100,6 +100,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         },
         save(){
             this.preData();
+            this.exercise.event =  "แก้ไขแบบฝึกหัด เลือกตอบ";
              axios.put("/api/exercise/"+this.exercise.id,this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){

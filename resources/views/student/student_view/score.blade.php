@@ -19,15 +19,20 @@ else{
         <v-flex>
             <v-card>
                 <v-toolbar color="box-green" dark>
+                    <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
+                    <v-toolbar-title>กลับ</v-toolbar-title>
+                    <v-divider class="mx-2" inset vertical></v-divider>
+                    <v-spacer></v-spacer>
                     <v-icon>far fa-list-alt</v-icon>
                     <v-toolbar-title>คะแนนแบบฝึกหัด @{{student.FirstName_TH}}&nbsp;@{{student.LastName_TH}}</v-toolbar-title>
+
                 </v-toolbar>
                 <v-card-text>
                     <v-data-table :headers="headers" :items="score">
-                        <template slot="items" slot-scope="props">
+                        <template slot="items" slot-scope="props">   
                         <td>@{{ props.item.name }}</td>
                         <td>@{{ props.item.score }}</td> 
-                        <td>@{{ props.item.created_at.split(' ')[0] }}</td> 
+                        <td>@{{ props.item.created_at.split(' ')[0] }}</td>
                         </template>
                     </v-data-table>
                 </v-card-text>
@@ -67,6 +72,9 @@ else{
             alert('error:'+e);
         })
     },
+    backPage(){
+        window.history.back();
+    },
     load(){
         let result =  axios.get('/api/student/data/<?php echo $id; ?>')
       .then((r) => {
@@ -75,7 +83,6 @@ else{
           alert('error');
       });
         this.getScore();
-        this.showExercise();
     }
   },
   mounted(){

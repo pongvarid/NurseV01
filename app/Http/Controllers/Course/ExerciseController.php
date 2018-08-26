@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Course;
-use App\Models\Exercise;
-use Illuminate\Http\Request;
-use App\Services\LogsService;
+
 use App\Http\Controllers\Controller;
-use App\Models\Exercised;
-use App\Services\StudentService;
+use App\Models\Exercise;
+use App\Services\LogsService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class ExerciseController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -37,14 +38,17 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-     
+
         $exercise = new Exercise();
         $exercise->fill($request->all());
         $save = $exercise->save();
-        LogsService::save($request->teacher,1,$request->event);
-        if($save) return 1;
-        else return 0;
-         
+        LogsService::save($request->teacher, 1, $request->event);
+        if ($save) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
     /**
@@ -57,6 +61,12 @@ class ExerciseController extends Controller
     {
         $exercise = Exercise::where('course',$id)->get();
         return $exercise->toJson();
+        //$exercise = DB::table('exercise')
+      //      ->join('exercised', 'exercise.id', '=', 'exercised.course')
+       //     ->select('exercise.*', 'exercised.*')
+      //      ->where('exercise.course', '=', $id)
+      //      ->get();
+      //  return $exercise;
     }
 
     /**
@@ -67,7 +77,7 @@ class ExerciseController extends Controller
      */
     public function edit($id)
     {
-       
+
     }
 
     /**
@@ -79,13 +89,17 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $exercise =  Exercise::find($id);
+
+        $exercise = Exercise::find($id);
         $exercise->fill($request->all());
         $save = $exercise->save();
-        LogsService::save($request->teacher,1,$request->event);
-        if($save) return 1;
-        else return 0;
+        LogsService::save($request->teacher, 1, $request->event);
+        if ($save) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
     /**
@@ -95,7 +109,7 @@ class ExerciseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    { 
+    {
         $exercise = Exercise::find($id);
         return $exercise->destroy($id);
     }

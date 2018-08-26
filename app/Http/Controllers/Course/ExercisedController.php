@@ -94,4 +94,15 @@ class ExercisedController extends Controller
     {
         //
     }
+    public function checkExercised($id)
+    {
+        $exercised = Exercised::where('student', $id)->get();
+        return $exercised;
+    }
+    public function checkDate($id){
+        $exercise = Exercise::where('id', $id)->get();
+        
+        return $exercise ;
+
+    }
 }

@@ -135,6 +135,7 @@ die();
         window.location = "/course/profile/"+id;
     },
     updateTeacherProfile(){
+        this.teacher.teacher = "{{$id}}";
         let result =  axios.put('/api/teacher/'+this.teacher.id,this.teacher)
       .then((r) => { 
         alert('แก้ไขข้อมูลสำเร็จ');

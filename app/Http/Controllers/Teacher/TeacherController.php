@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Teacher;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Teacher; 
+use App\Models\Teacher;
+use App\Services\LogsService;
 
 class TeacherController extends Controller
 {
@@ -75,7 +76,8 @@ class TeacherController extends Controller
     {
         $teacher =  Teacher::find($id);  
         $teacher->fill($request->all());  
-        $teacher->save(); 
+        $teacher->save();
+        LogsService::save($request->teacher,1,'แก้ไขโปรไฟล์');
     }
 
     /**

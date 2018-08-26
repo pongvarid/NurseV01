@@ -266,18 +266,23 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     edit_course(){ //แก้ไขรายวิชา
         window.location = "/course/edit_course/{{request()->route('id')}}";
     },
-    close_course(){ //ปิดรายวิชา
-        axios.put("/api/close_course/{{request()->route('id')}}",this.close)
-        .then((r) => {
-            alert('ปิดรายวิชาเรีบยร้อยแล้ว');
-            window.location = "/teacher/profile/";
-        }).catch((e) => {
-            alert('error: '+e);
-        });
-        this.load();
+    close_course(close){ //ปิดรายวิชา
+        var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะปิดรายวิชา");
+        if(confirms){
+             axios.put("/api/close_course/{{request()->route('id')}}",this.close)
+            .then((r) => {
+                alert('ปิดรายวิชาเรีบยร้อยแล้ว');
+                window.location = "/teacher/profile/";
+            }).catch((e) => {
+                alert('error: '+e);
+            });
+            this.load();
+        }
     },
-    open_course(){ //เปิดรายวิชา
-        axios.put("/api/open_course/{{request()->route('id')}}",this.open)
+    open_course(open){ //เปิดรายวิชา
+        var confirms = confirm("คุณแน่ใจใช่ไหม ที่จะเปิดรายวิชา");
+        if(confirms){
+            axios.put("/api/open_course/{{request()->route('id')}}",this.open)
         .then((r) => {
             alert('เปิดรายวิชาเรีบยร้อยแล้ว');
             window.location = "/teacher/profile/";
@@ -285,6 +290,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             alert('error: '+e);
         });
         this.load();
+        }
     },
     getCheck(){ //เช็คว่ารายวิชานี้ ปิดหรือยัง
         let result =  axios.get("/api/check_closeCourse/{{request()->route('id')}}")

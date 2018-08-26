@@ -154,3 +154,7 @@ Route::get('/exercise/check/askfile/{id}', function () { //จัดการ do
 Route::get('/exercise/check/choice/{id}', function () { //จัดการ document
     return view('exercise.check.choice');
 });
+// score 
+Route::get('/student/score/{course}', function () { //จัดการ document
+    return view('student.student_view.score');
+});

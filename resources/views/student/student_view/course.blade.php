@@ -76,7 +76,7 @@ else{
                                     <p class="headline mb-0">@{{exercise.name}}</p>
                                     <div>@{{exercise.time}}</div>
                                 </v-list-tile-content>
-                                
+
                             </v-list-tile>
                             <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
                             <v-divider></v-divider>
@@ -93,7 +93,7 @@ else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-container>
-                    <v-btn block style="background-color:#683ECF;" dark>
+                    <v-btn block style="background-color:#683ECF;" dark @click="getScore">
                         <v-icon>far fa-clipboard</v-icon>&nbspคะแนน</v-btn>
                     <v-btn block style="background-color:#683ECF;" dark @click="studentDialog = true">
                         <v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
@@ -104,7 +104,7 @@ else{
         </v-flex>
     </v-layout>
 </v-container>
-
+<!-- open studentDialog-->
 <v-dialog v-model="studentDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
         <v-toolbar dark color="primary">
@@ -127,6 +127,8 @@ else{
         </div>
     </v-card>
 </v-dialog>
+<!-- end studentDialog-->
+<!-- opne studentDialogTA-->
 <v-dialog v-model="studentDialogTA" fullscreen hide-overlay transition="dialog-bottom-transition">
     <v-card>
         <v-toolbar dark color="primary">
@@ -149,6 +151,7 @@ else{
         </div>
     </v-card>
 </v-dialog>
+<!-- end studentDialogTA -->
 @endsection
  
 @section('vue_script')
@@ -169,6 +172,7 @@ else{
     teacher:{},
     studentDialog:false,
     studentDialogTA:false,
+    scoreDialog:false,
     student:{},
     courses:{},
     exercises:{},
@@ -255,12 +259,15 @@ else{
           this.timeEx = this.exercises.time;
           this.timeExercises = moment(this.timeEx).format('L');
           //this.dateLineTime = moment().format('[today] dddd');
-          
           this.day = moment().format('[today] dddd');
           //this.calendarTime = moment().subtract(this.exercises.time, 'days').calendar(); 
         }).catch((e)=>{
           alert('error: '+e);
         });
+      },
+      getScore(id){
+        window.location = "/student/score/"+this.courses.id;
+        //student/score/{id}
       },
       load(){
         this.getCourse();

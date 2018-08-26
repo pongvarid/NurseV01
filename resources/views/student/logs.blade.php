@@ -52,7 +52,7 @@ else{
     //count:1,
     logs:{},
     headers: [
-          { text: 'ประวัติ', value: 'event' },
+          { text: 'ประวัติ', value: 'event', sortable: false, },
           { text: 'วันที่', value: 'date' },
         ],
         pagination: {

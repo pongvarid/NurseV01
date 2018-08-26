@@ -29,6 +29,7 @@ die();
                                         <v-data-table
                                           :headers="headers"
                                           :items="logs"
+                                          :pagination.sync="pagination"
                                           class="elevation-1"
                                         >
                                         <template slot="items" slot-scope="data" >
@@ -52,8 +53,11 @@ die();
     logs:[],
     headers: [
           { text: 'ประวัติ', value: 'event', sortable: false, },
-          { text: 'วันที่', value: 'created_at' },
+          { text: 'วันที่', value: 'date' },
         ],
+        pagination: {
+          sortBy: 'date'
+        },
   },
   methods: { 
     getLog(){

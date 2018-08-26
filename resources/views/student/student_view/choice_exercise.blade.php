@@ -70,7 +70,7 @@ else{
     preData(){
         this.answerData.course = "{{request()->route('id')}}";
         this.answerData.type = '5'; 
-        this.answerData.student = '{{$_SESSION["student"]}}'; 
+        this.answerData.student = '{{$code}}'; 
         this.answerData.score = this.exercise.score; 
         this.answerData.answer = this.choiceToGo.toString(); 
     },

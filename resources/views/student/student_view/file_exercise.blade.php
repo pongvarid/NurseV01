@@ -61,7 +61,8 @@ else{
     preData(){
         this.answerData.course = "{{request()->route('id')}}";
         this.answerData.type = '3'; 
-        this.answerData.student = '{{$_SESSION["student"]}}'; 
+        this.answerData.student = "{{$code}}";
+        this.answerData.event = "ส่งแบบฝึกหัด แนบไฟล์";
         this.answerData.score = '0'; 
         this.answerData.answer = this.answer.toString(); 
     },

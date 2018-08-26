@@ -67,6 +67,8 @@ else{
     },
     save(){
         this.preData();
+        this.answerData.student = "<?php echo $code; ?>"; 
+        this.answerData.event = "ส่งแบบฝึกหัด ตอบถูกผิด"; 
         axios.post("/api/exercise/do/askanswer",this.answerData)
       .then((r) => {
  alert('ส่งานสำเร็จ');

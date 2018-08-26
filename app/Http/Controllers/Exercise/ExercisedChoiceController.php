@@ -59,7 +59,7 @@ class ExercisedChoiceController extends Controller
         $exercised->score =  $score;
         $exercised->save(); 
     
-        LogsService::save($request->student,2,'ส่งแบบฝึกหัดเลือกข้อถูก');
+        LogsService::save($request->student,2,'ส่งแบบฝึกหัด เลือกข้อถูก');
      
         return   $score;
        

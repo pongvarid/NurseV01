@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ExerciseAskAnswer;
 use App\Models\Exercise;
 use App\Models\Exercised;
+use App\Services\LogsService;
 use App\Services\StudentService;
 class ExercisedAskAnswerController extends Controller
 {
@@ -41,6 +42,7 @@ class ExercisedAskAnswerController extends Controller
         $exercised = new Exercised();
         $exercised->fill($request->all()); 
         $exercised->save();
+        LogsService::save($request->student,2,$request->event);
     }
 
     /**

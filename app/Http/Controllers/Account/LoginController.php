@@ -81,7 +81,7 @@ class LoginController extends Controller
            $_SESSION["user"] =  $session_id;
            $_SESSION["student"] = $request->username;
            $_SESSION["user_type"] = "student"; //ประเภท user
-           LogsService::save($request->username,1,'เข้าสู่ระบบ');
+           LogsService::save($request->username,2,'เข้าสู่ระบบ');
            return 1;
         }else{
             return 0;

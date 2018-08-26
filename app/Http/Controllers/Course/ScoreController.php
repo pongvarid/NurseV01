@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Course;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Exercise;
 use App\Models\Exercised;
-use App\Models\Student;
-use Symfony\Component\HttpKernel\Tests\Fixtures\Controller\NullableController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class ScoreController extends Controller
 {
     /**
@@ -52,27 +52,27 @@ class ScoreController extends Controller
     {
         $course = Course::find($id);
 
-        $exercise = new Exercise(); 
+        $exercise = new Exercise();
 
-        $exercise->data = $exercise->where('course',$course->id)->get(); 
-        $exercise->exercised = $this->mirror($exercise->where('course',$course->id)->get());
+        $exercise->data = $exercise->where('course', $course->id)->get();
+        $exercise->exercised = $this->mirror($exercise->where('course', $course->id)->get());
 
-        $course->exercise =   $exercise;
+        $course->exercise = $exercise;
 
-        return    $course->exercise;
-        
+        return $course->exercise;
+
     }
 
-
-    public function mirror($object){
+    public function mirror($object)
+    {
         $exerciseds = null;
-        $i=0;
-         foreach($object as $key){
+        $i = 0;
+        foreach ($object as $key) {
             $exercised = new Exercised();
-            $exerciseds[$i] = $exercised->where('course',$key->id)->get();
+            $exerciseds[$i] = $exercised->where('course', $key->id)->get();
             $i++;
-         }
-         return  $exerciseds;
+        }
+        return $exerciseds;
     }
 
     /**
@@ -107,5 +107,16 @@ class ScoreController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function showScore($id)
+    {
+        $scores = DB::table('course')
+            ->join('exercise', 'course.id', '=', 'exercise.course')
+            ->join('exercised', 'exercise.id', '=', 'exercised.course')
+            ->select( 'course.id', 'exercise.name', 'exercise.score', 'exercised.*')
+            ->where('exercise.course', '=', $id)
+            ->get();
+            return $scores;
+
     }
 }

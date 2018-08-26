@@ -17,7 +17,21 @@ else{
 <v-container grid-list-md>
     <v-layout row wrap>
         <v-flex>
-            @{{score}}
+            <v-card>
+                <v-toolbar color="box-green" dark>
+                    <v-icon>far fa-list-alt</v-icon>
+                    <v-toolbar-title>คะแนนแบบฝึกหัด @{{student.FirstName_TH}}&nbsp;@{{student.LastName_TH}}</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
+                    <v-data-table :headers="headers" :items="score">
+                        <template slot="items" slot-scope="props">
+                        <td>@{{ props.item.name }}</td>
+                        <td>@{{ props.item.score }}</td> 
+                        <td>@{{ props.item.created_at.split(' ')[0] }}</td> 
+                        </template>
+                    </v-data-table>
+                </v-card-text>
+            </v-card>
         </v-flex>
     </v-layout>
 </v-container>
@@ -35,16 +49,18 @@ else{
     },
     student:{},
     logs:[],
-    score:{},
+    score:[],
+    exercise_score:[],
     headers: [
-          { text: 'แบบฝึกหัด', value: 'event', sortable: false, },
-          { text: 'คะแนน', value: 'date', sortable: false,},
+          { text: 'แบบฝึกหัด', value: 'name', sortable: false, },
+          { text: 'คะแนน', value: 'score', sortable: false,},
+          { text: 'วันที่ส่ง', value: 'created_at', sortable: false,},
         ],
-        exercised: {  },
+        data: [],
   },
   methods: { 
     getScore(){
-        axios.get("/api/score/{{request()->route('course')}}")
+        axios.get("/api/show_score/{{request()->route('course')}}")
         .then((r)=>{
             this.score = r.data;
         }).catch((e)=>{
@@ -59,6 +75,7 @@ else{
           alert('error');
       });
         this.getScore();
+        this.showExercise();
     }
   },
   mounted(){

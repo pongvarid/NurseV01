@@ -73,4 +73,6 @@ Route::resource('/exercise/do/choice','Exercise\ExercisedChoiceController');
 /* Log */
 Route::get('/log_data','Logs\LogsController@getLogs');
 
+/* score */
 Route::resource('/score','Course\ScoreController');  
+Route::get('/show_score/{id}','Course\ScoreController@showScore');

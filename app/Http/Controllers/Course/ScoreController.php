@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Course;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseIn;
 use App\Models\Exercise;
+use App\Models\Student;
 use App\Models\Exercised;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,40 +52,47 @@ class ScoreController extends Controller
      */
     public function show($id)
     {
-        $export = DB::table('course')
-        ->join('exercise', 'course.id', '=', 'exercise.course')
-        ->join('exercised', 'exercise.id', '=', 'exercised.course')
-        ->join('student', 'exercised.student', '=', 'student.username')
-        ->select( 'student.username', 'student.data', 'exercise.name', 'exercised.*')
-        ->where('exercise.course', '=', $id)
-        ->orderBy('student.username', 'ASC')
-        // ->groupBy('student.username')
-        // ->distinct()
-        ->get();
-        return $export;
+          
+        $course = Course::find($id);
+        $course->in = $this->mapping_coursein($id);
+        $course->exercise = $this->mapping_exercised($this->mapping_exercise($id));
 
-        // $course = Course::find($id);
-
-        // $exercise = new Exercise();
-        // $exercise->data = $exercise->where('course', $course->id)->get();
-        // $exercise->exercised = $this->mirror($exercise->where('course', $course->id)->get());
-        // $course->exercise = $exercise;
-
-        // return $course->exercise;
+        return   $course;
 
     }
+    public function mapping_coursein($id){
+        $coursein = CourseIn::where('course',$id)->get();
+      
+        return   $this->mapping_student($coursein);
+    }
 
-    // public function mirror($object)
-    // {
-    //     $exerciseds = null;
-    //     $i = 0;
-    //     foreach ($object as $key) {
-    //         $exercised = new Exercised();
-    //         $exerciseds[$i] = $exercised->where('course', $key->id)->get();
-    //         $i++;
-    //     }
-    //     return $exerciseds;
-    // }
+    public function mapping_exercise($id){
+        $exercise = Exercise::where('course',$id)->get();
+        return  $exercise ;
+    }
+
+    public function mapping_exercised($exercise){
+        $i=0;
+         foreach($exercise as $key){
+            //$exercise[$i]->exercised =  $this->mapping_student(Exercised::where('course',$key->id)->get());
+            $exercise[$i]->exercised = Exercised::where('course',$key->id)->get();
+            $i++;
+         }
+
+         return $exercise;
+       
+    }
+
+    public function mapping_student($coursein){
+        $i=0;
+        foreach($coursein as $key){
+            $coursein[$i]->student = Student::where('username',$key->student)->first();
+            $i++;
+        }
+
+        return $coursein;
+    }
+
 
     /**
      * Show the form for editing the specified resource.

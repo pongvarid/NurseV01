@@ -32,7 +32,7 @@ else{
                         <template slot="items" slot-scope="props">   
                         <td>@{{ props.item.name }}</td>
                         <td>@{{ props.item.score }}</td> 
-                        <td>@{{ props.item.created_at.split(' ')[0] }}</td>
+                        <td>@{{ timeconvert(props.item.created_at.split(' ')[0]) }}</td>
                         </template>
                     </v-data-table>
                 </v-card-text>
@@ -72,6 +72,13 @@ else{
             alert('error:'+e);
         })
     },
+    timeconvert(time){
+          let convertTime = null;
+          //ti = moment("20180830", "YYYYMMDD").fromNow();
+          //ti = moment().endOf(time).fromNow(); 
+          convertTime = moment(time).format('L');
+          return convertTime;
+      },
     backPage(){
         window.history.back();
     },

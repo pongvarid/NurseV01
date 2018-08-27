@@ -14,8 +14,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-layout row wrap>
                 <v-flex d-flex>
                     <v-card>
-                        <v-toolbar color="indigo" dark>
-                            <v-icon>fas fa-align-justify </v-icon>
+                        <v-toolbar color="box-blue" dark>
+                            <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
+                            <v-toolbar-title>กลับ</v-toolbar-title>
+                            <v-divider class="mx-2" inset vertical></v-divider>
+                            <v-spacer></v-spacer>
+                            <v-icon>fas fa-book-open</v-icon>
                             <v-toolbar-title>จัดการเอกสาร</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn color="primary" dark @click.stop="dialog = true">

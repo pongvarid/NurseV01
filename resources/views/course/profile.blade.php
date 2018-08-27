@@ -100,7 +100,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 <v-divider></v-divider>
                 <center>
                 <v-container>
-                    <v-btn block style="background-color:#683ECF;" dark > <v-icon>far fa-clipboard</v-icon>&nbsp คะแนน</v-btn>
+                    <v-btn block style="background-color:#683ECF;" dark @click="goto_ExportPage()"> <v-icon>far fa-clipboard</v-icon>&nbsp คะแนน</v-btn>
                     <v-btn block style="background-color:#683ECF;" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
                     <v-btn block style="background-color:#683ECF;" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
                 </v-container>
@@ -234,6 +234,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     submit_choice(){
         window.location = "/course/exercise/choice/{{request()->route('id')}}";
+    },
+    goto_ExportPage(){
+        window.open("/course/export/{{request()->route('id')}}", '_blank');
     },
     goto_editExercisePage(id,type){ //แก้ไขแบบฝึกหัดตอบถูกผิด
         if(type == '1'){

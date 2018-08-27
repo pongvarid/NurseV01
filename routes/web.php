@@ -158,3 +158,8 @@ Route::get('/exercise/check/choice/{id}', function () { //จัดการ doc
 Route::get('/student/score/{course}', function () { //จัดการ document
     return view('student.student_view.score');
 });
+
+//--------EXPORT-------------------------------------------------------------------------------
+Route::get('/course/export/{id}', function () { //จัดการ document
+    return view('teacher.export');
+});

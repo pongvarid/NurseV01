@@ -28,16 +28,16 @@ else{
                             <v-text-field v-model="courses.name.split(',')[1]" label="ชื่อรายวิชา" outline append-icon="place" readonly></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.code" label="รหัสรายวิชา" outline append-icon="place" readonly></v-text-field>
+                            <v-text-field v-model="courses.code" label="รหัสรายวิชา" outline append-icon="fas fa-dice" readonly></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="courses.year" label="ปีการศึกษา" outline append-icon="place" readonly></v-text-field>
+                            <v-text-field v-model="courses.year" label="ปีการศึกษา" outline append-icon="far fa-calendar-alt" readonly></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="teacher.name" label="อาจารย์" outline append-icon="place" readonly></v-text-field>
+                            <v-text-field v-model="teacher.name" label="อาจารย์" outline append-icon="fas fa-user-tie" readonly></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md3>
-                            <v-text-field v-model="time" label="วันที่เปิดรายวิชา" outline append-icon="place" readonly></v-text-field>
+                            <v-text-field v-model="time" label="วันที่เปิดรายวิชา" outline append-icon="far fa-clock" readonly></v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-card-text>

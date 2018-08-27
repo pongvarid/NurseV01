@@ -50,30 +50,40 @@ class ScoreController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id);
+        $export = DB::table('course')
+        ->join('exercise', 'course.id', '=', 'exercise.course')
+        ->join('exercised', 'exercise.id', '=', 'exercised.course')
+        ->join('student', 'exercised.student', '=', 'student.username')
+        ->select( 'student.username', 'student.data', 'exercise.name', 'exercised.*')
+        ->where('exercise.course', '=', $id)
+        ->orderBy('student.username', 'ASC')
+        // ->groupBy('student.username')
+        // ->distinct()
+        ->get();
+        return $export;
 
-        $exercise = new Exercise();
+        // $course = Course::find($id);
 
-        $exercise->data = $exercise->where('course', $course->id)->get();
-        $exercise->exercised = $this->mirror($exercise->where('course', $course->id)->get());
+        // $exercise = new Exercise();
+        // $exercise->data = $exercise->where('course', $course->id)->get();
+        // $exercise->exercised = $this->mirror($exercise->where('course', $course->id)->get());
+        // $course->exercise = $exercise;
 
-        $course->exercise = $exercise;
-
-        return $course->exercise;
+        // return $course->exercise;
 
     }
 
-    public function mirror($object)
-    {
-        $exerciseds = null;
-        $i = 0;
-        foreach ($object as $key) {
-            $exercised = new Exercised();
-            $exerciseds[$i] = $exercised->where('course', $key->id)->get();
-            $i++;
-        }
-        return $exerciseds;
-    }
+    // public function mirror($object)
+    // {
+    //     $exerciseds = null;
+    //     $i = 0;
+    //     foreach ($object as $key) {
+    //         $exercised = new Exercised();
+    //         $exerciseds[$i] = $exercised->where('course', $key->id)->get();
+    //         $i++;
+    //     }
+    //     return $exerciseds;
+    // }
 
     /**
      * Show the form for editing the specified resource.

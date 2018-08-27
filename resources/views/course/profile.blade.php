@@ -24,7 +24,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <h5> @{{courses.code}}</h5>
                     <v-divider></v-divider>
                     <v-card-text>
-                        <v-btn color="warning" @click="edit_course()"> แก้ไข &nbsp <v-icon>fas fa-pen</v-icon></v-btn>
+                        <v-btn color="warning" @click="edit_course()"> แก้ไข &nbsp
+                            <v-icon>fas fa-pen</v-icon>
+                        </v-btn>
                         <v-btn color="red" @click="close_course()" v-if="dataCheck==1" dark>ปิด
                             <v-icon dark right>block</v-icon>
                         </v-btn>
@@ -34,11 +36,18 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </center>
                 <v-divider></v-divider>
                 <v-list two-line subheader class="mrl-20">
-                    <h5> <v-icon>far fa-address-card</v-icon> &nbsp ไอดีอาจารย์ : @{{courses.id}}</h5>
-                    <h5> <v-icon>far fa-calendar-alt</v-icon> &nbsp ปีการศึกษา : @{{courses.year}}</h5>
-                    <h5> <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : @{{courses.state}}</h5>
-                    <h5> <v-icon>fas fa-user-edit</v-icon> &nbsp สร้างเมื่อ : @{{courses.created_at}}</h5>
-                    <h5> <v-icon>fas fa-user-cog</v-icon> &nbsp เเก้ไข : @{{courses.updated_at}}</h5>
+                    <h5>
+                        <v-icon>far fa-address-card</v-icon> &nbsp ไอดีอาจารย์ : @{{courses.id}}</h5>
+                    <h5>
+                        <v-icon>far fa-calendar-alt</v-icon> &nbsp ปีการศึกษา : @{{courses.year}}</h5>
+                    <h5 v-if="courses.state == 1">
+                        <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : อาจารย์</h5>
+                    <h5 v-if="courses.state == 0">
+                        <v-icon>fas fa-user-tie</v-icon> &nbsp สถานะ : อาจารย์/แอดมิน</h5>
+                    <h5>
+                        <v-icon>fas fa-user-edit</v-icon> &nbsp สร้างเมื่อ : @{{timeconvert(courses.created_at)}}</h5>
+                    <h5>
+                        <v-icon>fas fa-user-cog</v-icon> &nbsp เเก้ไข : @{{timeconvert(courses.updated_at)}}</h5>
 
                 </v-list>
                 </v-card-text>
@@ -47,19 +56,21 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                        <v-icon>fas fa-user-circle</v-icon>
+                    <v-icon>fas fa-user-circle</v-icon>
                     <v-toolbar-title>เมนู</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-list two-line subheader>
-                  
-                    <h3>&nbsp;<v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3><br>
+
+                    <h3>&nbsp;
+                        <v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3>
                     <v-container>
-                        <v-btn block color="success" @click="checkExercise()"><v-icon>fas fa-check-circle </v-icon>&nbsp <b>ตรวจข้อสอบ</b></v-btn>
-                        <v-divider></v-divider>
-                        <v-btn block color="primary" @click="submit_ask()"><v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
-                        <v-btn block color="primary" @click="submit_choice()"><v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
-                        <v-btn block color="primary" @click="submit_askfile()"><v-icon>fas fa-paperclip</v-icon>&nbspแนบไฟล์</v-btn>
+                        <v-btn block color="primary" @click="submit_ask()">
+                            <v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>
+                        <v-btn block color="primary" @click="submit_choice()">
+                            <v-icon>fas fa-list-ul</v-icon>&nbspเลือกตอบ</v-btn>
+                        <v-btn block color="primary" @click="submit_askfile()">
+                            <v-icon>fas fa-paperclip</v-icon>&nbspแนบไฟล์</v-btn>
                     </v-container>
                     <v-divider></v-divider>
                     <div v-for="exercise in exercises">
@@ -67,7 +78,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                             <v-list-tile-content>
                                 <v-layout style="width:100%;" row>
                                     <v-flex xs8 @click="goto_editExercisePage(exercise.id,exercise.type)">
-                                        <v-list-tile-title class="mrt-10 pointer"><b>@{{exercise.name}}</b>@{{getExerciseType(exercise.type)}} </v-list-tile-title>
+                                        <v-list-tile-title class="mrt-10 pointer"><b>@{{exercise.name}}</b>&nbsp@{{getExerciseType(exercise.type)}} </v-list-tile-title>
 
                                     </v-flex>
                                     <v-flex xs2>
@@ -99,15 +110,22 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-toolbar>
                 <v-divider></v-divider>
                 <center>
-                <v-container>
-                    <v-btn block style="background-color:#683ECF;" dark @click="goto_ExportPage()"> <v-icon>far fa-clipboard</v-icon>&nbsp คะแนน</v-btn>
-                    <v-btn block style="background-color:#683ECF;" dark  @click="studentDialog = true"><v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
-                    <v-btn block style="background-color:#683ECF;" dark  @click="TADialog = true"><v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
-                </v-container>
+                    <v-container>
+                        <v-btn block style="background-color:#683ECF;" dark @click="goto_ExportPage()">
+                            <v-icon>far fa-clipboard</v-icon>&nbsp คะแนน</v-btn>
+                        <v-btn block style="background-color:#683ECF;" dark @click="studentDialog = true">
+                            <v-icon>fas fa-user-graduate</v-icon>&nbspข้อมูลนิสิต</v-btn>
+                        <v-btn block style="background-color:#683ECF;" dark @click="TADialog = true">
+                            <v-icon>fas fa-user-shield</v-icon>&nbspข้อมูล TA</v-btn>
+                    </v-container>
                 </center>
-                <v-divider></v-divider> 
-                <h3>&nbsp;<v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร  </h3>
-                <v-container><v-btn block color="yellow" @click="document()"><v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn></v-container>
+                <v-divider></v-divider>
+                <h3>&nbsp;
+                    <v-icon>far fa-folder-open</v-icon>&nbsp เอกสาร </h3>
+                <v-container>
+                    <v-btn block color="yellow" @click="document()">
+                        <v-icon>fas fa-plus</v-icon>&nbsp จัดการเอกสาร </v-btn>
+                </v-container>
                 <v-divider></v-divider>
             </v-card>
         </v-flex>
@@ -129,12 +147,12 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <br><br>
         <div v-for="students in student">
             <div v-if="students.permission == 1">
-            <v-container>
-                <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                <v-container>
+                    <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 
-                <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
-                </p>
-            </v-container>
+                    <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                    </p>
+                </v-container>
                 <v-divider></v-divider>
             </div>
         </div>
@@ -160,11 +178,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <div v-for="students in student">
             <div v-if="students.permission == 2">
                 <v-container>
-                <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
+                    <h5>(@{{JSON.parse(students.studentIn.data).StudentCode}}) @{{JSON.parse(students.studentIn.data).FirstName_TH}}&nbsp;@{{JSON.parse(students.studentIn.data).LastName_TH}}</h5>
 
-                <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
-                </p>
-            </v-container>
+                    <p><b>@{{JSON.parse(students.studentIn.data).FacultyName_TH}}</b>@{{JSON.parse(students.studentIn.data).CourseName_TH}}
+                    </p>
+                </v-container>
                 <v-divider></v-divider>
             </div>
         </div>
@@ -196,6 +214,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
   },
   methods: { 
+    timeconvert(time){
+          convertTime = moment(time).format('L');
+          return convertTime;
+      },
     addTA(){
           axios.put("/api/course_in/addTA/"+this.dataDB.student,this.dataDB)
           .then(function(response) {
@@ -251,11 +273,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     getExerciseType(type){
         if(type == '1'){
-            return "(แบบ ถาม-ตอบ)";
+            return "(แบบ ตอบถูกผิด)";
         }else if(type == '2'){
-            return "(แบบ เลือกข้อถูก)";
+            return "(แบบ เลือกตอบ)";
         }else if(type == '3'){
-            return "(แบบ สั่งงาน)";
+            return "(แบบ แนบไฟล์)";
         }else{
             return "(อื่นๆ)";
         }

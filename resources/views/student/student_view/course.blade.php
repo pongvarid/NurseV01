@@ -70,34 +70,53 @@ else{
                 </v-toolbar>
                 <v-card-text>
                     <v-card-text>
-
                         {{--
                         <pre>@{{exercised}}</pre>
-                        <pre>@{{exercises}}</pre>
-                        <div>@{{checkexercised[0].course}}</div>--}}
-                        <div v-for="exercise in exercises" v-if="checkexercised[0].course == exercise.id">
-                            <v-list-tile avatar>
-                                <v-list-tile-content>
-                                    <p class="headline mb-0">
-                                        <v-icon color="green">fas fa-check</v-icon> @{{exercise.name}}</p>
-                                    <div>ส่งแล้ว วันที่ @{{checkexercised[0].created_at.split(' ')[0]}}</div>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                            <v-divider></v-divider>
+                        <pre>@{{exercises}}</pre>--}}
+                        <div v-for="exercise in exercises" v-if="checkexercised">
+                            <div v-if="checkexercised[0].course == exercise.id">
+                                <v-list-tile avatar>
+                                    <v-list-tile-content>
+                                        <p class="headline mb-0">
+                                            <v-icon color="green">fas fa-check</v-icon> @{{exercise.name}}</p>
+                                        <div>ส่งแล้ว วันที่ @{{timeconvert(checkexercised[0].created_at.split(' ')[0])}}</div>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <v-divider></v-divider>
+                            </div>
                         </div>
-                        {{--
-                        <pre>@{{exercises[0].id}}</pre> @{{checkexercised[0].course}} --}}
-
-                        <div v-for="exercise in exercises" v-if="checkexercised[0].course != exercise.id">
-                            <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
-                                <v-list-tile-content>
-                                    <p class="headline mb-0">@{{exercise.name}}</p>
-                                    <div>@{{exercises[0].id}} @{{time.timeExercises}}</div>
-
-                                </v-list-tile-content>
-                            </v-list-tile>
-                            <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
-                            <v-divider></v-divider>
+                        <div v-for="exercise,index in exercises" v-if="checkexercised[0].course != exercise.id">
+                            <div v-if="datecount(exercise.time)>0">
+                                <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
+                                    <v-list-tile-content>
+                                        <p class="headline mb-0">@{{exercise.name}} </p>
+                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                <v-divider></v-divider>
+                            </div>
+                            <div v-if="datecount(exercise.time)==0">
+                                <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
+                                    <v-list-tile-content>
+                                        <p class="headline mb-0">@{{exercise.name}} </p>
+                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                <v-divider></v-divider>
+                            </div>
+                            <div v-if="datecount(exercise.time)<0">
+                                <v-list-tile avatar>
+                                    <v-list-tile-content>
+                                        <p class="headline mb-0">
+                                            <v-icon color="red">fas fa-times-circle</v-icon> @{{exercise.name}} </p>
+                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                <v-divider></v-divider>
+                            </div>
                         </div>
                     </v-card-text>
                 </v-card-text>
@@ -193,8 +212,9 @@ else{
     scoreDialog:false,
     student:{},
     courses:{},
-    exercises:[],
-    checkexercised:[],
+    exercises:{},
+    checkexercised:{},
+    countconvertTime:{},
     studentChack:{},
     register:{
         student:"{{$_SESSION['student']}}",
@@ -270,26 +290,50 @@ else{
       getTaIsMine(){
         let result = axios.get("/api/coursein/{{$code}}/edit?course={{request()->route('id')}}")
         .then((r)=>{
-            this.taIsMine = r.data;
-           
+            this.taIsMine = r.data;         
         }).catch((e)=>{
           alert('error: '+e);
         });      
+      },
+      timeconvert(time){
+          let convertTime = null;
+          //ti = moment("20180830", "YYYYMMDD").fromNow();
+          //ti = moment().endOf(time).fromNow(); 
+          convertTime = moment(time).format('L');
+          return convertTime;
+      },
+      timecount(time){
+          let countTime = null;
+          convert = time.split('-')[0]+time.split('-')[1]+time.split('-')[2];
+          countconvertTime = Number( convert - <?php echo date("Ymd");?>) ;
+          if(countconvertTime > 0){
+            return  countTime = countconvertTime+" วัน"; 
+            //this.countconvertTime ;
+            //countTime = moment(time, "YYYYMMDD", 'th').endOf(time).fromNow();
+          }
+          else if(countconvertTime == 0){
+            return countTime = "วันนี้";
+          //  this.countconvertTime;
+          }
+          else if(countconvertTime < 0){
+            return  countTime = "หมดเวลา"; 
+         //   this.countconvertTime;
+          }
+      },
+      datecount(time){
+          let countTime = null;
+          convert = time.split('-')[0]+time.split('-')[1]+time.split('-')[2];
+          countconvertDate = Number( convert - <?php echo date("Ymd");?>) ;
+          return countconvertDate;
       },
       getExercise(){
         let result = axios.get("/api/exercise_data/{{request()->route('id')}}")
         .then((r)=>{
           this.exercises = r.data;
           // date
-          this.timeEx = String(this.exercises.time);
-          //this.timeExercises = moment().endOf('day').fromNow(); 
-          //this.timeExercises = moment(this.timeEx).format('L');
-          //this.day = moment(this.timeEx).format('L');
-
           let result = axios.get("/api/check_exercised/<?php echo $code; ?>")
         .then((r)=>{
           this.checkexercised = r.data;
-          this.timeexercised = this.checkexercised[0].created_at.split(' ')[0];
         }).catch((e)=>{
           alert('error: '+e);
         });

@@ -60,7 +60,7 @@ class ExerciseController extends Controller
     public function show($id)
     {
         $exercise = Exercise::where('course',$id)->get();
-        return $exercise->toJson();
+        return $exercise;
         //$exercise = DB::table('exercise')
       //      ->join('exercised', 'exercise.id', '=', 'exercised.course')
        //     ->select('exercise.*', 'exercised.*')

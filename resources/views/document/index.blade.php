@@ -129,6 +129,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             dialog: false,
             },
             methods: { 
+                backPage(){
+                    window.history.back();
+                },
                 dialogClose(){
                     this.dataDB = {};
                     this.update = false;

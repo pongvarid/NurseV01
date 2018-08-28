@@ -120,6 +120,7 @@ else{
                                         <div>ส่งแล้ว วันที่ @{{timeconvert(checkexercised[0].created_at.split(' ')[0])}}</div>
                                     </v-list-tile-content>
                                 </v-list-tile>
+                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
                                 <v-divider></v-divider>
                             </div>
                         </div>

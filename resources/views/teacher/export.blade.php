@@ -186,9 +186,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         {
            
             if(this.datas.exercise[i].id == exerciseID ){
+ 
                 score = this.getScoreByExercised(this.datas.exercise[i].exercised,studentID);
+                
             }else{
-                continue;
+           
             }
           
         }
@@ -196,13 +198,14 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
 
     getScoreByExercised(exercised,studentID){
-
-        for(let i=0; i < exercised.length;i++){ 
+       
+        for(let i=0; i < exercised.length; i++){ 
+            console.log(i);
             if(exercised[i].student == studentID){
-                
+              
                 return exercised[i].score;
             }else{
-                return 0;
+                
             }
         }
 

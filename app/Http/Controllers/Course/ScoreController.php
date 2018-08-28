@@ -127,13 +127,13 @@ class ScoreController extends Controller
     {
         //
     }
-    public function showScore($id)
+    public function showScore($id,$student)
     {
         $scores = DB::table('course')
             ->join('exercise', 'course.id', '=', 'exercise.course')
             ->join('exercised', 'exercise.id', '=', 'exercised.course')
             ->select( 'course.id', 'exercise.name', 'exercise.score', 'exercised.*')
-            ->where('exercise.course', '=', $id)
+            ->where('exercise.course', '=', $id)->where('exercised.student', '=', $student)
             ->get();
             return $scores;
 

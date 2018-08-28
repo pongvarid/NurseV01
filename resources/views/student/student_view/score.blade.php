@@ -65,7 +65,7 @@ else{
   },
   methods: { 
     getScore(){
-        axios.get("/api/show_score/{{request()->route('course')}}")
+        axios.get("/api/show_score/{{request()->route('course')}}&<?php echo $code?>")
         .then((r)=>{
             this.score = r.data;
         }).catch((e)=>{

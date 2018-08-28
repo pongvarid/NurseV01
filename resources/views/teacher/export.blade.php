@@ -175,7 +175,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     countScore(studentID){
         let score =0;
         for(let i=0; i < this.datas.exercise.length;i++){
-            score+= Number(this.getScoreByExercised(this.datas.exercise[i].exercised,studentID));
+            console.log(Number(this.getScoreByExercised(this.datas.exercise[i].exercised,studentID)));
+            if(!isNaN(Number(this.getScoreByExercised(this.datas.exercise[i].exercised,studentID))) ){
+                score+= Number(this.getScoreByExercised(this.datas.exercise[i].exercised,studentID));
+            }
+         
         }
         return score;
     }, 
@@ -190,7 +194,10 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 score = this.getScoreByExercised(this.datas.exercise[i].exercised,studentID);
                 
             }else{
-           
+
+
+                continue;
+
             }
           
         }

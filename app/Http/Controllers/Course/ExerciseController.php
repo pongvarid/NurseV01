@@ -60,7 +60,7 @@ class ExerciseController extends Controller
     public function show($id)
     {
         $exercise = Exercise::where('course', $id)
-        ->orderBy('time', 'desc')
+        ->orderBy('created_at', 'desc')
         ->get();
         return $exercise;
         //$exercise = DB::table('exercise')

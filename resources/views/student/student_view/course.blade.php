@@ -72,21 +72,6 @@ else{
                     <v-card-text>
                         {{--
                         <pre>@{{checkexercised[2].course}}</pre> --}}
-                        <div v-for="exercise, index in exercises" v-if="checkexercised">
-                            {{--
-                            <pre>@{{index}}</pre> --}}
-                            <div v-for="exercised in checkexercised" v-if="exercised.course == exercise.id">
-                                <v-list-tile avatar>
-                                    <v-list-tile-content>
-                                        <p class="headline mb-0">
-                                            <v-icon color="green">fas fa-check</v-icon> @{{exercise.name}}</p>
-                                        <div>ส่งแล้ว วันที่ @{{timeconvert(checkexercised[0].created_at.split(' ')[0])}}</div>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <v-divider></v-divider>
-                            </div>
-                        </div>
-
                         <div v-for="exercise,index in exercises">
                             <div v-if="checkED(exercise.id)">
                                 {{--
@@ -123,8 +108,21 @@ else{
                                     <v-divider></v-divider>
                                 </div>
                             </div>
-
+                        </div>
+                        <div v-for="exercise, index in exercises" v-if="checkexercised">
+                            {{--
+                            <pre>@{{index}}</pre> --}}
+                            <div v-for="exercised in checkexercised" v-if="exercised.course == exercise.id">
+                                <v-list-tile avatar>
+                                    <v-list-tile-content>
+                                        <p class="headline mb-0">
+                                            <v-icon color="green">fas fa-check</v-icon> @{{exercise.name}}</p>
+                                        <div>ส่งแล้ว วันที่ @{{timeconvert(checkexercised[0].created_at.split(' ')[0])}}</div>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                                <v-divider></v-divider>
                             </div>
+                        </div>
                     </v-card-text>
                 </v-card-text>
             </v-card>

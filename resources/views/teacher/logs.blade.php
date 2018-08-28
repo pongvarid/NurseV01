@@ -21,7 +21,7 @@ die();
                 <v-flex d-flex>
                     <v-card>
                         <v-toolbar color="box-green" dark>
-                            <v-icon>far fa-list-alt</v-icon>
+                            <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
                             <v-toolbar-title>ประวัติ</v-toolbar-title>
                         </v-toolbar>
                         <v-card-text>
@@ -60,6 +60,9 @@ die();
         },
   },
   methods: { 
+    backPage(){
+            window.location=document.referrer;
+    },
     getLog(){
         axios.get("/api/log_data?type=teacher&&id=<?php echo $id; ?>")
         .then((r)=>{

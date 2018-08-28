@@ -231,7 +231,6 @@ else{
   methods: {
     checkED(tmp){
         let y = '';
-        let z =''; 
         for(let i=0; i<this.checkexercised.length;i++){
             if(tmp == this.checkexercised[i].course){
                 y = tmp;

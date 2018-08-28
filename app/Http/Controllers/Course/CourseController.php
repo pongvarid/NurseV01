@@ -130,6 +130,7 @@ class CourseController extends Controller
         $register = new CourseIn();
         $register->fill($request->all());
         $save = $register->save();
+        LogsService::save($request->student,2,'ลงทะเบียนเรียน');
         if($save) return 1;
         else return 0;
     }

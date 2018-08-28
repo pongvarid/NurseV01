@@ -17,8 +17,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex>
           <v-card>
             <v-toolbar color="box-purple" dark>
-              <v-icon>fas fa-align-justify </v-icon>
-              <v-toolbar-title>รายวิชา</v-toolbar-title>
+              <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
+              <v-toolbar-title>กลับ</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-text-field v-model="search" label="ค้นหา" single-line hide-details></v-text-field>
               <v-btn @click="searchCouse()">ค้นหา</v-btn>
@@ -79,6 +79,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     tmp:[],
   },
 methods: {
+  backPage(){
+            window.location=document.referrer;
+    },
   searchCouse(){
     axios.get("/api/search_course/"+this.search)
     .then((r) => {

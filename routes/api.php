@@ -35,6 +35,7 @@ Route::get('/course_in/{id}','Course\CourseController@getCourseIn'); //ดึง
 Route::put('/close_course/{id}','Course\CourseController@closeCourse'); //ปิดรายวิชา
 Route::put('/open_course/{id}','Course\CourseController@openCourse'); //เปิดรายวิชา
 Route::get('/course_data/{id}','Course\CourseController@getCourse'); //ดึงข้อมูลรายวิชา
+Route::get('/course_id/{id}','Course\CourseController@getCourseId'); //ดึงข้อมูลรายวิชาid โยนid แบบฝึกหัด
 Route::get('/search_course/{course}','Course\CourseController@searchCourse');//search
 Route::get('/view/coirse/{id}','Course\CourseController@viewCourse');
 Route::resource('/logs','Logs\LogsController');

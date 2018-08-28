@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Course;
 use App\Models\Course;
 use App\Models\CourseIn;
 use App\Models\Teacher;
+use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\LogsService;
@@ -167,5 +168,11 @@ class CourseController extends Controller
     {
         $check = Course::where('id',$id)->first();
         return $check->state;
+    }
+
+    public function getCourseId($id)
+    {
+        $id = Exercise::where('id',$id)->first();
+        return $id->course;
     }
 }

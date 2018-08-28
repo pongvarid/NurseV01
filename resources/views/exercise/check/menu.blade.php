@@ -23,7 +23,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm12>
             <v-card color="">
                 <v-toolbar color="indigo" dark>
-                    <v-icon>fas fa-user-circle </v-icon>
+                    <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
                     <v-toolbar-title>ตรวจแบบฝึกหัด</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
@@ -70,8 +70,20 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     el:"#app",
     data:{
         exercises:{},
+        courses:{},
     },
     methods:{
+        backPage(){
+            window.location = "/course/profile/"+this.courses;
+    },
+    getCourseId(){
+            let result =  axios.get("/api/course_id/{{request()->route('id')}}")
+      .then((r) => {
+          this.courses = r.data; 
+      }).catch((e) => { 
+          alert('error: '+e);
+      });
+        },
         getExercise(){
             let result =  axios.get("/api/exercised/{{request()->route('id')}}")
       .then((r) => {
@@ -83,6 +95,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
         load(){
           this.getExercise();
+          this.getCourseId();
         }
     },
 

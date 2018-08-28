@@ -19,14 +19,14 @@ else{
         <v-flex d-flex xs12 sm12>
             <v-card color="">
                 <v-toolbar color="indigo" dark>
-                    <v-icon>fas fa-user-circle </v-icon>
+                    <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
                     <v-toolbar-title> @{{exercise.name}}</v-toolbar-title>
                     <v-spacer></v-spacer>
 
                 </v-toolbar>
                 <v-container>
                     <v-alert value="info" type="info">
-                        @{{exercise.remark}}
+                        หมายเหตุ: @{{exercise.remark}}
                     </v-alert>
 
                   
@@ -58,6 +58,9 @@ else{
       answerData:{},
   },
   methods: { 
+    backPage(){
+            window.location=document.referrer;
+    },
     preData(){
         this.answerData.course = "{{request()->route('id')}}";
         this.answerData.type = '3'; 
@@ -70,7 +73,7 @@ else{
         this.preData();
         axios.post("/api/exercise/do/askanswer",this.answerData)
       .then((r) => {
- alert('ส่งานสำเร็จ');
+ alert('ส่งงานสำเร็จ');
  window.location=document.referrer;
       }).catch((e) => { 
           alert('error');

@@ -82,7 +82,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             this.exercise.ask = ","+this.exercise.ask.toString();
             this.choiceMake();
             this.exercise.type = 2;
-            this.exercise.course = "{{request()->route('id')}}";
+            this.exercise.course = this.exercise.course;
             this.exercise.teacher =  "<?php echo $id; ?>";
 
         },

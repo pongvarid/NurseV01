@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Course;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exercise;
+use App\Models\Exercised;
 use App\Services\LogsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ExerciseController extends Controller
 {
@@ -59,16 +59,28 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
-        $exercise = Exercise::where('course',$id)->get();
+        $exercise = Exercise::where('course', $id)
+        ->orderBy('time', 'desc')
+        ->get();
         return $exercise;
         //$exercise = DB::table('exercise')
-      //      ->join('exercised', 'exercise.id', '=', 'exercised.course')
-       //     ->select('exercise.*', 'exercised.*')
-      //      ->where('exercise.course', '=', $id)
-      //      ->get();
-      //  return $exercise;
+        //      ->join('exercised', 'exercise.id', '=', 'exercised.course')
+        //     ->select('exercise.*', 'exercised.*')
+        //      ->where('exercise.course', '=', $id)
+        //      ->get();
+        //  return $exercise;
     }
+    public function showTest($id, $student)
+    {
+        $exercise = Exercised::where('course', $id)->where('student', $student)->get();
 
+        if ($exercise != "[]") {
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
     /**
      * Show the form for editing the specified resource.
      *

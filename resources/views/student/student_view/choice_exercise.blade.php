@@ -79,7 +79,7 @@ else{
         axios.post("/api/exercise/do/choice",this.answerData)
       .then((r) => {
             alert('ส่งงานสำเร็จ');
-           window.history.back();
+            window.location=document.referrer;
       }).catch((e) => { 
           alert('error');
       });

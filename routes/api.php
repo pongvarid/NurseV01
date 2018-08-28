@@ -40,6 +40,8 @@ Route::get('/view/coirse/{id}','Course\CourseController@viewCourse');
 Route::resource('/logs','Logs\LogsController');
 Route::resource('/exercise','Course\ExerciseController');
 Route::get('/exercise_data/{id}','Course\ExerciseController@show'); //ดึงข้อมูลแบบฝึกหัด 
+Route::get('/exercise_datatest/{id}&{student}','Course\ExerciseController@showTest');
+
 Route::get('/check_exercised/{id}','Course\ExercisedController@checkExercised'); //เช็คว่าส่งการบ้าน?
 
 Route::get('/check_date/{id}','Course\ExercisedController@checkDate'); //เช็ควัน? 

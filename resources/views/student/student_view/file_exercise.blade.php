@@ -71,7 +71,7 @@ else{
         axios.post("/api/exercise/do/askanswer",this.answerData)
       .then((r) => {
  alert('ส่งานสำเร็จ');
- window.history.back();
+ window.location=document.referrer;
       }).catch((e) => { 
           alert('error');
       });

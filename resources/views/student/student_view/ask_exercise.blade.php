@@ -31,10 +31,10 @@ else{
 
                     <div v-for="asks,index in ask">
                         <div v-if="index !=0">
-                                <h4>ข้อ : @{{index}}</h4>
-                                <v-textarea  label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
-                                <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
-                        </div> 
+                            <h4>ข้อ : @{{index}}</h4>
+                            <v-textarea label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
+                            <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
+                        </div>
                     </div>
                     <v-btn @click="save()">ส่งคำตอบ</v-btn>
                 </v-container>
@@ -72,7 +72,7 @@ else{
         axios.post("/api/exercise/do/askanswer",this.answerData)
       .then((r) => {
  alert('ส่งานสำเร็จ');
- window.history.back();
+ window.location=document.referrer;
       }).catch((e) => { 
           alert('error');
       });

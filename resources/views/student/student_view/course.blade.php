@@ -71,10 +71,11 @@ else{
                 <v-card-text>
                     <v-card-text>
                         {{--
-                        <pre>@{{exercised}}</pre>
-                        <pre>@{{exercises}}</pre>--}}
-                        <div v-for="exercise in exercises" v-if="checkexercised">
-                            <div v-if="checkexercised[0].course == exercise.id">
+                        <pre>@{{checkexercised[2].course}}</pre> --}}
+                        <div v-for="exercise, index in exercises" v-if="checkexercised">
+                            {{--
+                            <pre>@{{index}}</pre> --}}
+                            <div v-for="exercised in checkexercised" v-if="exercised.course == exercise.id">
                                 <v-list-tile avatar>
                                     <v-list-tile-content>
                                         <p class="headline mb-0">
@@ -85,39 +86,45 @@ else{
                                 <v-divider></v-divider>
                             </div>
                         </div>
-                        <div v-for="exercise,index in exercises" v-if="checkexercised[0].course != exercise.id">
-                            <div v-if="datecount(exercise.time)>0">
-                                <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
-                                    <v-list-tile-content>
-                                        <p class="headline mb-0">@{{exercise.name}} </p>
-                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
-                                <v-divider></v-divider>
+
+                        <div v-for="exercise,index in exercises">
+                            <div v-if="checkED(exercise.id)">
+                                {{--
+                                <pre>@{{exercise.id}}</pre> --}}
+                                <div v-if="datecount(exercise.time)>0">
+                                    <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
+                                        <v-list-tile-content>
+                                            <p class="headline mb-0">@{{exercise.name}} </p>
+                                            <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                    <v-divider></v-divider>
+                                </div>
+                                <div v-if="datecount(exercise.time)==0">
+                                    <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
+                                        <v-list-tile-content>
+                                            <p class="headline mb-0">@{{exercise.name}} </p>
+                                            <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                    <v-divider></v-divider>
+                                </div>
+                                <div v-if="datecount(exercise.time)<0">
+                                    <v-list-tile avatar>
+                                        <v-list-tile-content>
+                                            <p class="headline mb-0">
+                                                <v-icon color="red">fas fa-times-circle</v-icon> @{{exercise.name}} </p>
+                                            <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
+                                    <v-divider></v-divider>
+                                </div>
                             </div>
-                            <div v-if="datecount(exercise.time)==0">
-                                <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
-                                    <v-list-tile-content>
-                                        <p class="headline mb-0">@{{exercise.name}} </p>
-                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
-                                <v-divider></v-divider>
+
                             </div>
-                            <div v-if="datecount(exercise.time)<0">
-                                <v-list-tile avatar>
-                                    <v-list-tile-content>
-                                        <p class="headline mb-0">
-                                            <v-icon color="red">fas fa-times-circle</v-icon> @{{exercise.name}} </p>
-                                        <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type">ตรวจแบบฝึกหัด</a></div>
-                                <v-divider></v-divider>
-                            </div>
-                        </div>
                     </v-card-text>
                 </v-card-text>
             </v-card>
@@ -224,6 +231,18 @@ else{
    documents:{},
   },
   methods: {
+    checkED(tmp){
+        let y = '';
+        let z =''; 
+        for(let i=0; i<this.checkexercised.length;i++){
+            if(tmp == this.checkexercised[i].course){
+                y = tmp;
+            }
+        }
+        if(y != tmp){
+          return tmp;  
+        }
+    },
     getStudent(){
         let result =  axios.get("/api/coursein/{{request()->route('id')}}")
       .then((r) => {
@@ -296,29 +315,13 @@ else{
         });      
       },
       timeconvert(time){
-          let convertTime = null;
-          //ti = moment("20180830", "YYYYMMDD").fromNow();
-          //ti = moment().endOf(time).fromNow(); 
+          let convertTime = null; 
           convertTime = moment(time).format('L');
           return convertTime;
       },
       timecount(time){
-          let countTime = null;
-          convert = time.split('-')[0]+time.split('-')[1]+time.split('-')[2];
-          countconvertTime = Number( convert - <?php echo date("Ymd");?>) ;
-          if(countconvertTime > 0){
-            return  countTime = countconvertTime+" วัน"; 
-            //this.countconvertTime ;
-            //countTime = moment(time, "YYYYMMDD", 'th').endOf(time).fromNow();
-          }
-          else if(countconvertTime == 0){
-            return countTime = "วันนี้";
-          //  this.countconvertTime;
-          }
-          else if(countconvertTime < 0){
-            return  countTime = "หมดเวลา"; 
-         //   this.countconvertTime;
-          }
+          date = moment(time, "YYYYMMDD",'th').fromNow(); 
+            return date;
       },
       datecount(time){
           let countTime = null;
@@ -352,6 +355,8 @@ else{
         this.getDocument();
         this.getStudent();   
         this.getTaIsMine();
+        this.checkExercised();
+        this.checkED();
     },
   },
   mounted(){

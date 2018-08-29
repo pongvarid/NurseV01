@@ -18,9 +18,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
           <v-card>
             <v-toolbar color="box-purple" dark>
               <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
-              <v-toolbar-title>กลับ</v-toolbar-title>
+              <!-- <v-toolbar-title>กลับ</v-toolbar-title>-->
               <v-spacer></v-spacer>
-              <v-text-field v-model="search" label="ค้นหา" single-line hide-details></v-text-field>
+              <v-text-field v-model="search" label="ค้นหารหัสวิชา" single-line hide-details></v-text-field>
               <v-btn @click="searchCouse()">ค้นหา</v-btn>
             </v-toolbar>
             <v-container fluid grid-list-lg>

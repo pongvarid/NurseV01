@@ -34,10 +34,10 @@ else{
                         <div v-if="index !=0">
                             <h4>ข้อ : @{{index}}</h4>
                             <v-textarea label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
-                            <v-text-field :label="'(A) '+answer[index].split(',')[0]" box></v-text-field>
-                            <v-text-field :label="'(B) '+answer[index].split(',')[1]" box></v-text-field>
-                            <v-text-field :label="'(C) '+answer[index].split(',')[2]" box></v-text-field>
-                            <v-text-field :label="'(D) '+answer[index].split(',')[3]" box></v-text-field>
+                            <v-text-field :label="'(A) '+answer[index].split(',')[0]" box readonly></v-text-field>
+                            <v-text-field :label="'(B) '+answer[index].split(',')[1]" box readonly></v-text-field>
+                            <v-text-field :label="'(C) '+answer[index].split(',')[2]" box readonly></v-text-field>
+                            <v-text-field :label="'(D) '+answer[index].split(',')[3]" box readonly></v-text-field>
 
                             <v-select :items="choices" v-model="choiceToGo[index]" label="กรุณาเลือกคำตอบ" solo></v-select>
 

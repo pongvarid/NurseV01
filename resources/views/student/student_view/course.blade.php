@@ -18,7 +18,10 @@ else{
         <v-flex d-flex>
             <v-card color="">
                 <v-toolbar color="indigo" dark>
-                    <v-icon>fas fa-user-circle </v-icon>
+                    <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
+                    <!--  <v-toolbar-title>กลับ</v-toolbar-title> -->
+                    <v-divider class="mx-2" inset vertical></v-divider>
+                    <!--  <v-icon>fas fa-user-circle </v-icon> -->
                     <v-toolbar-title>ข้อมูลรายวิชา @{{nameTH}} (@{{nameEN}}) [@{{courses.code}}]</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
@@ -230,6 +233,9 @@ else{
    documents:{},
   },
   methods: {
+    backPage(){
+        window.history.back();
+    },
     checkED(tmp){
         let y = '';
         for(let i=0; i<this.checkexercised.length;i++){

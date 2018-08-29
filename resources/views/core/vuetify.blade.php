@@ -8,24 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.js"></script>
   <script src="https://cdnjs.com/libraries/lodash.js/"></script>
-
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
     crossorigin="anonymous">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link href="../../css/custom.css" rel="stylesheet">
-  
+
 </head>
 
 <body onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);">
   <?php
-
-  
-   
     $i_user = isset($_SESSION['user']);
    ?>
     <div class="w3-bar box-blue wh">
- 
-      
       <?php if($i_user){?>
       <?php
                 if($_SESSION['user_type'] == 'student'){
@@ -42,16 +36,16 @@
                 }
                 if(isset($_SESSION["admin"]) ){
                   if($_SESSION["admin"] == '2'){
-                  ?> 
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/teacher"  > <i class="fas fa-user-tie"></i>&nbsp อาจารย์</a>
-                <a class="w3-bar-item w3-button w3-hide-small"  href="/admin/student"  > <i class="fas fa-book-reader"></i>&nbsp นิสิต</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  > <i class="fas fa-book-open"></i>&nbsp รายวิชา</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"  > <i class="fas fa-laptop-code"></i>&nbsp การลงทะเบียน</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/document"  > <i class="far fa-clipboard"></i>&nbsp เอกสาร</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercise"  > <i class="fas fa-clipboard-list"></i>&nbsp แบบฝึกหัด</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercised"  > <i class="fas fa-clipboard-check"></i>&nbsp การทำแบบฝึกหัด</a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="/admin/logs"  > Logs</a>
-              
+                  ?>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/teacher"> <i class="fas fa-user-tie"></i>&nbsp อาจารย์</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/student"> <i class="fas fa-book-reader"></i>&nbsp นิสิต</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"> <i class="fas fa-book-open"></i>&nbsp รายวิชา</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/course"> <i class="fas fa-laptop-code"></i>&nbsp การลงทะเบียน</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/document"> <i class="far fa-clipboard"></i>&nbsp เอกสาร</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercise"> <i class="fas fa-clipboard-list"></i>&nbsp แบบฝึกหัด</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/exercised"> <i class="fas fa-clipboard-check"></i>&nbsp การทำแบบฝึกหัด</a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="/admin/logs"> Logs</a>
+
             <?php
                 }}
                 ?>
@@ -61,12 +55,38 @@
     </div>
 
     <div id="demo" class="w3-bar-block box-blue wh w3-hide w3-hide-large w3-hide-medium">
-      <a href="#" class="w3-bar-item w3-button">Link 1</a>
-      <a href="#" class="w3-bar-item w3-button">Link 2</a>
-      
-      <?php if($i_user){?>
-      <a href="/logout" class="w3-bar-item w3-button w3-hide-small">ออกจากระบบ</a>
-      <?php } ?>
+        <?php if($i_user){?>
+          <?php
+                    if($_SESSION['user_type'] == 'student'){
+                      ?>
+            <a href="/student/profile" class="    w3-bar-item w3-button"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
+            <a href="/student/logs" class="    w3-bar-item w3-button"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
+            <?php
+                    }
+                    if($_SESSION['user_type'] == 'teacher'){
+                      ?>
+              <a href="/teacher/profile" class="    w3-bar-item w3-button"><i class="fas fa-user"></i>&nbsp โปรไฟล์</a>
+              <a href="/teacher/logs" class="    w3-bar-item w3-button"><i class="far fa-list-alt"></i>&nbsp ประวัติ</a>
+              <?php
+                    }
+                    if(isset($_SESSION["admin"]) ){
+                      if($_SESSION["admin"] == '2'){
+                      ?>
+                <a class="    w3-bar-item w3-button" href="/admin/teacher"> <i class="fas fa-user-tie"></i>&nbsp อาจารย์</a>
+                <a class="    w3-bar-item w3-button" href="/admin/student"> <i class="fas fa-book-reader"></i>&nbsp นิสิต</a>
+                <a class="    w3-bar-item w3-button" href="/admin/course"> <i class="fas fa-book-open"></i>&nbsp รายวิชา</a>
+                <a class="    w3-bar-item w3-button" href="/admin/course"> <i class="fas fa-laptop-code"></i>&nbsp การลงทะเบียน</a>
+                <a class="    w3-bar-item w3-button" href="/admin/document"> <i class="far fa-clipboard"></i>&nbsp เอกสาร</a>
+                <a class="    w3-bar-item w3-button" href="/admin/exercise"> <i class="fas fa-clipboard-list"></i>&nbsp แบบฝึกหัด</a>
+                <a class="    w3-bar-item w3-button" href="/admin/exercised"> <i class="fas fa-clipboard-check"></i>&nbsp การทำแบบฝึกหัด</a>
+                <a class="    w3-bar-item w3-button" href="/admin/logs"> Logs</a>
+    
+                <?php
+                    }}
+                    ?>
+                  <a href="/logout" class="    w3-bar-item w3-button"><i class="fas fa-power-off"></i>&nbsp ออกจากระบบ</a>
+                  <?php } ?>
+              
     </div>
 
     <script>

@@ -110,8 +110,8 @@ die();
 
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="updateTeacherProfile()">
-                แก้ไขข้อมูล
+            <v-btn color="primary" style="color:white!important; background-color:#9933CC;" dark  flat @click="updateTeacherProfile()">
+                <v-icon>far fa-edit</v-icon>&nbspแก้ไขข้อมูล
             </v-btn>
         </v-card-actions>
     </v-card>

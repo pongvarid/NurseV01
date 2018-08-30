@@ -90,9 +90,11 @@ else{
                                     <v-divider></v-divider>
                                 </div>
                                 <div v-if="datecount(exercise.time)==0">
-                                    <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">
+                                   <!-- <v-list-tile avatar @click="goto_exercisePage(exercise.id,exercise.type)">-->
+                                    <v-list-tile avatar>
                                         <v-list-tile-content>
-                                            <p class="headline mb-0">@{{exercise.name}} </p>
+                                            <p class="headline mb-0">
+                                                <v-icon color="red">fas fa-times-circle</v-icon> @{{exercise.name}} </p>
                                             <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
                                         </v-list-tile-content>
                                     </v-list-tile>

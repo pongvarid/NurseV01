@@ -28,7 +28,8 @@ $user_type = $_SESSION['user_type'];
                         <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model="score" label="คะแนน"
                             :placeholder="'คำตอบข้อ 1'" box></v-text-field>
                     </div>
-                    <v-btn @click="save()">บันทึกคะแนน</v-btn>
+                    <v-btn style="background-color:#683ECF;" dark block @click="save()"><v-icon>far fa-paper-plane</v-icon>&nbsp บันทึกคะแนน</v-btn>
+
                 </v-container>
             </v-card>
 

@@ -36,7 +36,7 @@ else{
                                 <v-text-field v-model="answer" label="คำตอบ" placeholder="คำตอบข้อ" box></v-text-field>
                    
                     </div>
-                    <v-btn @click="save()">ส่งคำตอบ</v-btn>
+                    <v-btn style="background-color:#683ECF;" dark block @click="save()"><v-icon>far fa-paper-plane</v-icon>&nbsp ส่งคำตอบ</v-btn>
                 </v-container>
             </v-card>
 

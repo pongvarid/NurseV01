@@ -33,7 +33,7 @@ $user_type = $_SESSION['user_type'];
 
                         </div>
                     </div>
-                    <v-btn @click="save()">บันทึกคะแนน</v-btn>
+                    <v-btn style="background-color:#683ECF;" dark block @click="save()"><v-icon>far fa-paper-plane</v-icon>&nbsp บันทึกคะแนน</v-btn>
                 </v-container>
             </v-card>
 

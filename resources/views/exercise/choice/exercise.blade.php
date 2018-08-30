@@ -10,8 +10,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 @extends('core.vuetify') 
 @section('vue')
 <v-container grid-list-md>
-        <v-layout row wrap>
-            <v-flex d-flex xs12 sm4>
+    <v-layout row wrap>
+        <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
                     <v-toolbar-side-icon>
@@ -29,12 +29,13 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="save()"><v-icon>fas fa-check</v-icon>&nbsp ยืนยัน</v-btn>
+                    <v-btn color="primary" @click="save()">
+                        <v-icon>fas fa-check</v-icon>&nbsp ยืนยัน</v-btn>
 
                 </v-card-actions>
             </v-card>
         </v-flex>
-     
+
         <v-flex xs12 sm8>
             <v-card>
                 <v-toolbar color="light-blue" dark>
@@ -43,13 +44,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text v-for="x in exercise.count">
-                    <v-text-field  v-model="exercise.ask[x]" :label="'ข้อ'+x" type="text"></v-text-field>
-                    <v-select
-                    v-model="choices.answer[x]"
-                    :items="answer"
-                    label="เฉลย"
-                    solo
-                  ></v-select>
+                    <v-text-field hint="ห้ามกรอกเครื่องหมาย , เด็ดขาด" persistent-hint  v-model="exercise.ask[x]" :label="'ข้อ'+x" type="text"></v-text-field>
+                    <v-select v-model="choices.answer[x]" :items="answer" label="เฉลย" solo></v-select>
                     <v-text-field v-model="choices.a[x]" label="a:" type="text"></v-text-field>
                     <v-text-field v-model="choices.b[x]" label="b:" type="text"></v-text-field>
                     <v-text-field v-model="choices.c[x]" label="c:" type="text"></v-text-field>

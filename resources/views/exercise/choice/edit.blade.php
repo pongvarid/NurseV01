@@ -41,7 +41,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text v-for="x in exercise.count"> 
-                    <v-text-field v-model="exercise.ask[x-1]" :label="'ข้อ'+x" type="text"></v-text-field>
+                    <v-text-field hint="ห้ามกรอกเครื่องหมาย , เด็ดขาด" persistent-hint  v-model="exercise.ask[x-1]" :label="'ข้อ'+x" type="text"></v-text-field>
                     <v-select v-model="choices.answer[x-1]" :items="answer" label="เฉลย" solo></v-select>
                     <v-text-field v-model="choices.a[x-1]" label="a:" type="text"></v-text-field>
                     <v-text-field v-model="choices.b[x-1]" label="b:" type="text"></v-text-field>

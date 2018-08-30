@@ -107,7 +107,6 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-toolbar-title>นิสิต</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-divider></v-divider>
                 <center>
                     <v-container>
                         <v-btn block style="background-color:#683ECF;" dark @click="goto_ExportPage()">

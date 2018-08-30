@@ -194,7 +194,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
   el: "#app",
   data: {
     dataCheck:{},
-    dataDB: {},
+    dataDB: {
+        course:"{{request()->route('id')}}",
+    },
     TADialog:false,
     studentDialog:false,
     student:{},

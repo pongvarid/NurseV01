@@ -95,7 +95,7 @@ class CourseInController extends Controller
     }
     public function updatePermissionTA(Request $request, $id)
     {
-        $course_in = CourseIn::where('student', $id)->update(['permission' => "2"]);
+        $course_in = CourseIn::where('student', $id)->where('course', $request->course)->update(['permission' => "2"]);
         
     }
 }

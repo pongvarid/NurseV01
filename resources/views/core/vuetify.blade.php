@@ -14,7 +14,43 @@
   <link href="../../css/custom.css" rel="stylesheet">
 
 </head>
-
+<style>
+  .box-blue {
+  background: rgba(0, 160, 204, 1);
+  background: -moz-linear-gradient(
+    left,
+    rgba(0, 160, 204, 1) 0%,
+    rgba(41, 100, 163, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(0%, rgba(0, 160, 204, 1)),
+    color-stop(100%, rgba(41, 100, 163, 1))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(0, 160, 204, 1) 0%,
+    rgba(41, 100, 163, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(0, 160, 204, 1) 0%,
+    rgba(41, 100, 163, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(0, 160, 204, 1) 0%,
+    rgba(41, 100, 163, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(0, 160, 204, 1) 0%,
+    rgba(41, 100, 163, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a0cc', endColorstr='#2964a3', GradientType=1 );
+}
+</style>
 <body onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);">
   <?php
     $i_user = isset($_SESSION['user']);

@@ -167,8 +167,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-spacer></v-spacer>
             <v-text-field v-model="dataDB.student" class="mrt-10" label="ใส่รหัสนิสิต TA ที่ต้องการเพิ่ม"></v-text-field>
             </v-flex>
-            <v-btn @click="addTA()">เพิ่ม TA</v-btn>
-
+            <v-btn color="primary" style="color:white!important; background-color:#9933CC;" dark  flat @click="addTA()">
+                <v-icon>fas fa-plus</v-icon>&nbsp เพิ่ม TA
+            </v-icon>
         </v-toolbar>
         <br><br>
 

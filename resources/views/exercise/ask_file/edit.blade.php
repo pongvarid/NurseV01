@@ -41,7 +41,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text> 
-                    <v-text-field v-model="exercises.ask" :label="'คำถาม'" type="text"></v-text-field> 
+                    <v-text-field hint="ห้ามกรอกเครื่องหมาย , เด็ดขาด" persistent-hint  v-model="exercises.ask" :label="'คำถาม'" type="text"></v-text-field> 
                 </v-card-text>
             </v-card>
         </v-flex>

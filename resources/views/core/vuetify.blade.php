@@ -16,6 +16,7 @@
 </head>
 <style>
   .box-blue {
+  color:white!important;
   background: rgba(0, 160, 204, 1);
   background: -moz-linear-gradient(
     left,

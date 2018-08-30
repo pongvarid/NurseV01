@@ -2,6 +2,7 @@
 /*-------------------SET SESSION-----------------------*/
 session_start();
 $user = isset($_SESSION['user']); 
+$user_type = $_SESSION['user_type'];
  
 ?> 
 @extends('core.vuetify') 

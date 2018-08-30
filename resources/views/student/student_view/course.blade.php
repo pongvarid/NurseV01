@@ -361,7 +361,6 @@ else{
         this.getDocument();
         this.getStudent();   
         this.getTaIsMine();
-        this.checkExercised();
         this.checkED();
     },
   },

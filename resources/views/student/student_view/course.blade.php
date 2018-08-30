@@ -86,7 +86,7 @@ else{
                                             <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
                                         </v-list-tile-content>
                                     </v-list-tile>
-                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
+                                    <div v-if="taIsMine == 2"><a class="v-btn" style="color:black; background-color:#FFCC33;" dark :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
                                     <v-divider></v-divider>
                                 </div>
                                 <div v-if="datecount(exercise.time)==0">
@@ -98,7 +98,7 @@ else{
                                             <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
                                         </v-list-tile-content>
                                     </v-list-tile>
-                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
+                                    <div v-if="taIsMine == 2"><a class="v-btn" style="color:black; background-color:#FFCC33;" dark :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
                                     <v-divider></v-divider>
                                 </div>
                                 <div v-if="datecount(exercise.time)<0">
@@ -109,7 +109,7 @@ else{
                                             <div>กำหนดส่ง วันที่ @{{timeconvert(exercise.time)}} (@{{timecount(exercise.time)}})</div>
                                         </v-list-tile-content>
                                     </v-list-tile>
-                                    <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
+                                    <div v-if="taIsMine == 2"><a class="v-btn"  style="color:black; background-color:#FFCC33;" dark :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
                                     <v-divider></v-divider>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ else{
                                         <div>ส่งแล้ว วันที่ @{{timeconvert(checkexercised[0].created_at.split(' ')[0])}}</div>
                                     </v-list-tile-content>
                                 </v-list-tile>
-                                <div v-if="taIsMine == 2"><a class="v-btn" :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
+                                <div v-if="taIsMine == 2"><a class="v-btn"  style="color:black; background-color:#FFCC33;" dark :href="'/exercise/check/'+exercise.id+'?type='+exercise.type" target="_blank">ตรวจแบบฝึกหัด</a></div>
                                 <v-divider></v-divider>
                             </div>
                         </div>

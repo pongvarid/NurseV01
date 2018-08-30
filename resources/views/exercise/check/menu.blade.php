@@ -4,6 +4,7 @@ session_start();
 $user = isset($_SESSION['user']); 
 if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     $id = $_SESSION['user'];
+    $user_type = $_SESSION['user_type'];
     $linkToCheck ="";
     if(isset($_GET['type'])){
         if($_GET['type'] == "1"){ $linkToCheck="/exercise/check/askanswer/";}
@@ -19,7 +20,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
 <v-container grid-list-md>
     <v-layout row wrap>
-  
+
         <v-flex d-flex xs12 sm12>
             <v-card color="">
                 <v-toolbar color="indigo" dark>
@@ -74,7 +75,11 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
     },
     methods:{
         backPage(){
+            if("<?php echo $user_type;?>" == "teacher"){
             window.location = "/course/profile/"+this.courses;
+            } else{
+            window.location = "/student/course/"+this.courses;
+            }
     },
     getCourseId(){
             let result =  axios.get("/api/course_id/{{request()->route('id')}}")

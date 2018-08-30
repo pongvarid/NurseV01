@@ -18,15 +18,14 @@ $user = isset($_SESSION['user']);
                 </v-toolbar>
                 <v-container>
                     <v-alert value="info" type="info">
-                        หมายเหตุ: @{{exercise.remark}}
-                        / คะแนนเต็ม: @{{exercise.score}} คะแนน
+                        หมายเหตุ: @{{exercise.remark}} / คะแนนเต็ม: @{{exercise.score}} คะแนน
                     </v-alert>
                     <div>
                         <h4>ข้อ : 1</h4>
                         <v-textarea label="คำถาม" :value="exercise.ask" hint="index" readonly></v-textarea>
                         <v-text-field v-model="answer" label="คำตอบ" :placeholder="'คำตอบข้อ 1'" readonly></v-text-field>
-                        <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model="score"
-                            label="คะแนน" :placeholder="'คำตอบข้อ 1'" box></v-text-field>
+                        <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model="score" label="คะแนน"
+                            :placeholder="'คำตอบข้อ 1'" box></v-text-field>
                     </div>
                     <v-btn @click="save()">บันทึกคะแนน</v-btn>
                 </v-container>
@@ -52,7 +51,11 @@ $user = isset($_SESSION['user']);
   },
   methods: { 
     backPage(){
-            window.location=document.referrer;
+        if("<?php echo $user_type;?>" == "teacher"){
+            window.location = "/course/profile/"+this.courses;
+            } else{
+            window.location = "/student/course/"+this.courses;
+            }
     },
     preData(){
         this.answerData.type = '5';  

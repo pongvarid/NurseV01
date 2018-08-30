@@ -19,18 +19,18 @@ $user = isset($_SESSION['user']);
                 </v-toolbar>
                 <v-container>
                     <v-alert value="info" type="info">
-                        หมายเหตุ: @{{exercise.remark}}
-                        / คะแนนเต็ม: @{{exercise.score}} คะแนน
+                        หมายเหตุ: @{{exercise.remark}} / คะแนนเต็ม: @{{exercise.score}} คะแนน
                     </v-alert>
-                
+
                     <div v-for="asks,index in ask">
                         <div v-if="index !=0">
-                                <h4>ข้อ : @{{index}}</h4>
-                                <v-textarea  label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
-                                <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index" ></v-text-field>
-                                <v-text-field  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model="score[index]" label="คะแนน" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
-                       
-                            </div> 
+                            <h4>ข้อ : @{{index}}</h4>
+                            <v-textarea label="คำถาม" :value="asks" hint="index" readonly></v-textarea>
+                            <v-text-field v-model="answer[index]" label="คำตอบ" :placeholder="'คำตอบข้อ '+index"></v-text-field>
+                            <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model="score[index]"
+                                label="คะแนน" :placeholder="'คำตอบข้อ '+index" box></v-text-field>
+
+                        </div>
                     </div>
                     <v-btn @click="save()">บันทึกคะแนน</v-btn>
                 </v-container>
@@ -57,7 +57,11 @@ $user = isset($_SESSION['user']);
   },
   methods: { 
     backPage(){
-            window.location=document.referrer;
+        if("<?php echo $user_type;?>" == "teacher"){
+            window.location = "/course/profile/"+this.courses;
+            } else{
+            window.location = "/student/course/"+this.courses;
+            }
     },
     preData(){
    

@@ -56,14 +56,13 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                    <v-icon>fas fa-user-circle</v-icon>
-                    <v-toolbar-title>เมนู</v-toolbar-title>
+                    <v-icon>fas fa-book-open</v-icon>
+                    <v-toolbar-title>แบบฝึกหัด</v-toolbar-title>
+                     
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-list two-line subheader>
 
-                    <h3>&nbsp;
-                        <v-icon>fas fa-book-open</v-icon>&nbsp แบบฝึกหัด</h3>
                     <v-container>
                         <v-btn block color="primary" @click="submit_ask()">
                             <v-icon>fas fa-clipboard-check</v-icon>&nbsp ตอบถูกผิด</v-btn>

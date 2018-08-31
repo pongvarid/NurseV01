@@ -14,10 +14,8 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             <v-flex d-flex xs12 sm4>
             <v-card>
                 <v-toolbar color="light-blue" dark>
-                    <v-toolbar-side-icon>
-                        <v-icon>fas fa-user-circle</v-icon>
-                    </v-toolbar-side-icon>
-                    <v-toolbar-title>แบบฝึกหัด</v-toolbar-title>
+                    <v-icon @click="backPage()">fas fa-arrow-left</v-icon>
+                    <v-toolbar-title>สร้างแบบฝึกหัด แนบไฟล์</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
@@ -61,6 +59,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
         },
     },
     methods: {
+        backPage(){
+            window.location=document.referrer;
+    },
         preData(){
             this.exercise.ask = this.exercise.ask.toString();
             //this.choiceMake();

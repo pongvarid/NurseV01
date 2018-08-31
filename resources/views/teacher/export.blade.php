@@ -32,7 +32,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
 
 <v-container>
 
-    <v-btn color="success"  @click="backPage()"><v-icon>fas fa-arrow-left</v-icon> กลับ</v-btn>
+    {{-- <v-btn color="success"  @click="backPage()"><v-icon>fas fa-arrow-left</v-icon>&nbsp กลับ</v-btn> --}}
 
         <a style="width:100%" class="v-btn box-blue wh" id="btnExport" onclick="javascript:xport.toCSV('testTable', 'outputdata');"><h3><v-icon class="wh">fas fa-file-excel</v-icon>&nbsp;ส่งออกเป็นไฟล์ CSV</h3></a> <br>
   <div class="scr">
@@ -172,9 +172,9 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
  
   },
   methods: {
-    backPage(){
-            window.location=document.referrer;
-    },
+    // backPage(){
+    //         window.location=document.referrer;
+    // },
 
     countScore(studentID){
         let score =0;

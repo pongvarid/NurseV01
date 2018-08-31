@@ -56,7 +56,7 @@ class ExercisedChoiceController extends Controller
         $exercised->fill($request->all()); 
  
         $exercised->type =  '5'; 
-        $exercised->score =  $score;
+        $exercised->score =  round($score, 2);
         $exercised->save(); 
     
         LogsService::save($request->student,2,'ส่งแบบฝึกหัด เลือกข้อถูก');

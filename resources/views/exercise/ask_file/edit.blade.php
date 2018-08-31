@@ -69,7 +69,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             this.exercises.event = "แก้ไขแบบฝึกหัด แนบไฟล์";
             let result =  axios.put("/api/exercise/askanswer/{{request()->route('id')}}",this.exercises)
             .then((r) => {
-                alert('แก้ไขข้อมูลสำเร็จ');
+                alert('แก้ไขแบบฝึกหัดสำเร็จ');
                 this.load();
             }).catch((e) => { 
                 alert('error: '+e);

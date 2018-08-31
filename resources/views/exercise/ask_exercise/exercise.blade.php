@@ -77,7 +77,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
             axios.post("/api/exercise",this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){
-                    alert('บันทึกรายวิชาเรียบร้อย');
+                    alert('บันทึกแบบฝึกหัดเรียบร้อย');
                     window.location = "/course/profile/{{request()->route('id')}}";
                 }else{
                     alert('error');

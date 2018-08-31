@@ -105,7 +105,7 @@ if(!$user){ echo '<meta http-equiv="refresh" content="0; url=/" />';}else{
              axios.put("/api/exercise/"+this.exercise.id,this.exercise)
             .then(function(response) { 
                 if(response.data == '1'){
-                    alert('แก้ไขรายวิชาเรียบร้อย'); 
+                    alert('แก้ไขแบบฝึกหัดสำเร็จ'); 
                 }else{
                     alert('error');
                 } 

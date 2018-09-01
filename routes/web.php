@@ -73,12 +73,7 @@ Route::get('/course/profile/{id}', function () {
 Route::get('/course/search', function () {
     return view('course.search');
 });
-Route::get('/crud', function () {
-    return view('crud.crud');
-});
-Route::get('/c', function () {
-    return view('crud.test');
-});
+ 
 Route::get('/course/edit_course/{id}', function () {
     return view('course.edit');
 });
